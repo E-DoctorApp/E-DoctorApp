@@ -6,6 +6,19 @@ module.exports = (connection, DataTypes) => {
         age: {
             type: DataTypes.INTEGER
         },
+        cin: {
+            type: DataTypes.INTEGER,
+            validate: {
+                max: 8,
+                min: 8
+            }
+        },
+        avatarUrl: {
+            type: DataTypes.TEXT
+        },
+        papers:{
+            type: DataTypes.JSON,
+        },
         gender: {
             type: DataTypes.ENUM,
             values: ["male", "female"]
