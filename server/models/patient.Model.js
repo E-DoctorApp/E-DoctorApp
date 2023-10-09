@@ -10,6 +10,9 @@ module.exports = (connection, DataTypes) => {
             type:DataTypes.ENUM,
             values:["male","female"]
         },
+        avatarUrl: {
+            type: DataTypes.TEXT
+        },
         phone:{
             type:DataTypes.INTEGER,
             unique:true

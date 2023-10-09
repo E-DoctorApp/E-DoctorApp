@@ -18,6 +18,8 @@ const Appointment = require("../models/appointment.Model")(connection, DataTypes
 const Review = require("../models/review.Model")(connection, DataTypes)
 const Room = require("../models/room.Model")(connection, DataTypes)
 const Message = require("../models/message.Model")(connection, DataTypes)
+const Report = require("../models/report.Model")(connection, DataTypes)
+const Admin = require("../models/admin.Model")(connection, DataTypes)
 
 Patient.hasMany(Review)
 Review.belongsTo(Patient)
@@ -63,6 +65,17 @@ Message.belongsTo(Room)
 
 
 
+Patient.hasMany(Report)
+Report.belongsTo(Patient)
+
+
+
+Doctor.hasMany(Report)
+Report.belongsTo(Doctor)
+
+
+
+
 
 
 
@@ -102,7 +115,9 @@ module.exports = {
     Appointment: Appointment,
     Review: Review,
     Room: Room,
-    Message: Message
+    Message: Message,
+    Report:Report,
+    Admin:Admin
 
 }
 
