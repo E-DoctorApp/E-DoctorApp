@@ -8,7 +8,12 @@ import Footer from './components/Footer/Footer';
 function App() {
   return (
     <div className="App">
-      <ContactUs/>
+      <NavBar />
+      {/* <ContactUs /> */}
+
+
+
+      <Footer />
     </div>
   );
 }
