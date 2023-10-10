@@ -12,7 +12,7 @@ const ContactUs = () => {
                     <h2>Contact Us</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
-                <div >
+                <div>
                     <form className="row g-3">
                         <div className="col-md-6">
                             <label htmlFor="inputEmail4" className="form-label">Name</label>
