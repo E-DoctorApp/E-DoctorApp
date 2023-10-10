@@ -16,7 +16,7 @@ module.exports = (connection, DataTypes) => {
         avatarUrl: {
             type: DataTypes.TEXT
         },
-        papers:{
+        papers: {
             type: DataTypes.JSON,
         },
         gender: {
@@ -42,7 +42,8 @@ module.exports = (connection, DataTypes) => {
             defaultValue: false
         },
         department: {
-            type: DataTypes.STRING
+            type: DataTypes.ENUM,
+            values: ["Neurologist", "Dermatology", "Gynecologist", "Generalist", "Radiology", "Orthopedics", "Dentistry", "Surgery"]
         },
         password: {
             type: DataTypes.STRING
