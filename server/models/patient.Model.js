@@ -35,11 +35,7 @@ module.exports = (connection, DataTypes) => {
             type:DataTypes.STRING
         },
         cin: {
-            type: DataTypes.INTEGER,
-            validate: {
-                max: 8,
-                min: 8
-            }
+            type: DataTypes.STRING,
         },
     })
     return Patient
