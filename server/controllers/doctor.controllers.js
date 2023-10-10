@@ -5,9 +5,9 @@ const jwt = require("jsonwebtoken");
 
 module.exports.register = async (req, res) => {
     try {
+        console.log(req.body);
         bcrypt.hash(req.body.password, 10)
             .then((hassedPass) => {
-                console.log(hassedPass);
                 Doctor.create({
                     ...req.body,
                     password: hassedPass
@@ -77,6 +77,39 @@ module.exports.login = async (req, res) => {
                 error,
             });
         });
+};
+
+module.exports.getAll = async(req,res)=>{
+    try {
+        const result = await Doctor.findAll({include:{all:true}})
+        res.status(201).send(result)
+    } catch (error) {
+        throw new Error(error)
+    }
+};
+module.exports.getOne = async(req,res)=>{
+    try {
+        const result = await Doctor.findOne({where:{id:req.params.id},include:{all:true}})
+        res.status(201).send(result)
+    } catch (error) {
+        throw new Error(error)
+    }
+};
+module.exports.deleteOne = async(req,res)=>{
+    try {
+        const result = await Doctor.destroy({ where: { id: req.params.id } })
+        res.json(result)
+    } catch (error) {
+        throw new Error(error)
+    }
+};
+module.exports.updateOne = async(req,res)=>{
+    try {
+        const result = await Doctor.update(req.body, { where: { id: req.params.id } })
+        res.status(201).send(result)
+    } catch (error) {
+        throw new Error(error)
+    }
 };
 
 
