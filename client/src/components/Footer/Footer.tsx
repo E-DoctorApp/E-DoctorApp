@@ -4,7 +4,7 @@ import React from 'react'
 import logo from "../../assets/images/logo.png"
 
 
-const Footer = () => {
+const Footer = (): React.JSX.Element => {
     return (
         <div className="footer-container-all">
             <div className="footer-container">
@@ -22,7 +22,13 @@ const Footer = () => {
                 </div>
                 <div className="child2 ">
                     <span>Product</span>
-                    <div className="child2-"></div>
+                    <div className="child2-childs">
+                        <span>Feautures</span>
+                        <span>Pricing</span>
+                        <span>Case studies</span>
+                        <span>Reviews</span>
+                        <span>Updates</span>
+                    </div>
                 </div>
                 <div className="child3 "></div>
                 <div className="child4 "></div>
