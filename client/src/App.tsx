@@ -5,6 +5,7 @@ import ContactUs from './components/contactUs/ContactUS';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import Login from './components/Login/Login';
+import LandingPage from './components/LandingPage/LandingPage';
 
 function App() {
   return (
@@ -21,17 +22,23 @@ function App() {
 
 
     <Login/>
+     
+      {/* <ContactUs /> */}
+
+
+
+      <LandingPage />
 
 
 
 
-      <Footer/>
 
 
 
 
 
       {/* <ContactUs/> */}
+      <Footer />
     </div>
   );
 }
