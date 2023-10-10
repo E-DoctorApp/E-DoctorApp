@@ -11,10 +11,11 @@ body {
     transform: translate(-5%, -5%);
     margin-bottom: 30px;
 } */
-img {
-   width: 100%;
-   object-fit: contain;
+.hospital{
+    width: 100%;
+    object-fit: contain;
 }
+
 .hospital {}
 
 .mainInputsContainer {}
@@ -44,7 +45,7 @@ img {
 .form-control {
     border-width: 3px;
     border-color: rgba(0, 126, 133, 1);
-    background-color: #ECECEC ;
+    background-color: #ECECEC;
 }
 
 .form-floating {
@@ -62,9 +63,11 @@ img {
     top: 450px;
     left: 30px;
 }
-.form-select{
+
+.form-select {
     border-width: 3px;
-    border-color: rgba(0, 126, 133, 1);;
+    border-color: rgba(0, 126, 133, 1);
+    ;
     background-color: #ECECEC;
 }
 
@@ -90,33 +93,39 @@ img {
     top: 195px;
     left: 0px;
 }
-.search-bottom{
+
+.search-bottom {
     /* margin-top: 35px !important; */
 }
-.search-bottom-Maincontainer{
-display: flex !important;
-width: 100%;
-justify-content: center;
-align-items: center;
+
+.search-bottom-Maincontainer {
+    display: flex !important;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
-.search-bottom-container{
+
+.search-bottom-container {
     display: flex;
     position: relative;
 }
-.bottom-input{
+
+.bottom-input {
     border-radius: 3rem;
     width: 25rem;
     height: 4rem;
     padding-left: 1rem;
 
 }
-.last-button{
+
+.last-button {
     border-radius: 3rem;
     padding: 1rem 3rem;
     color: #ECECEC;
     background-color: rgba(0, 126, 133, 1);
 
 }
-.btn-removeHover:hover{
-background:  rgba(0, 126, 133, 1) ;
+
+.btn-removeHover:hover {
+    background: rgba(0, 126, 133, 1);
 }
