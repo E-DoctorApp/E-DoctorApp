@@ -13,6 +13,8 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faFileLines } from '@fortawesome/free-solid-svg-icons';
 import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { faVideo } from '@fortawesome/free-solid-svg-icons';
 
 const DoctorProfile = () :  React.JSX.Element => {
   const overview = faBars as IconProp;
@@ -24,6 +26,8 @@ const DoctorProfile = () :  React.JSX.Element => {
   const blog = faFileLines as IconProp;
   const question = faCircleQuestion as IconProp;
   const bell = faBell as IconProp;
+  const building = faBuilding as IconProp;
+  const video = faVideo as IconProp;
   return   (
     <div className="DoctorProfile-body">
       <div className="DoctorProfile-sideBar">
@@ -58,6 +62,56 @@ const DoctorProfile = () :  React.JSX.Element => {
               </div>
               </div>
           </div>
+        </div>
+        <div className="DoctorProfile-mid">
+          <span className="DoctorProfile-welcome">Welcome, Dr.Stephen</span>
+          <span>Have a nice day at great work</span>
+        </div>
+        <div className="DoctorProfile-card-container">
+            <div className="DoctorProfile-card" id="DoctorProfile-card-appointments">
+              <div className="DoctorProfile-card-icon-container">
+                <div >
+                    <FontAwesomeIcon className="DoctorProfile-card-icon" icon={calendar} style={{color: "white",}}  />
+                </div>
+              </div>
+              <div className="DoctorProfile-card-details">
+                <span className="DoctorProfile-card-stat">24.4K</span>
+                <span className="DoctorProfile-card-title">Appointments</span>
+              </div>
+            </div>
+            <div className="DoctorProfile-card" id="DoctorProfile-card-patient">
+              <div className="DoctorProfile-card-icon-container">
+                <div >
+                    <FontAwesomeIcon className="DoctorProfile-card-icon" icon={user} style={{color: "white",}}  />
+                </div>
+              </div>
+              <div className="DoctorProfile-card-details">
+                <span className="DoctorProfile-card-stat">166.3K</span>
+                <span className="DoctorProfile-card-title">Total Patient</span>
+              </div>
+            </div>
+            <div className="DoctorProfile-card" id="DoctorProfile-card-clinic">
+              <div className="DoctorProfile-card-icon-container">
+                <div >
+                    <FontAwesomeIcon className="DoctorProfile-card-icon" icon={building} style={{color: "white",}}  />
+                </div>
+              </div>
+              <div className="DoctorProfile-card-details">
+                <span className="DoctorProfile-card-stat">53.5K</span>
+                <span className="DoctorProfile-card-title">Clinic Consulting</span>
+              </div>
+            </div>
+            <div className="DoctorProfile-card" id="DoctorProfile-card-video">
+              <div className="DoctorProfile-card-icon-container">
+                <div >
+                    <FontAwesomeIcon className="DoctorProfile-card-icon" icon={video} style={{color: "white",}}  />
+                </div>
+              </div>
+              <div className="DoctorProfile-card-details">
+                <span className="DoctorProfile-card-stat">28.0K</span>
+                <span className="DoctorProfile-card-title">Video Consulting</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
