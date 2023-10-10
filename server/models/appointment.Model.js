@@ -5,12 +5,13 @@ module.exports = (connection, DataTypes) => {
         },
         status: {
             type: DataTypes.ENUM,
-            values: ["pending", "accepted", "rejected"]
+            values: ["pending", "accepted", "rejected"],
+            defaultValue: "pending"
         },
         disease: {
             type: DataTypes.STRING
         },
-        isFinished:{
+        isFinished: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         }

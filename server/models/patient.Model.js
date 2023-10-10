@@ -33,7 +33,14 @@ module.exports = (connection, DataTypes) => {
         },
         password:{
             type:DataTypes.STRING
-        }
+        },
+        cin: {
+            type: DataTypes.INTEGER,
+            validate: {
+                max: 8,
+                min: 8
+            }
+        },
     })
     return Patient
 
