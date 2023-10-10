@@ -102,7 +102,7 @@ Report.belongsTo(Doctor)
 
 
 
-connection.sync({force: true})
+// connection.sync({force: true})
 
 
 
