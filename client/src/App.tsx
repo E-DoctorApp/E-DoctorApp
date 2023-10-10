@@ -12,32 +12,10 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-
-
-
-      <ContactUs />
-
-
-
-
-
-      <DoctorProfile />
-      {/* <ContactUs/> */}
-      {/* <NavBar /> */}
-
-
       <Login />
-
-
-
-      {/* <DoctorProfile/> */}
-
-      {/* <LandingPage /> */}
-
-
-
-
-
+      <ContactUs />
+      <DoctorProfile/>
+      <LandingPage />
       <Footer />
     </div>
   );
