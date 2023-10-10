@@ -37,7 +37,7 @@
 
 .nav-buttons {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 1.625rem;
     justify-content: center;
 }
@@ -95,13 +95,13 @@
     font-weight: 400;
     line-height: normal;
     text-transform: capitalize;
-    transition: 0.4s;
+    transition: 0.3s;
 }
 
 .item:hover {
     color: #007E85;
     cursor: pointer;
-    border-bottom: 3px solid #007E85;
+    border-bottom: 2px solid #007E85;
     text-align: center;
     font-size: 1.25rem;
     font-weight: 400;
