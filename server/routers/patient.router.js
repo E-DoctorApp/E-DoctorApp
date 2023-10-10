@@ -4,10 +4,10 @@ const patientController = require("../controllers/patient.controller.js")
 
 
 
-patientRouter.get("/get",patientController.getAll);
-patientRouter.get("/one/:id",patientController.getOne);
-patientRouter.put("/edit/:id",patientController.Update);
-patientRouter.delete("/remove/:id",patientController.remove);
+patientRouter.get("/getAll",patientController.getAll);
+patientRouter.get("/:id",patientController.getOne);
+patientRouter.put("/:id",patientController.Update);
+patientRouter.delete("/:id",patientController.remove);
 patientRouter.post("/login",patientController.login)
 patientRouter.post("/register",patientController.register)
 module.exports = patientRouter

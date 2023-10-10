@@ -1,6 +1,6 @@
-const  {Patient}  = require("../database/index.js");
+const { Patient } = require("../database/index.js");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");  
+const jwt = require("jsonwebtoken");
 
 module.exports.register = async (req, res) => {
   try {
@@ -76,13 +76,13 @@ module.exports.login = async (req, res) => {
     });
 };
 
-
-
 module.exports.getAll = async (req, res) => {
   try {
-    const result = await Patient.findAll({});
-    res.json(result)
-} catch (error) {
+    const result = await Patient.findAll({
+      include: { all: true, nested: true },
+    });
+    res.json(result);
+  } catch (error) {
     console.log(error);
     res.status(404).send(error);
   }
@@ -90,9 +90,11 @@ module.exports.getAll = async (req, res) => {
 
 module.exports.getOne = async (req, res) => {
   try {
-    const result = await Patient.findOne({ where: { id: req.params.id } });
+    const result = await Patient.findOne({ where: { id: req.params.id },
+      include: { all: true, nested: true },
+    
+    });
     res.status(201).send(result);
-
   } catch (error) {
     console.log(error);
     res.status(404).send(error);
@@ -117,13 +119,11 @@ module.exports.remove = async (req, res) => {
   }
 };
 
-
 module.exports.Update = async (req, res) => {
   try {
     const id = req.params.id;
-    const result = await Patient.update(req.body,{ where: { id: id } });
+    const result = await Patient.update(req.body, { where: { id: id } });
     res.json(result);
-
   } catch (error) {
     console.log(error);
     res.status(404).send(error);
