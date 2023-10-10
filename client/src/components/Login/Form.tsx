@@ -4,11 +4,6 @@ import "./style.css"
 function Form() {
   return (
     <div className='signIn'>
-      
-      <div className="container-fluid h-custom">
-        <div className="d-flex  align-items-start">
-          <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-            <form>
               <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start gap-4">
                 <p className="lead fw-normal mb-0 me-3">Sign in with</p>
 
@@ -20,7 +15,6 @@ function Form() {
                 </a>
 
               </div>
-
               <div className="divider d-flex align-items-center my-4">
                 <p className="text-center fw-bold mx-3 mb-0">Or</p>
               </div>
@@ -76,10 +70,7 @@ function Form() {
                   Don't have an account? <a href="#!" className="link-danger">Register</a>
                 </p>
               </div>
-            </form>
-          </div>
-        </div>
-      </div>
+    
       
     </div>
   );

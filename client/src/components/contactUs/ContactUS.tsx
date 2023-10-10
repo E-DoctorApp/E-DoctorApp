@@ -1,5 +1,6 @@
 import React from "react";
 import img from "../../assets/images/hospital.png"
+import "./style.css"
 const ContactUs = () => {
     return (
         <div className="container">

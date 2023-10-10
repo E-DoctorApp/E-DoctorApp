@@ -15,26 +15,21 @@ function App() {
 
 
 
- 
-
-
-
-      <DoctorProfile/>
-      {/* <ContactUs/> */}
       <NavBar />
 
 
-    <Login/>
-     
+
+
+      <DoctorProfile />
+      {/* <ContactUs/> */}
+
+      <Login />
+
       <ContactUs />
 
 
 
-      <LandingPage />
-
-
-
-
+      {/* <LandingPage /> */}
 
 
 
