@@ -14,7 +14,7 @@ function App() {
       {/* <ContactUs/> */}
       <NavBar />
 
-      <Register/>
+      {/* <Register/> */}
       <DoctorProfile/>
       <ContactUs/>
       {/* <ContactUs /> */}
