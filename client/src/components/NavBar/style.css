@@ -6,6 +6,8 @@
     max-width: 100%;
     justify-content: space-around;
     padding: 1rem;
+    background: #ECECEC;
+
 }
 
 .nav-logo {
@@ -83,7 +85,7 @@
     line-height: normal;
     text-transform: capitalize;
     border-radius: 0.5rem;
-    background: #fff;
+    background: #ECECEC;
     border: none;
 }
 
