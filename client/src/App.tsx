@@ -23,7 +23,7 @@ function App() {
 
     <Login/>
      
-      {/* <ContactUs /> */}
+      <ContactUs />
 
 
 
@@ -37,7 +37,6 @@ function App() {
 
 
 
-      {/* <ContactUs/> */}
       <Footer />
     </div>
   );

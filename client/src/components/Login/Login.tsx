@@ -4,7 +4,7 @@ import doctor from "../../assets/images/image 17.png"
 import "./style.css"
 const Login = () => {
     return (
-        <div className='container'>
+        <div className='container-login'>
             <Form />
             <div className='image-doctor-wrapper'>
                 <img className='image-doctor' src={doctor} alt="" />
