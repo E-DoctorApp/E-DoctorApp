@@ -11,35 +11,8 @@ const Register = () => {
       <div className="background boxy">
         <form className="row g-3 needs-validation" noValidate>
           <div className="col-md-4">
-            <label htmlFor="validationCustom01" className="form-label">
-              First name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="validationCustom01"
-              defaultValue="Mark"
-              required
-            />
-            <div className="valid-feedback">Looks good!</div>
-          </div>
-          
-          <div className="col-md-4">
-            <label htmlFor="validationCustom02" className="form-label">
-              Last name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="validationCustom02"
-              defaultValue="Otto"
-              required
-            />
-            <div className="valid-feedback">Looks good!</div>
-          </div>
-          <div className="col-md-4">
             <label htmlFor="validationCustomUsername" className="form-label">
-              Username
+              name
             </label>
             <div className="input-group has-validation">
               <span className="input-group-text" id="inputGroupPrepend">
@@ -47,17 +20,17 @@ const Register = () => {
               </span>
               <input
                 type="text"
+                placeholder="name here"
                 className="form-control"
                 id="validationCustomUsername"
                 aria-describedby="inputGroupPrepend"
                 required
               />
-              <div className="invalid-feedback">Please choose a username.</div>
             </div>
           </div>
           <div className="col-md-6">
             <label htmlFor="validationCustom03" className="form-label">
-              City
+              Age
             </label>
             <input
               type="text"
