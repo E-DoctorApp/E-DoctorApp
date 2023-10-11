@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./style.css"
+import {RootState,AppDispatch}from "../../store/store"
+import { useSelector,useDispatch } from 'react-redux'
+import {  loginFunc } from '../../store/userSlice'
 
 function Form() {
+  const user = useSelector((state:RootState)=>state.aziz)
+  console.log("user",user);
+  const dispatch:AppDispatch= useDispatch()
+  
+ const [email,setEmail] = useState("")
+ const [password,setPassword] = useState("")
+
+ const handleSubmit=(e:Event)=>{
+e.preventDefault()
+dispatch(loginFunc({
+  email,
+  password
+}))
+
+
+ }
   return (
     <div className='signIn'>
               <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start gap-4">
@@ -24,17 +43,25 @@ function Form() {
                   id="form3Example3"
                   className="form-control form-control-lg"
                   placeholder="Enter a valid email address"
+                  onChange={(e)=>{console.log(e.target.value)
+                    setEmail(e.target.value)          }
+                  }
                 />
                 <label className="form-label" htmlFor="form3Example3">
                   Email address
                 </label>
               </div>
               <div className="form-outline mb-3">
-                <input
+                <input 
                   type="password"
                   id="form3Example4"
                   className="form-control form-control-lg"
                   placeholder="Enter password"
+                  onChange={(e)=>{
+                    console.log(e.target.value)
+                    setPassword(e.target.value)
+                    
+                  }}
                 />
                 <label className="form-label" htmlFor="form3Example4">
                   Password
@@ -63,6 +90,13 @@ function Form() {
                   type="button"
                   className="btn btn-primary btn-lg"
                   style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}
+                  onClick={(e)=>{
+                    e.preventDefault()
+dispatch(loginFunc({
+  email,
+  password
+}))
+                  }}
                 >
                   Log In
                 </button>
