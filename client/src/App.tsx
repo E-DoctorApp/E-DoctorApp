@@ -8,6 +8,7 @@ import Login from './components/Login/Login';
 import LandingPage from './components/LandingPage/LandingPage';
 import DoctorProfile from './components/DoctorProfile/DoctorProfile';
 import { Route, Routes } from 'react-router';
+import ServicePage from './components/ServicePage/ServicePage';
 
 
 function App() {
@@ -16,10 +17,11 @@ function App() {
       <NavBar />
       <Routes>
         <Route path='/' element={<LandingPage />} />
-        <Route path='/login' element={<Login /> } />
-        <Route path='/contactUs' element={<ContactUs /> } />
-        <Route path='/register' element={<ContactUs /> } />
-        <Route path='/doctorProfile' element={<DoctorProfile /> } />
+        <Route path='/login' element={<Login />} />
+        <Route path='/contactUs' element={<ContactUs />} />
+        <Route path='/register' element={<ContactUs />} />
+        <Route path='/doctorProfile' element={<DoctorProfile />} />
+        <Route path='/services' element={<ServicePage />} />
       </Routes>
       <Footer />
     </div>
