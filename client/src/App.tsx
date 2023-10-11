@@ -7,7 +7,7 @@ import Footer from './components/Footer/Footer';
 import Login from './components/Login/Login';
 import LandingPage from './components/LandingPage/LandingPage';
 import DoctorProfile from './components/DoctorProfile/DoctorProfile';
-import { Route, Routes } from 'react-router';
+import { Route, Routes } from 'react-router-dom';
 
 
 function App() {
