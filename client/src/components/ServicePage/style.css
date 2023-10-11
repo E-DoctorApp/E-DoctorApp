@@ -1,0 +1,46 @@
+.services-page-conatiner{
+    width: 100%;
+    height: 700vh;
+    background: red;
+}
+
+.services-hospital-image-wrapper{
+    width: 100%;
+    height: fit-content;
+    position: relative;
+
+}
+.absolute-div-wrapper{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    /* background-color: aqua; */
+    transform: translate(-50%,-50%);
+}
+
+.make-the-best-hosptial{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-appointment{
+    width: 50%;
+    height: 100%;
+    background: white;
+}
+.book-appointment-warrper-child{
+    margin: 3rem auto;
+    width: 55%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    background: red;
+}

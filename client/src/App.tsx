@@ -9,20 +9,26 @@ import LandingPage from './components/LandingPage/LandingPage';
 import DoctorProfile from './components/DoctorProfile/DoctorProfile';
 import { Route, Routes } from 'react-router-dom';
 import Register from './components/Register/Register';
+import ServicePage from './components/ServicePage/ServicePage';
+import Overview from './components/DoctorProfile/Overview';
 
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
+      {/* <NavBar /> */}
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='/login' element={<Login /> } />
         <Route path='/contactUs' element={<ContactUs /> } />
         <Route path='/register' element={<Register /> } />
-        <Route path='/doctorProfile' element={<DoctorProfile /> } />
+        <Route path='/doctorProfile' element={<DoctorProfile /> } >
+          <Route path='' element={<Overview />} />
+          {/* <Route path='pp' element={<h1>4444</h1>} /> */}
+        </Route>
+        <Route path='/services' element={<ServicePage/> } />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
