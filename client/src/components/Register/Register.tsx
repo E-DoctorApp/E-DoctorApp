@@ -1,141 +1,103 @@
 import React from "react";
 import "./style.css"; 
-import doctorImg from "../../assets/images/doctor.png";
-import docBac from "../../assets/images/docBack.png";
-import healthCare from "../../assets/images/logo-health-care.png"
-import logo from "../../assets/images/logo.png"
+import doctorImg from "../../assets/images/image 17.png";
+import back from "../../assets/images/back.png"
+
+
 const Register = () => {
-  
+
   return (
-    <div className="all-register-container">
-      <div className="background boxy">
-        <form className="row g-3 needs-validation" noValidate>
-          <div className="col-md-4">
-            <label htmlFor="validationCustomUsername" className="form-label">
-              name
-            </label>
-            <div className="input-group has-validation">
-              <span className="input-group-text" id="inputGroupPrepend">
-                @
-              </span>
-              <input
-                type="text"
-                placeholder="name here"
-                className="form-control"
-                id="validationCustomUsername"
-                aria-describedby="inputGroupPrepend"
-                required
-              />
-            </div>
-          </div>
-          <div className="col-md-6">
-            <label htmlFor="validationCustom03" className="form-label">
-              Age
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="validationCustom03"
-              required
-            />
-            <div className="invalid-feedback">Please provide a valid city.</div>
-          </div>
-          <div className="col-md-6">
-            <label htmlFor="validationCustom03" className="form-label">
-              City
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="validationCustom03"
-              required
-            />
-            <div className="invalid-feedback">Please provide a valid city.</div>
-          </div>
-          <div className="col-md-6">
-            <label htmlFor="validationCustom03" className="form-label">
-              City
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="validationCustom03"
-              required
-            />
-            <div className="invalid-feedback">Please provide a valid city.</div>
-          </div>
-          <div className="col-md-6">
-            <label htmlFor="validationCustom03" className="form-label">
-              City
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="validationCustom03"
-              required
-            />
-            <div className="invalid-feedback">Please provide a valid city.</div>
-          </div>
-          <div className="col-md-3">
-            <label htmlFor="validationCustom04" className="form-label">
-              State
-            </label>
-            <select className="form-select" id="validationCustom04" required>
-              <option selected disabled value="">
-                Choose...
-              </option>
-              <option>...</option>
-            </select>
-          </div>
-          
-          <div className="col-md-3">
-            <label htmlFor="validationCustom05" className="form-label">
-              Zip
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="validationCustom05"
-              required
-            />
-            <div className="invalid-feedback">Please provide a valid zip.</div>
-          </div>
-          <div className="col-12">
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                value=""
-                id="invalidCheck"
-                required
-              />
-              <label className="form-check-label" htmlFor="invalidCheck">
-                Agree to terms and conditions
-              </label>
-              <div className="invalid-feedback">
-                You must agree before submitting.
-              </div>
-            </div>
-          </div>
-          <div className="col-12">
-            <button className="btn btn-primary" type="submit">
-              Submit form
-            </button>
-          </div>
-        </form>
+    <div className="allRegisterContainer">
+      <div className="signInFormContainer">
+        <div className="formOutline mb-3">
+          <input
+            className="formInput formInputLarge"
+            placeholder="Enter password"
+          />
+          <label className="formLabel" htmlFor="passwordInput">
+            Name
+          </label>
+        </div>
+        <div className="formOutline mb-3">
+          <input
+            className="formInput formInputLarge"
+            placeholder="Enter name"
+          />
+          <label className="formLabel" htmlFor="passwordInput">
+            Age
+          </label>
+        </div>
+        <div className="formOutline mb-3">
+          <input
+            className="formInput formInputLarge"
+            placeholder="Enter age"
+          />
+          <label className="formLabel" htmlFor="passwordInput">
+            Gender
+          </label>
+        </div>
+        <div className="formOutline mb-3">
+          <input
+            className="formInput formInputLarge"
+            placeholder="Enter gender"
+          />
+          <label className="formLabel" htmlFor="passwordInput">
+            Phone
+          </label>
+        </div>
+        <div className="formOutline mb-3">
+          <input
+            className="formInput formInputLarge"
+            placeholder="Enter phone number"
+          />
+          <label className="formLabel" htmlFor="passwordInput">
+            Email
+          </label>
+        </div>
+        <div className="formOutline mb-3">
+          <input
+            className="formInput formInputLarge"
+            placeholder="Enter Email"
+          />
+          <label className="formLabel" htmlFor="passwordInput">
+            Address
+          </label>
+        </div>
+        <div className="formOutline mb-3">
+          <input
+            className="formInput formInputLarge"
+            placeholder="Enter password"
+            type="password"
+            id="passwordInput"
+          />
+          <label className="formLabel" htmlFor="passwordInput">
+            Password
+          </label>
+        </div>
+        <div className="formOutline mb-3">
+          <input
+            className="formInput formInputLarge"
+            placeholder="Enter password"
+          />
+          <label className="formLabel" htmlFor="passwordInput">
+            CIN
+          </label>
+        </div>
+        <div className="textCenter mt-4 pt-2">
+          <button
+            type="button"
+            className="btn btnPrimary btnLarge button"
+            style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}
+          >
+            Submit
+          </button>
+        </div>
       </div>
-<div >
-  <img className="health-care-log" src = {healthCare}/>
-</div>
-<div>
-<img className= "logo" src = {logo}/>
-</div>
-      <div className="image-container">
-        <img className="doctor-image" src={doctorImg} alt="Doctor" />
-        <img className="doctor-background" src={docBac} alt="Background" />
+      <div className="imageContainer">
+        <img src={doctorImg} alt="Doctor" className="doctorImage" />
+       <img src = {back} className="backImage"/>
       </div>
     </div>
-   
   );
 };
 
