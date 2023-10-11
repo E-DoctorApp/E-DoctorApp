@@ -26,7 +26,6 @@ const ServicePage = () => {
                             </div>
 
                         </div>
-
                     </div>
                 </div>
             </div>
