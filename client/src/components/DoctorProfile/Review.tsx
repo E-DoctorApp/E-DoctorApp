@@ -1,25 +1,22 @@
 import React from "react";
-import './style.css'
+import './review.css'
 
 const Review = () => {
 
     return (
         <div className="father-container-yassine">
-            <div className="red-aside">
-                <p>asid mostfa</p>
-            </div>
             <div className="profil-dr-pt">
                 <div className="title-place-yassine">
                     <h2>My Profile</h2>
                 </div>
-                <div id="carouselExampleControls" className="carousel slide text-center carousel-dark" data-mdb-ride="carousel">
-                <div className="carousel-inner">
+                <div id="carouselExampleControls" className="carousel slide text-center carousel-dark profile-section"  data-mdb-ride="carousel">
+                <div className="carousel-inner ">
                     <div className="carousel-item active">
                         <img className="rounded-circle shadow-1-strong mb-4"
                             src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar"
                             style={{ width: "150px" }} />
-                        <div className="row d-flex justify-content-center">
-                            <div className="col-lg-8">
+                        <div className="row d-flex justify-content-center profile-section">
+                            <div className="col-lg-8 profile-section">
                                 <h5 className="mb-3">Dr. Stephen Conley</h5>
                                 <p>Photographer</p>
                                 <p className="text-muted">
@@ -39,7 +36,6 @@ const Review = () => {
                 </div>
             </div>
             </div>
-            
         </div>
 
     )
