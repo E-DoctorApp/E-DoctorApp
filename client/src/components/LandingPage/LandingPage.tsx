@@ -5,9 +5,11 @@ import doctor from "../../assets/images/image 17.png"
 import container from "../../assets/images/Container.png"
 import CardService from "../CardSevice/CardService"
 import TeamMember from "../TeamMemberCard/TeamMember"
+import { useNavigate } from "react-router-dom";
 
 
 const LandingPage = () => {
+    const navigate = useNavigate();
     return (
         <div className="landing-page-container">
             <div className="landing-page-container-child-1">
