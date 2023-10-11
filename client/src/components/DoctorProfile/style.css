@@ -218,7 +218,8 @@ body{
 .DoctorProfile-middle{
     /* background-color: blue; */
     display: flex;
-    flex-wrap: wrap;
+    width: 100%;
+    /* flex-wrap: wrap; */
     justify-content: center;
     gap: 4rem;
 }
@@ -229,6 +230,7 @@ body{
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    flex: 1.4;
 }
 .DoctorProfile-appointment-requests-list-header{
     display: flex;
@@ -256,11 +258,10 @@ body{
     gap: 0.7rem;
 }
 .DoctorProfile-appointment-requests-list-container-request{
-    /* background-color: green ; */
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 3rem;
+    justify-content: space-between;
 }
 .DoctorProfile-image-frame2{
     border-radius: 50%;
@@ -338,6 +339,7 @@ body{
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+    flex: 1;
 }
 .DoctorProfile-statistics-stocks{
     /* background-color: aqua; */
@@ -350,7 +352,7 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 10rem;
     height: 7vh;
 }
@@ -458,4 +460,38 @@ body{
 }
 #DoctorProfile-statistics-charts-labels-child{
     color:blueviolet ;
+}
+.DoctorProfile-Calendar-section{
+    width: fit-content !important;
+    flex: 1;
+}
+.DoctorProfile-patients-done{
+    background-color: rgb(180, 178, 178) !important;
+}
+.DoctorProfile-patient-done{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 1rem;
+}
+
+.DoctorProfile-image-frame3{
+    border-radius: 50%;
+    border-color: black;
+    height: 2rem;
+    width: 2rem;
+    overflow: hidden ; 
+}
+.DoctorProfile-image-frame3 img{
+    border-radius: 50%;
+    border-color: black;
+    height: 2rem;
+    width: 2rem;
+    overflow: hidden ; 
+}
+.DoctorProfile-th{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
