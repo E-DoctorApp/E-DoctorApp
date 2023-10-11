@@ -23,7 +23,6 @@ function App() {
         <Route path='/register' element={<Register /> } />
         <Route path='/doctorProfile' element={<DoctorProfile /> } />
         <Route path='/services' element={<ServicePage/> } />
-
       </Routes>
       <Footer />
     </div>
