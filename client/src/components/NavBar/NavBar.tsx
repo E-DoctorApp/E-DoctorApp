@@ -2,8 +2,10 @@ import "./style.css"
 
 import React from 'react'
 import logo from "../../assets/images/logo.png"
+import { useNavigate } from "react-router"
 
 const NavBar = (): React.JSX.Element => {
+    const navigate=useNavigate()
     return (
         <div className="nav-bar-container">
             <div className="nav-logo">
@@ -14,9 +16,15 @@ const NavBar = (): React.JSX.Element => {
                 </div>
             </div>
             <div className="nav-buttons">
-                <span className="item" >Home</span>
-                <span className="item">Service</span>
-                <span className="item">Contact us</span>
+                <span className="item"
+                onClick={()=>navigate("/")}
+                >Home</span>
+                <span className="item"
+                // onClick={()=>navigate("/services")}
+                >Service</span>
+                <span className="item"
+                onClick={()=>navigate("/contactUs")}
+                >Contact us</span>
                 <span className="item">Help</span>
                 <span className="item">Blogs</span>
             </div>
