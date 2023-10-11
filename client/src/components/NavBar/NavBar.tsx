@@ -2,7 +2,7 @@ import "./style.css"
 
 import React from 'react'
 import logo from "../../assets/images/logo.png"
-import { useNavigate } from "react-router"
+import { useNavigate } from "react-router-dom"
 
 const NavBar = (): React.JSX.Element => {
     const navigate=useNavigate()
