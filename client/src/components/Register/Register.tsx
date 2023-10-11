@@ -5,7 +5,6 @@ import back from "../../assets/images/back.png"
 
 
 const Register = () => {
-
   return (
     <div className="allRegisterContainer">
       <div className="signInFormContainer">
@@ -17,7 +16,8 @@ const Register = () => {
           <label className="formLabel" htmlFor="passwordInput">
             Name
           </label>
-        </div>
+        </div> 
+        
         <div className="formOutline mb-3">
           <input
             className="formInput formInputLarge"
