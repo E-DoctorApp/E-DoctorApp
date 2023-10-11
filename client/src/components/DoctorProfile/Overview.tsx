@@ -24,7 +24,7 @@ const Overview = () => {
   const trendUp = faArrowTrendUp as IconProp;
   const ellipsis = faEllipsisVertical as IconProp;
   return (
-    <div>
+    <div style={{backgroundColor:"#F7F6F6"}}>
       <div className="DoctorProfile-mid">
         <span className="DoctorProfile-welcome">Welcome, Dr.Stephen</span>
         <span>Have a nice day at great work</span>
