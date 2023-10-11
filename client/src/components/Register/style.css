@@ -65,7 +65,7 @@ body {
   margin-left: 15%; 
 }
 .btnPrimary {
-  background: #007bff;
+  background: #007e85;
   padding: 10px 30px;
   border: none;
   border-radius: 5px;
@@ -76,7 +76,6 @@ body {
 .btnPrimary:hover {
   transform: scale(1.1);
 }
-
 .nav-bar-container {
   position: fixed;
   width: 100%;
@@ -109,7 +108,7 @@ body {
   z-index: 0;
   height: 400px;
   width: 400px;
-  margin-top: 33.8%;  
+  margin-top: 33.8%;
 }
 
 .formLabel{
