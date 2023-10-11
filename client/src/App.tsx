@@ -16,7 +16,7 @@ import Overview from './components/DoctorProfile/Overview';
 function App() {
   return (
     <div className="App">
-      <NavBar />
+      {/* <NavBar /> */}
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='/login' element={<Login /> } />
@@ -28,7 +28,7 @@ function App() {
         </Route>
         <Route path='/services' element={<ServicePage/> } />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
