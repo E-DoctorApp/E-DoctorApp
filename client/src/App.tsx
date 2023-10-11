@@ -16,18 +16,19 @@ import ServicePage from './components/ServicePage/ServicePage';
 function App() {
   return (
     <div className="App">
-      {/* <NavBar /> */}
-      {/* <Routes>
+      <NavBar />
+      <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='/login' element={<Login /> } />
         <Route path='/contactUs' element={<ContactUs /> } />
         <Route path='/register' element={<Register /> } />
         <Route path='/doctorProfile' element={<DoctorProfile /> } />
         <Route path='/services' element={<ServicePage/> } />
+        <Route path='/Review' element={ <Review/> } />
+        
       </Routes>
-      <Footer /> */}
-      <Review/>
-
+      
+      <Footer />
     </div>
   );
 }
