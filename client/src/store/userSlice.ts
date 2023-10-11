@@ -21,7 +21,6 @@ export const createUser=createAsyncThunk("createUser",async(body:Object)=>{
 }
 })
 export const loginFunc=createAsyncThunk("login",async(body:Object)=>{
-    console.log("body",body)
     try {
         const data=await axios.post("http://localhost:5000/api/doctor/login",body)
         console.log("user is here",data.data)
