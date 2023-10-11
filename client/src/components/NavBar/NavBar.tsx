@@ -14,7 +14,7 @@ const NavBar = (): React.JSX.Element => {
                 </div>
             </div>
             <div className="nav-buttons">
-                <span className="item">Home</span>
+                <span className="item" >Home</span>
                 <span className="item">Service</span>
                 <span className="item">Contact us</span>
                 <span className="item">Help</span>
