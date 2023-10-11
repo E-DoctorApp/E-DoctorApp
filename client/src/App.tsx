@@ -7,21 +7,24 @@ import Footer from './components/Footer/Footer';
 import Login from './components/Login/Login';
 import LandingPage from './components/LandingPage/LandingPage';
 import DoctorProfile from './components/DoctorProfile/DoctorProfile';
+import Review from './components/setReviews/Review';
 import { Route, Routes } from 'react-router';
 
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
-      <Routes>
+      {/* <NavBar /> */}
+      {/* <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='/login' element={<Login /> } />
         <Route path='/contactUs' element={<ContactUs /> } />
         <Route path='/register' element={<ContactUs /> } />
         <Route path='/doctorProfile' element={<DoctorProfile /> } />
       </Routes>
-      <Footer />
+      <Footer /> */}
+      <Review/>
+
     </div>
   );
 }
