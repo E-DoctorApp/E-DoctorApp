@@ -13,7 +13,7 @@ import { Route, Routes } from 'react-router';
 function App() {
   return (
     <div className="App">
-      <NavBar />
+      {/* <NavBar /> */}
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='/login' element={<Login /> } />
@@ -21,7 +21,7 @@ function App() {
         <Route path='/register' element={<ContactUs /> } />
         <Route path='/doctorProfile' element={<DoctorProfile /> } />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
