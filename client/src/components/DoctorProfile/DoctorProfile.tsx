@@ -12,7 +12,6 @@ const DoctorProfile = () :  React.JSX.Element => {
       <SideBar/>
       <div className="DoctorProfile-main">
         <TopNav/>
-
         <Overview/>
       </div>
     </div>
