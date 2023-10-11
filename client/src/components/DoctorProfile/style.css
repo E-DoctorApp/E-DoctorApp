@@ -448,4 +448,14 @@ body{
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    gap : 1rem;
+}
+#DoctorProfile-statistics-charts-labels-male{
+    color: orange;
+}
+#DoctorProfile-statistics-charts-labels-female{
+    color:rgb(26, 88, 244) ;
+}
+#DoctorProfile-statistics-charts-labels-child{
+    color:blueviolet ;
 }

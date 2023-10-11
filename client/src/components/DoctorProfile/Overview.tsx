@@ -9,6 +9,7 @@ import { faVideo } from '@fortawesome/free-solid-svg-icons';
 import { faRectangleXmark } from '@fortawesome/free-solid-svg-icons';
 import { faSquareCheck } from '@fortawesome/free-solid-svg-icons';
 import { faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
+import { faSquare } from '@fortawesome/free-solid-svg-icons';
 
 
 const Overview = () => {
@@ -19,6 +20,7 @@ const Overview = () => {
     const decline = faRectangleXmark as IconProp;
     const accept = faSquareCheck as IconProp;
     const trendUp = faArrowTrendUp as IconProp;
+    const square = faSquare as IconProp;
   
   return (
     <div>
@@ -159,12 +161,18 @@ const Overview = () => {
                 <div className="DoctorProfile-statistics-charts-content">
                 <CreateDoughnutData  />
                 <div className="DoctorProfile-statistics-charts-labels">
+                    <FontAwesomeIcon id='DoctorProfile-statistics-charts-labels-male' icon={faSquare} />
                     <span className="DoctorProfile-statistics-charts-labels-title">Male</span>
+                    <FontAwesomeIcon id='DoctorProfile-statistics-charts-labels-female' icon={faSquare} />
                     <span className="DoctorProfile-statistics-charts-labels-title">Female</span>
+                    <FontAwesomeIcon id='DoctorProfile-statistics-charts-labels-child' icon={faSquare} />
                     <span className="DoctorProfile-statistics-charts-labels-title">Children</span>
                 </div>
                 </div>
             </div>
+        </div>
+        <div className='DoctorProfile-Calendar-section'>
+            
         </div>
         </div>
     </div>
