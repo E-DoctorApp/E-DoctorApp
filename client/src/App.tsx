@@ -15,7 +15,7 @@ import ServicePage from './components/ServicePage/ServicePage';
 function App() {
   return (
     <div className="App">
-      {/* <NavBar /> */}
+      <NavBar />
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='/login' element={<Login /> } />
@@ -24,7 +24,7 @@ function App() {
         <Route path='/doctorProfile' element={<DoctorProfile /> } />
         <Route path='/services' element={<ServicePage/> } />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

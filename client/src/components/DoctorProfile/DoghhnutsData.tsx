@@ -27,7 +27,7 @@ const data = {
 
 };
 
-function CreateDoughnutData() {
+  function CreateDoughnutData() {
   return (
     <div className='DoctorProfile-donut' >
         <Doughnut data={data} />

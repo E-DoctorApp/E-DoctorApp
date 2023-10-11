@@ -209,7 +209,7 @@ const DoctorProfile = () :  React.JSX.Element => {
                 <div className="DoctorProfile-statistics-charts-content">
                 <CreateDoughnutData  />
                 <div className="DoctorProfile-statistics-charts-labels">
-                    
+                    hello
                 </div>
                 </div>
             </div>
