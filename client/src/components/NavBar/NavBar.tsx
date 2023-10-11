@@ -2,7 +2,7 @@ import "./style.css"
 
 import React from 'react'
 import logo from "../../assets/images/logo.png"
-import { useNavigate } from "react-router"
+import { useNavigate } from "react-router-dom"
 
 const NavBar = (): React.JSX.Element => {
     const navigate=useNavigate()
@@ -29,8 +29,8 @@ const NavBar = (): React.JSX.Element => {
                 <span className="item">Blogs</span>
             </div>
             <div className="nav-last-buutons">
-                <button>Sign Up</button>
-                <button>Log In</button>
+                <button onClick={()=>navigate("/register")}>Sign Up</button>
+                <button   onClick={()=>navigate("/login")}>Log In</button>
             </div>
         </div>
     )
