@@ -1,68 +1,90 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios"
-const initialState = {
-    doctorInfo: "",
-    DoctorId: null,
-    userRegistred: "",
-    loading: false,
-    errors: "",
-    message: null,
-    token: "",
-    isAuthenticated: false,
-    type: "doctor"
-}
+import axios from "axios";
 
-export const createDoctor = createAsyncThunk("createDoctor", async (body: Object) => {
+const initialState = {
+  doctorInfo: "",
+  userRegistred: "",
+  loading: false,
+  errors: "",
+  message: null,
+  token: "",
+  isAuthenticated: false,
+  type: "doctor",
+};
+
+export const createDoctor = createAsyncThunk(
+  "createDoctor",
+  async (body: Object) => {
     try {
-        const data = await axios.post("http://localhost:5000/api/doctor/register", body)
-        return data.data
+      const data = await axios.post(
+        "http://localhost:5000/api/doctor/register",
+        body
+      );
+      return data.data;
     } catch (error) {
-        return error
+      return error;
     }
-})
-export const doctorLogin = createAsyncThunk("login", async (body: Object) => {
-    try {
-        const data = await axios.post("http://localhost:5000/api/doctor/login", body)
-        return data.data
-    } catch (error) {
-        return error
-    }
-})
+  }
+);
+export const getOneDoctor = createAsyncThunk("getOneDoctor", async () => {
+  try {
+    const token = localStorage.getItem("token");
+   
+        const data = await axios.get("http://localhost:5000/api/doctor/getOne", {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        });
+    
+        return data.data;
+
+  } catch (error) {
+    return error;
+  }
+});
+export const doctorLogin = createAsyncThunk("doctorLogin", async (body: Object) => {
+  try {
+    const data = await axios.post(
+      "http://localhost:5000/api/doctor/login",
+      body
+    );
+    // dispatch(getOneDoctor())
+    // getOneDoctor();
+    console.log(data.data,"this is data from store")
+    return data.data;
+  } catch (error) {
+    return error;
+  }
+});
 
 const userSlicer = createSlice({
-    name: "DoctorSlice",
-    initialState,
-    reducers: {
-    },
-    extraReducers(builder) {
-        builder.addCase(createDoctor.fulfilled, (state, action) => {
-            state.userRegistred = action.payload
-            state.loading = false
-            state.errors = ""
-            state.token = action.payload.token
-            state.message = action.payload.message
-            state.isAuthenticated = true
-            localStorage.setItem("token", action.payload.token)
-        })
-        builder.addCase(createDoctor.rejected, (state, action) => {
-            state.loading = false
-            state.token = ""
-            // localStorage.setItem("token", "")
-            // state.errors=action.payload.error?action.payload.error:""
-            // state.errors=action.payload
-        })
-        builder.addCase(doctorLogin.fulfilled, (state, action) => {
-            state.DoctorId = action.payload.DoctorId
-            state.loading = false
-            state.errors = ""
-            state.token = action.payload.token
-            state.message = action.payload.message
-            state.isAuthenticated = true
-            localStorage.setItem("token", action.payload.token)
-        })
-    },
-})
-
-
+  name: "DoctorSlice",
+  initialState,
+  reducers: {},
+  extraReducers(builder) {
+    builder.addCase(createDoctor.fulfilled, (state, action) => {
+      state.loading = false;
+      state.errors = "";
+      state.message = action.payload.message;
+    });
+    builder.addCase(createDoctor.rejected, (state, action) => {
+      state.loading = false;
+    });
+    builder.addCase(doctorLogin.fulfilled, (state, action) => {
+      state.loading = false;
+      state.errors = "";
+      state.message = action.payload.message;
+      state.isAuthenticated = true;
+      localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("type", "doctor");
+    });
+    builder.addCase(getOneDoctor.fulfilled, (state, action) => {
+      state.loading = false;
+      state.errors = "";
+      state.doctorInfo = action.payload;
+      state.isAuthenticated = true;
+    });
+  },
+});
 
 export default userSlicer.reducer;
