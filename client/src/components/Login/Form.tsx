@@ -2,29 +2,38 @@ import React, { useState } from "react";
 import "./style.css";
 import { RootState, AppDispatch } from "../../store/store";
 import { useSelector, useDispatch } from "react-redux";
-import { loginFunc } from "../../store/userSlice";
+import { doctorLogin } from "../../store/doctorSlice";
+import { loginPatient } from "../../store/patinetSlice";
 
 function Form() {
-  const user = useSelector((state: RootState) => state.aziz);
-  console.log("user", user);
+  const user = useSelector((state: RootState) => state.doctor);
   const dispatch: AppDispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleSubmit = (e: Event) => {
+  const [userType, setUserType] = useState("");
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-    dispatch(
-      loginFunc({
-        email,
-        password,
-      })
-    );
-  };
+    if (userType === "doctor") {
+      dispatch(
+        doctorLogin({
+          email,
+          password,
+        })
+      );
+    } else if (userType === "patient") {
+      dispatch(
+        loginPatient({
+          email,
+          password,
+        })
+      );
+    }
+
+  }
   return (
     <div className="signIn">
       <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start gap-4">
         <p className="lead fw-normal mb-0 me-3">Sign in with</p>
-
         <a href="https://www.facebook.com">
           <img
             src="https://www.edigitalagency.com.au/wp-content/uploads/Facebook-logo-blue-circle-large-white-f.png"
@@ -50,7 +59,6 @@ function Form() {
           className="form-control form-control-lg"
           placeholder="Enter a valid email address"
           onChange={(e) => {
-            console.log(e.target.value);
             setEmail(e.target.value);
           }}
         />
@@ -65,7 +73,6 @@ function Form() {
           className="form-control form-control-lg"
           placeholder="Enter password"
           onChange={(e) => {
-            console.log(e.target.value);
             setPassword(e.target.value);
           }}
         />
@@ -90,21 +97,20 @@ function Form() {
           Forgot password?
         </a>
       </div>
+      <div>
+
+        <select required onChange={(e: any) => setUserType(e.target.value)}>
+          <option value="doctor">Doctor</option>
+          <option value="patient">Patient</option>
+        </select>
+      </div>
 
       <div className="text-center text-lg-start mt-4 pt-2">
         <button
           type="button"
           className="btn btn-primary btn-lg"
           style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem" }}
-          onClick={(e) => {
-            e.preventDefault();
-            dispatch(
-              loginFunc({
-                email,
-                password,
-              })
-            );
-          }}
+          onClick={(e) => handleSubmit(e)}
         >
           Log In
         </button>
@@ -115,7 +121,7 @@ function Form() {
           </a>
         </p>
       </div>
-    </div>
+    </div >
   );
 }
 
