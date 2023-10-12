@@ -31,7 +31,7 @@ export const loginFunc=createAsyncThunk("login",async(body:Object)=>{
 }
 })
 
- const userSlicer = createSlice({
+const userSlicer = createSlice({
     name: "createUserSlice",
     initialState,
     reducers: {
