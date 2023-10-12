@@ -50,6 +50,7 @@ export const doctorLogin = createAsyncThunk("doctorLogin", async (body: Object) 
     );
     // dispatch(getOneDoctor())
     // getOneDoctor();
+    console.log(data.data,"this is data from store")
     return data.data;
   } catch (error) {
     return error;
@@ -75,6 +76,7 @@ const userSlicer = createSlice({
       state.message = action.payload.message;
       state.isAuthenticated = true;
       localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("type", "doctor");
     });
     builder.addCase(getOneDoctor.fulfilled, (state, action) => {
       state.loading = false;

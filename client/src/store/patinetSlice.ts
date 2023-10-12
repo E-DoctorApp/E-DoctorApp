@@ -34,7 +34,7 @@ export const loginPatient = createAsyncThunk("loginPatient", async (body: { emai
 export const getOnePatient = createAsyncThunk("getOnePatient", async () => {
     try {
         const token =localStorage.getItem("token")
-        const data = await axios.get("http://localhost:5000/api/doctor/getOne", {
+        const data = await axios.get("http://localhost:5000/api/patient/getOne", {
         headers:{
             authorization:`Bearer ${token}`
         }
@@ -82,6 +82,7 @@ export const patientSlice = createSlice({
             state.message = action.payload.message
             state.isAuthenticated = true
             localStorage.setItem("token", action.payload.token)
+            localStorage.setItem("type", "patient");
         })
         builder.addCase(getOnePatient.fulfilled, (state, action) => {
             state.loading = false
