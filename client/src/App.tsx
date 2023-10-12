@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "./store/store";
 import { getOnePatient } from "./store/patinetSlice";
 import { getOneDoctor } from "./store/doctorSlice";
+import DoctorChat from "./components/DoctorChat/DoctorChat";
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
   },[]);
   return (
     <div className="App">
-      <NavBar />
+      {/* <NavBar /> */}
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
@@ -45,11 +46,13 @@ function App() {
         <Route path="/doctorProfile" element={<DoctorProfile />}>
           <Route path="" element={<Overview />} />
           <Route path="review" element={<Review />} />
+          <Route path="docChat" element={<DoctorChat/>} />
+
         </Route>
         <Route path="/services" element={<ServicePage />} />
         <Route path="/Review" element={<Review />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
