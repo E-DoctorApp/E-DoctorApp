@@ -10,9 +10,10 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faFileLines } from '@fortawesome/free-solid-svg-icons';
 import logo1 from "../../assets/images/logo1.png"
 import logo2 from "../../assets/images/logo2.png"
+import { useNavigate } from 'react-router-dom';
 
 const SideBar = () => {
-
+    const navigate = useNavigate()
     const overview = faBars as IconProp;
     const calendar = faCalendar as IconProp;
     const user = faUser as IconProp;
@@ -28,13 +29,18 @@ const SideBar = () => {
         </div>
         
           <ul className="DoctorProfile-menu">
-            <li><FontAwesomeIcon className="DoctorProfile-icon" icon={overview} style={{color: "#070808",}} />Overview</li>
+            <li
+             onClick={()=>navigate("/doctorProfile")} 
+            ><FontAwesomeIcon className="DoctorProfile-icon" icon={overview} style={{color: "#070808",}} />Overview</li>
             <li><FontAwesomeIcon className="DoctorProfile-icon" icon={calendar} style={{color: "#070808",}} />Appointment</li>
             <li><FontAwesomeIcon className="DoctorProfile-icon" icon={user} style={{color: "#070808",}} />My Patients</li>
             <li><FontAwesomeIcon className="DoctorProfile-icon" icon={clock} style={{color: "#070808",}} />Schedule Timings</li>
             <li><FontAwesomeIcon className="DoctorProfile-icon" icon={creditCard} style={{color: "#070808",}} />Payments</li>
             <li><FontAwesomeIcon className="DoctorProfile-icon" icon={message} style={{color: "#070808",}} />Message</li>
-            <li><FontAwesomeIcon className="DoctorProfile-icon" icon={blog} style={{color: "#070808",}} />Blog</li>
+            <li
+             onClick={()=>navigate("/doctorProfile/review")} 
+            
+            ><FontAwesomeIcon className="DoctorProfile-icon" icon={blog} style={{color: "#070808"}}  />Blog</li>
           </ul>
       </div>
   )

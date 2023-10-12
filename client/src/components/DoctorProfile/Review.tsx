@@ -5,7 +5,7 @@ import YasBar from "./YasBar";
 const Review = () => {
 
     return (
-        <div>
+        <div style={{marginTop:"2rem"}}>
             <div className="title-place-yassine">
                 <h2 style={{ textAlign: "left" }}>My Profile</h2>
             </div>
