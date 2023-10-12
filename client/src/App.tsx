@@ -11,12 +11,13 @@ import { Route, Routes } from 'react-router-dom';
 import Register from './components/Register/Register';
 import ServicePage from './components/ServicePage/ServicePage';
 import Overview from './components/DoctorProfile/Overview';
+import AllAppointments from './components/AllAppointments/AllAppointments';
 
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
+      {/* <NavBar /> */}
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='/login' element={<Login /> } />
@@ -24,11 +25,12 @@ function App() {
         <Route path='/register' element={<Register /> } />
         <Route path='/doctorProfile' element={<DoctorProfile /> } >
           <Route path='' element={<Overview />} />
+          <Route path='allAppointments' element={<AllAppointments />} />
           {/* <Route path='pp' element={<h1>4444</h1>} /> */}
         </Route>
         <Route path='/services' element={<ServicePage/> } />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
