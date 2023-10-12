@@ -101,7 +101,7 @@ body {
   right: 2%;
   object-fit: contain;
   right: 1%;
-  margin-top: -17.7%;
+  margin-top: -33%;
 }
 .backImage {
   z-index: 0;
@@ -111,6 +111,5 @@ body {
 }
 
 .user-type {
-  margin-top: -5%;
   margin-bottom: 5%;
 }

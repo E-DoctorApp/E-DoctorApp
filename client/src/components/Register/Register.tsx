@@ -15,6 +15,10 @@ const Register = () => {
   const [type, setType] = useState("");
   const [userType, setUserType] = useState("");
   const [showDoctorFields, setShowDoctorFields] = useState(false);
+  const [department,setDepartment]=useState("")
+  const [papers,setPapers]=useState("")
+  
+  
 
   const handleUserTypeChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setUserType(e.target.value);
@@ -29,20 +33,24 @@ const Register = () => {
     gender: "",
     phone: "",
   });
+  console.log(form);
+  
   const handleFormChange = (e: any) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (type === "doctor") {
-      console.log("here");
+    if (userType === "2") {
+      console.log("here doctor");
 
       // we nee to add the papers to the docotor
-      dispatch(createDoctor({ ...form, age: +form.age }));
+      dispatch(createDoctor({ ...form, age: +form.age,papers,department }));
       // i nedd to check the error later then navigate
       // navigate("/login")
-    } else if (type === "patient") {
+    } else if (userType === "1") {
+      console.log("patient");
+      
       dispatch(createPatient({ ...form, age: +form.age }));
       // i nedd to check the error later then navigate
       // navigate("/login")
@@ -72,9 +80,7 @@ const Register = () => {
             Name
           </label>
         </div>
-        <div className="formOutline mb-3">
-          <input className="formInput formInputLarge" placeholder="Enter Age" />
-        </div>
+       
 
         <div className="formOutline mb-3">
           <input
@@ -95,7 +101,7 @@ const Register = () => {
             placeholder="Gender"
           />
           <label className="formLabel" htmlFor="passwordInput">
-            Age
+            Gender
           </label>
         </div>
         <div className="formOutline mb-3">
@@ -106,18 +112,10 @@ const Register = () => {
             placeholder="Enter Phone"
           />
           <label className="formLabel" htmlFor="passwordInput">
-            Gender
-          </label>
-        </div>
-        <div className="formOutline mb-3">
-          <input
-            className="formInput formInputLarge"
-            placeholder="Enter Phone"
-          />
-          <label className="formLabel" htmlFor="passwordInput">
             Phone
           </label>
         </div>
+      
         <div className="formOutline mb-3">
           <input
             onChange={(e) => handleFormChange(e)}
@@ -170,7 +168,8 @@ const Register = () => {
         {showDoctorFields && (
           <div>
             <div className="formOutline mb-3">
-              <input
+              <input 
+              onChange={(e)=>setPapers(e.target.value)}
                 className="formInput formInputLarge"
                 placeholder="Enter papers"
                 type="password"
@@ -182,29 +181,23 @@ const Register = () => {
             </div>
 
             <select
+            onChange={(e)=>setDepartment(e.target.value)}
               className="form-select form-select-sm"
               aria-label=".form-select-sm example"
             >
               <option selected>Choose your department</option>
-              <option value="1">Neurologist</option>
-              <option value="2">Dermatology</option>
-              <option value="3">Gynecologist</option>
-              <option value="4">Generalist</option>
-              <option value="5">Radiology</option>
-              <option value="6">Orthopedics</option>
-              <option value="7">Dentistry</option>
-              <option value="8">Surgery</option>
+              <option value="Neurologist">Neurologist</option>
+              <option value="Dermatology">Dermatology</option>
+              <option value="Gynecologist">Gynecologist</option>
+              <option value="Generalist">Generalist</option>
+              <option value="Radiology">Radiology</option>
+              <option value="Orthopedics">Orthopedics</option>
+              <option value="Dentistry">Dentistry</option>
+              <option value="Surgery">Surgery</option>
             </select>
           </div>
         )}
 
-        <div className="formOutline mb-3">
-          <select required onChange={(e) => setType(e.target.value)}>
-            <option selected>Choose One Please</option>
-            <option value="doctor">Doctor</option>
-            <option value="patient">Patient</option>
-          </select>
-        </div>
         <div className="textCenter mt-4 pt-2">
           <button
             onClick={(e) => handleSubmit(e)}
@@ -219,7 +212,6 @@ const Register = () => {
       <div className="imageContainer">
         <img src={doctorImg} alt="Doctor" className="doctorImage" />
         <img src={back} alt="Back" className="backImage" />
-        <img src={back} className="backImage" />
       </div>
     </div>
   );
