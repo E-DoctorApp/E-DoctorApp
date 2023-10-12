@@ -7,45 +7,50 @@ import { loginPatient } from "../../store/patinetSlice";
 import { useNavigate } from "react-router-dom";
 
 function Form() {
-  const user = useSelector((state: RootState) => state.doctor);
-  const dispatch: AppDispatch = useDispatch();
-  const navigate=useNavigate()
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [userType, setUserType] = useState("");
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    if (userType === "doctor") {
-      console.log({email, password});
-      
-      console.log("docotor");
-      
-      dispatch(
-        doctorLogin({
-          email,
-          password,
-        })
-      );
-        // chek the error message then navigate to the home of the doctor (navrbar changes coditionel rendring)
-        // navigate("/")
-    } else if (userType === "patient") {
-      console.log({email, password});
+const user = useSelector((state: RootState) => state.doctor);
+const dispatch: AppDispatch = useDispatch();
+const navigate = useNavigate();
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+const [userType, setUserType] = useState("");
+const handleSubmit = async (e: any) => {
+    try {
+      e.preventDefault();
+      if (userType === "doctor") {
+        const res = await dispatch(
+          doctorLogin({
+            email,
+            password,
+          }),
+        
 
-      console.log("patient");
+        );
+        if (res.payload.token) {
+          navigate("/");
+        } else {
+          // toasts
+          console.log("no login");
+        }
+      } else if (userType === "patient") {
+        console.log("patient");
+        const res = await dispatch(
+          loginPatient({
+            email,
+            password,
+          })
 
-
-      dispatch(
-        loginPatient({
-          email,
-          password,
-        })
-      );
-      // chek the error message then navigate to the home of the patient (navrbar changes coditionel rendring)
-      // navigate("/")
-
+        );
+        if (res.payload.token) {
+          navigate("/");
+        } else {
+          // toasts
+          console.log("no login");
+        }
+      }
+    } catch (error) {
+      console.log(error);
     }
-
-  }
+  };
   return (
     <div className="signIn">
       <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start gap-4">
@@ -114,9 +119,8 @@ function Form() {
         </a>
       </div>
       <div>
-
         <select required onChange={(e: any) => setUserType(e.target.value)}>
-          <option selected >Choose One Please </option>
+          <option selected>Choose One Please </option>
           <option value="doctor">Doctor</option>
           <option value="patient">Patient</option>
         </select>
@@ -138,7 +142,7 @@ function Form() {
           </a>
         </p>
       </div>
-    </div >
+    </div>
   );
 }
 
