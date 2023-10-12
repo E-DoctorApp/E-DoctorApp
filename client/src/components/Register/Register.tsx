@@ -3,14 +3,44 @@ import "./style.css";
 import doctorImg from "../../assets/images/image 17.png";
 import back from "../../assets/images/back.png";
 
-const Register = () => {
-  const [userType, setUserType] = useState("");
-  const [showDoctorFields, setShowDoctorFields] = useState(false);
 
-  const handleUserTypeChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setUserType(e.target.value);
-    setShowDoctorFields(e.target.value === "2");
-  };
+
+
+
+
+
+const Register = () => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div className="allRegisterContainer">
@@ -25,7 +55,6 @@ const Register = () => {
           <option value="1">Patient</option>
           <option value="2">Doctor</option>
         </select>
-
         <div className="formOutline mb-3">
           <input
             className="formInput formInputLarge"
@@ -147,3 +176,13 @@ const Register = () => {
 };
 
 export default Register;
+
+
+
+// const [userType, setUserType] = useState("");
+// const [showDoctorFields, setShowDoctorFields] = useState(false);
+
+// const handleUserTypeChange = (e: ChangeEvent<HTMLSelectElement>) => {
+//   setUserType(e.target.value);
+//   setShowDoctorFields(e.target.value === "2");
+// };
