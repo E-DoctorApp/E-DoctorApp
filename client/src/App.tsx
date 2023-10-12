@@ -49,14 +49,8 @@ function App() {
           <Route path="docChat" element={<DoctorChat/>} />
 
         </Route>
-<<<<<<< HEAD
-        <Route path='/services' element={<ServicePage/> } />
-       
-        
-=======
         <Route path="/services" element={<ServicePage />} />
         <Route path="/Review" element={<Review />} />
->>>>>>> 14b6b08fdccbe0679009498fa4ae3b44d227b3aa
       </Routes>
       {/* <Footer /> */}
     </div>
