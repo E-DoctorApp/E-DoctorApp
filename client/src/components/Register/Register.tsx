@@ -5,10 +5,14 @@ import back from "../../assets/images/back.png"
 import { useDispatch } from "react-redux";
 import { createPatient } from "../../store/patinetSlice";
 import { AppDispatch } from "../../store/store";
+import { createDoctor } from "../../store/doctorSlice";
+import { useNavigate } from "react-router-dom";
 
 
 const Register = () => {
   const dispatch: AppDispatch = useDispatch()
+  const navigate=useNavigate()
+  const [type, setType] = useState("")
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -23,7 +27,20 @@ const Register = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    dispatch(createPatient({ ...form, age: +form.age }))
+    if (type === "doctor") {
+      console.log("here");
+      
+// we nee to add the papers to the docotor
+      dispatch(createDoctor({...form,age:+form.age}));
+      // i nedd to check the error later then navigate
+      // navigate("/login")
+      
+    } else if (type === "patient") {
+      dispatch(createPatient({ ...form, age: +form.age }))
+      // i nedd to check the error later then navigate
+      // navigate("/login")
+
+    }
   }
   return (
     <div className="allRegisterContainer">
@@ -86,7 +103,6 @@ const Register = () => {
         </div>
         <div className="formOutline mb-3">
           <input
-
             onChange={(e) => handleFormChange(e)}
             name="address"
             className="formInput formInputLarge"
@@ -123,6 +139,13 @@ const Register = () => {
             CIN
           </label>
         </div>
+        <div className="formOutline mb-3">
+          <select required onChange={(e) => setType(e.target.value)}>
+            <option selected >Choose One Please</option>
+            <option value="doctor">Doctor</option>
+            <option value="patient">Patient</option>
+          </select>
+        </div>
         <div className="textCenter mt-4 pt-2">
           <button
             onClick={(e) => handleSubmit(e)}
@@ -133,6 +156,7 @@ const Register = () => {
             Submit
           </button>
         </div>
+
       </div>
       <div className="imageContainer">
         <img src={doctorImg} alt="Doctor" className="doctorImage" />
