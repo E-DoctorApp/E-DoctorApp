@@ -25,10 +25,11 @@ function App() {
   console.log(doctor,patient);
   
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    console.log(token);
-    if (token) {
+    const userType = localStorage.getItem("type");
+    // console.log(userType);
+    if (userType==="patient") {
       dispatch(getOnePatient())
+    }else if(userType==="doctor"){
       dispatch(getOneDoctor())
     }
     
