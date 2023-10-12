@@ -121,7 +121,8 @@
 
 
 .find-doctor {
-    height: 20%;
+    /* mostfa changed here the height */
+    height: 11rem;
     background: #fff;
     border-radius: 1rem;
     display: flex;

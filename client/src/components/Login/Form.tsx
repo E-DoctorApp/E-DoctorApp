@@ -2,29 +2,63 @@ import React, { useState } from "react";
 import "./style.css";
 import { RootState, AppDispatch } from "../../store/store";
 import { useSelector, useDispatch } from "react-redux";
-import { loginFunc } from "../../store/userSlice";
+import { doctorLogin } from "../../store/doctorSlice";
+import { loginPatient } from "../../store/patinetSlice";
+import { useNavigate } from "react-router-dom";
+import { getOneDoctor } from "../../store/doctorSlice";
+import { getOnePatient } from "../../store/patinetSlice";
 
 function Form() {
-  const user = useSelector((state: RootState) => state.aziz);
-  console.log("user", user);
+  const user = useSelector((state: RootState) => state.doctor);
   const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleSubmit = (e: Event) => {
-    e.preventDefault();
-    dispatch(
-      loginFunc({
-        email,
-        password,
-      })
-    );
+  const [userType, setUserType] = useState("");
+  const handleSubmit = async (e: any) => {
+    try {
+      e.preventDefault();
+      if (userType === "doctor") {
+        console.log("doctor submitted");
+        
+        const res = await dispatch(
+          doctorLogin({
+            email,
+            password,
+          }),
+        );
+        if (res.payload.token) {
+          navigate("/");
+          dispatch(getOneDoctor())
+        } else {
+          // toasts
+          console.log("no login");
+        }
+      }
+      else if (userType === "patient") {
+        console.log("patient submitted");
+        const res = await dispatch(
+          loginPatient({
+            email,
+            password,
+          })
+        );
+        if (res.payload.token) {
+          dispatch(getOnePatient())
+          navigate("/");
+        } else {
+          // toasts
+          console.log("no login");
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="signIn">
       <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start gap-4">
         <p className="lead fw-normal mb-0 me-3">Sign in with</p>
-
         <a href="https://www.facebook.com">
           <img
             src="https://www.edigitalagency.com.au/wp-content/uploads/Facebook-logo-blue-circle-large-white-f.png"
@@ -50,7 +84,6 @@ function Form() {
           className="form-control form-control-lg"
           placeholder="Enter a valid email address"
           onChange={(e) => {
-            console.log(e.target.value);
             setEmail(e.target.value);
           }}
         />
@@ -65,7 +98,6 @@ function Form() {
           className="form-control form-control-lg"
           placeholder="Enter password"
           onChange={(e) => {
-            console.log(e.target.value);
             setPassword(e.target.value);
           }}
         />
@@ -90,21 +122,20 @@ function Form() {
           Forgot password?
         </a>
       </div>
+      <div>
+        <select required onChange={(e: any) => setUserType(e.target.value)}>
+          <option selected>Choose One Please </option>
+          <option value="doctor">Doctor</option>
+          <option value="patient">Patient</option>
+        </select>
+      </div>
 
       <div className="text-center text-lg-start mt-4 pt-2">
         <button
           type="button"
           className="btn btn-primary btn-lg"
-          style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem" ,background:"#007E85",border:"none"}}
-          onClick={(e) => {
-            e.preventDefault();
-            dispatch(
-              loginFunc({
-                email,
-                password,
-              })
-            );
-          }}
+          style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem" }}
+          onClick={(e) => handleSubmit(e)}
         >
           Log In
         </button>

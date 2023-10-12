@@ -1,27 +1,93 @@
-import React from "react";
-import "./style.css"; 
+import "./style.css";
 import doctorImg from "../../assets/images/image 17.png";
-import back from "../../assets/images/back.png"
-
+import back from "../../assets/images/back.png";
+import { useDispatch } from "react-redux";
+import { createPatient } from "../../store/patinetSlice";
+import { AppDispatch } from "../../store/store";
+import { createDoctor } from "../../store/doctorSlice";
+import { useNavigate } from "react-router-dom";
+import React, { useState, ChangeEvent } from "react";
+import "./style.css";
 
 const Register = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
+  const [type, setType] = useState("");
+  const [userType, setUserType] = useState("");
+  const [showDoctorFields, setShowDoctorFields] = useState(false);
+  const [department,setDepartment]=useState("")
+  const [papers,setPapers]=useState("")
+  
+  
+
+  const handleUserTypeChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setUserType(e.target.value);
+    setShowDoctorFields(e.target.value === "2");
+  };
+
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+    name: "",
+    age: "",
+    gender: "",
+    phone: "",
+  });
+  console.log(form);
+  
+  const handleFormChange = (e: any) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    if (userType === "2") {
+      console.log("here doctor");
+
+      // we nee to add the papers to the docotor
+      dispatch(createDoctor({ ...form, age: +form.age,papers,department }));
+      // i nedd to check the error later then navigate
+      // navigate("/login")
+    } else if (userType === "1") {
+      console.log("patient");
+      
+      dispatch(createPatient({ ...form, age: +form.age }));
+      // i nedd to check the error later then navigate
+      // navigate("/login")
+    }
+  };
   return (
     <div className="allRegisterContainer">
       <div className="signInFormContainer">
+        <select
+          className="form-select form-select-sm user-type"
+          aria-label=".form-select-sm example"
+          onChange={handleUserTypeChange}
+          value={userType}
+        >
+          <option value="">User type</option>
+          <option value="1">Patient</option>
+          <option value="2">Doctor</option>
+        </select>
         <div className="formOutline mb-3">
           <input
+            onChange={(e) => handleFormChange(e)}
+            name="name"
             className="formInput formInputLarge"
-            placeholder="Enter password"
+            placeholder="Name"
           />
           <label className="formLabel" htmlFor="passwordInput">
             Name
           </label>
-        </div> 
-        
+        </div>
+       
+
         <div className="formOutline mb-3">
           <input
+            name="age"
+            onChange={(e) => handleFormChange(e)}
             className="formInput formInputLarge"
-            placeholder="Enter name"
+            placeholder="Give Age"
           />
           <label className="formLabel" htmlFor="passwordInput">
             Age
@@ -29,8 +95,10 @@ const Register = () => {
         </div>
         <div className="formOutline mb-3">
           <input
+            onChange={(e) => handleFormChange(e)}
+            name="gender"
             className="formInput formInputLarge"
-            placeholder="Enter age"
+            placeholder="Gender"
           />
           <label className="formLabel" htmlFor="passwordInput">
             Gender
@@ -38,17 +106,22 @@ const Register = () => {
         </div>
         <div className="formOutline mb-3">
           <input
+            onChange={(e) => handleFormChange(e)}
+            name="phone"
             className="formInput formInputLarge"
-            placeholder="Enter gender"
+            placeholder="Enter Phone"
           />
           <label className="formLabel" htmlFor="passwordInput">
             Phone
           </label>
         </div>
+      
         <div className="formOutline mb-3">
           <input
+            onChange={(e) => handleFormChange(e)}
+            name="email"
             className="formInput formInputLarge"
-            placeholder="Enter phone number"
+            placeholder="example@example.com"
           />
           <label className="formLabel" htmlFor="passwordInput">
             Email
@@ -56,8 +129,10 @@ const Register = () => {
         </div>
         <div className="formOutline mb-3">
           <input
+            onChange={(e) => handleFormChange(e)}
+            name="address"
             className="formInput formInputLarge"
-            placeholder="Enter Email"
+            placeholder="Enter Address"
           />
           <label className="formLabel" htmlFor="passwordInput">
             Address
@@ -65,6 +140,8 @@ const Register = () => {
         </div>
         <div className="formOutline mb-3">
           <input
+            onChange={(e) => handleFormChange(e)}
+            name="password"
             className="formInput formInputLarge"
             placeholder="Enter password"
             type="password"
@@ -76,18 +153,57 @@ const Register = () => {
         </div>
         <div className="formOutline mb-3">
           <input
+            name="cin"
+            type="text"
+            maxLength={8}
+            minLength={8}
+            onChange={(e) => handleFormChange(e)}
             className="formInput formInputLarge"
-            placeholder="Enter password"
+            placeholder="Cin"
           />
           <label className="formLabel" htmlFor="passwordInput">
             CIN
           </label>
         </div>
+        {showDoctorFields && (
+          <div>
+            <div className="formOutline mb-3">
+              <input 
+              onChange={(e)=>setPapers(e.target.value)}
+                className="formInput formInputLarge"
+                placeholder="Enter papers"
+                type="password"
+                id="papers"
+              />
+              <label className="formLabel" htmlFor="passwordInput">
+                Papers
+              </label>
+            </div>
+
+            <select
+            onChange={(e)=>setDepartment(e.target.value)}
+              className="form-select form-select-sm"
+              aria-label=".form-select-sm example"
+            >
+              <option selected>Choose your department</option>
+              <option value="Neurologist">Neurologist</option>
+              <option value="Dermatology">Dermatology</option>
+              <option value="Gynecologist">Gynecologist</option>
+              <option value="Generalist">Generalist</option>
+              <option value="Radiology">Radiology</option>
+              <option value="Orthopedics">Orthopedics</option>
+              <option value="Dentistry">Dentistry</option>
+              <option value="Surgery">Surgery</option>
+            </select>
+          </div>
+        )}
+
         <div className="textCenter mt-4 pt-2">
           <button
+            onClick={(e) => handleSubmit(e)}
             type="button"
             className="btn btnPrimary btnLarge button"
-            style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}
+            style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem" }}
           >
             Submit
           </button>
@@ -95,7 +211,7 @@ const Register = () => {
       </div>
       <div className="imageContainer">
         <img src={doctorImg} alt="Doctor" className="doctorImage" />
-       <img src = {back} className="backImage"/>
+        <img src={back} alt="Back" className="backImage" />
       </div>
     </div>
   );
