@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../../store/store"
 import { logoutPatient } from "../../store/patinetSlice"
+import { logoutDoctor } from "../../store/doctorSlice"
 
 const NavBar = (): React.JSX.Element => {
     const navigate = useNavigate()
@@ -42,12 +43,15 @@ const NavBar = (): React.JSX.Element => {
                 <button onClick={() => {
                     !doctor.isAuthenticated && !patient.isAuthenticated ?
                         navigate("/register") :
-                        navigate("/doctorProfile")
-                }}>{!doctor.isAuthenticated && !patient.isAuthenticated ? "Sign Up" : "Profile"}</button>
+                        patient.isAuthenticated ?
+                        navigate("/doctorProfile/docChat") : 
+                        navigate("/doctorProfile") 
+
+                }}>{!doctor.isAuthenticated && !patient.isAuthenticated ? "Sign Up" : doctor.isAuthenticated?"Profile" : "Messages"}</button>
                 <button onClick={() => {
                     doctor.isAuthenticated || patient.isAuthenticated ?
-                        dipstach(logoutPatient()) :
-                        // dipstach(logoutDoctor()) :
+                        dipstach(logoutPatient()) &&
+                        dipstach(logoutDoctor()) :
                         navigate("/login")
                 }}>{doctor.isAuthenticated || patient.isAuthenticated ? "Log Out" : "Log In"}</button>
             </div>

@@ -3,6 +3,8 @@ import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
 import { faSquareCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 type Appprops = {
   isConfirmed: boolean;
@@ -12,6 +14,7 @@ type Appprops = {
 const OneAppointment = ({ isConfirmed, isPending }: Appprops) => {
   const decline = faRectangleXmark as IconProp;
   const accept = faSquareCheck as IconProp;
+  const doctor = useSelector((state : RootState)=> state.doctor)
   return (
     <div className="appointment-requests-list-container-request">
       <div className="image-frame2">
@@ -42,16 +45,25 @@ const OneAppointment = ({ isConfirmed, isPending }: Appprops) => {
         </div>
       ) : (
         <div className="pending">
-          <FontAwesomeIcon
-            className="pending-buttons"
-            icon={decline}
-            style={{ color: "rgb(242, 0, 255)" }}
-          />
-          <FontAwesomeIcon
-            className="pending-buttons"
-            icon={accept}
-            style={{ color: "rgb(26, 88, 244)" }}
-          />
+         {doctor.isAuthenticated? (
+           <>
+           <FontAwesomeIcon
+             className="pending-buttons"
+             icon={decline}
+             style={{ color: "rgb(242, 0, 255)" }}
+           />
+           <FontAwesomeIcon
+             className="pending-buttons"
+             icon={accept}
+             style={{ color: "rgb(26, 88, 244)" }}
+           />
+           </>
+         ): (
+          <div className="pending-patient">
+          <span className="pending-patient-content">Pending</span>
+        </div>
+         )
+         }
         </div>
       )}
     </div>
