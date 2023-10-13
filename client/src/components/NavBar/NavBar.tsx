@@ -17,7 +17,7 @@ const NavBar = (): React.JSX.Element => {
     console.log(pathName);
 
     return (
-        <div className="nav-bar-container" style={{ display: pathName === "/doctorProfile" ? "none" : "flex" }}>
+        <div className="nav-bar-container" style={{ display: pathName.includes("/doctorProfile") ? "none" : "flex" }}>
             <div className="nav-logo">
                 <img src={logo} />
                 <div className="title-health-care">
@@ -47,6 +47,7 @@ const NavBar = (): React.JSX.Element => {
                 <button onClick={() => {
                     doctor.isAuthenticated || patient.isAuthenticated ?
                         dipstach(logoutPatient()) :
+                        // dipstach(logoutDoctor()) :
                         navigate("/login")
                 }}>{doctor.isAuthenticated || patient.isAuthenticated ? "Log Out" : "Log In"}</button>
             </div>
