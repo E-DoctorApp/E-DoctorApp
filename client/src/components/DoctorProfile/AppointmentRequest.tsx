@@ -7,37 +7,38 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 type Appprops = {
   isConfirmed: boolean;
   isPending: boolean;
+  appo: any
 };
 
-const AppointmentRequest = ({ isConfirmed, isPending }: Appprops) => {
+const AppointmentRequest = ({ isConfirmed, isPending, appo }: Appprops) => {
   const decline = faRectangleXmark as IconProp;
   const accept = faSquareCheck as IconProp;
   return (
     <div className="DoctorProfile-appointment-requests-list-container-request">
       <div className="DoctorProfile-image-frame2">
         <img
-          src="https://www.perfocal.com/blog/content/images/size/w960/2021/01/Perfocal_17-11-2019_TYWFAQ_100_standard-3.jpg"
-          alt=""
+          src={appo.Patient.avatarUrl}
+          alt="patinet-image"
         />
       </div>
       <div className="DoctorProfile-appointment-requests-list-container-request-details">
         <span className="DoctorProfile-appointment-requests-list-container-request-details-name">
-          Jenny Wilson
+          {appo.Patient.name}
         </span>
         <span className="DoctorProfile-appointment-requests-list-container-request-details-data">
-          Female, 25 April 10:30 AM
+          {appo.Patient.gender.toUpperCase() + ' , ' + appo.date}
         </span>
       </div>
-      {!isPending ? (
+      {appo.status !== "pending" ? (
         <div
           className={
-            isConfirmed ? "DoctorProfile-confirmed" : "DoctorProfile-declined"
+            appo.status === "accepted" ? "DoctorProfile-confirmed" : "DoctorProfile-declined"
           }
         >
           <span className={
-            isConfirmed ? "DoctorProfile-confirmed-content" : "DoctorProfile-declined-content"
+            appo.status === "accepted" ? "DoctorProfile-confirmed-content" : "DoctorProfile-declined-content"
           }>
-            {isConfirmed ? "Confirmed" : "Declined"}
+            {appo.status === "accepted" ? "Confirmed" : "Declined"}
           </span>
         </div>
       ) : (
