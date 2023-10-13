@@ -8,7 +8,7 @@ const Footer = (): React.JSX.Element => {
     const location = useLocation()
     const pathName = location.pathname
     return (
-        <div className="footer-container-all" style={{ display: pathName === "/doctorProfile" ? "none" : "flex" }}>
+        <div className="footer-container-all" style={{ display: pathName.includes("/doctorProfile") ? "none" : "flex" }}>
             <div className="footer-container">
                 <div className="child1">
                     <div className="footer-logo">
