@@ -19,6 +19,7 @@ import { getOneDoctor } from "./store/doctorSlice";
 import DoctorChat from "./components/DoctorChat/DoctorChat";
 import AllAppointments from "./components/AllAppointments/AllAppointments";
 import AllPatients from "./components/AllPatients/AllPatients";
+import Schedule from "./components/Schedule/Schedule";
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
           <Route path="docChat" element={<DoctorChat/>} />
           <Route path="appointments" element={<AllAppointments/>} />
           <Route path="patients" element={<AllPatients/>} />
+          <Route path="schedule" element={<Schedule/>} />
         </Route>
         <Route path="/services" element={<ServicePage />} />
         <Route path="/Review" element={<Review />} />
