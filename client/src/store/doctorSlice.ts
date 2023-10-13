@@ -60,7 +60,9 @@ export const doctorLogin = createAsyncThunk("doctorLogin", async (body: Object) 
 const userSlicer = createSlice({
   name: "DoctorSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    
+  },
   extraReducers(builder) {
     builder.addCase(createDoctor.fulfilled, (state, action) => {
       state.loading = false;
