@@ -17,6 +17,7 @@ import { AppDispatch, RootState } from "./store/store";
 import { getOnePatient } from "./store/patinetSlice";
 import { getOneDoctor } from "./store/doctorSlice";
 import DoctorChat from "./components/DoctorChat/DoctorChat";
+import AllAppointments from "./components/AllAppointments/AllAppointments";
 
 
 function App() {
@@ -47,7 +48,7 @@ function App() {
           <Route path="" element={<Overview />} />
           <Route path="review" element={<Review />} />
           <Route path="docChat" element={<DoctorChat/>} />
-
+          <Route path="appointments" element={<AllAppointments/>} />
         </Route>
         <Route path="/services" element={<ServicePage />} />
         <Route path="/Review" element={<Review />} />
