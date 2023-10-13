@@ -1,0 +1,22 @@
+[
+    {
+        "content": "hello doctor",
+        "PatientId" : 1,
+        "DoctorId" : 1
+    },
+    {
+        "content": "hello patient",
+        "PatientId" : 1,
+        "DoctorId" : 1
+    },
+    {
+        "content": "how are you ?",
+        "PatientId" : 1,
+        "DoctorId" : 1
+    },
+    {
+        "content": "I'm fine thank you",
+        "PatientId" : 1,
+        "DoctorId" : 1
+    }
+]
