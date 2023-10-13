@@ -20,7 +20,7 @@ const NavBar = (): React.JSX.Element => {
                 onClick={()=>navigate("/")}
                 >Home</span>
                 <span className="item"
-                // onClick={()=>navigate("/services")}
+                onClick={()=>navigate("/services")}
                 >Service</span>
                 <span className="item"
                 onClick={()=>navigate("/contactUs")}
