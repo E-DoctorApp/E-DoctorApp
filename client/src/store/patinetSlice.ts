@@ -51,16 +51,15 @@ export const patientSlice = createSlice({
     name: "patientSlice",
     initialState,
     reducers: {
-        // logoutPatient: (state) => {
-        //         state.PatientId = null,
-        //         state.userRegistred = false,
-        //         state.loading = false,
-        //         state.errors = "",
-        //         state.message = "",
-        //         state.token = "",
-        //         state.isAuthenticated = false,
-        //         localStorage.removeItem("token")
-        // }
+        logoutPatient: (state) => {
+                state.loading = false
+                state.errors = ""
+                state.message = ""
+                state.patientInfo = null
+                state.isAuthenticated = false
+                localStorage.removeItem("token")
+                localStorage.removeItem("type")
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(createPatient.fulfilled, (state, action) => {
@@ -92,6 +91,6 @@ export const patientSlice = createSlice({
         })
     }
 })
-// export const { logoutPatient } = patientSlice.actions
+export const { logoutPatient } = patientSlice.actions
 
 export default patientSlice.reducer;

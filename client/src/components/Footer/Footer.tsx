@@ -1,12 +1,14 @@
 import "./style.css"
-
 import React from 'react'
 import logo from "../../assets/images/logo.png"
+import { useLocation } from "react-router-dom"
 
 
 const Footer = (): React.JSX.Element => {
+    const location = useLocation()
+    const pathName = location.pathname
     return (
-        <div className="footer-container-all">
+        <div className="footer-container-all" style={{ display: pathName === "/doctorProfile" ? "none" : "flex" }}>
             <div className="footer-container">
                 <div className="child1">
                     <div className="footer-logo">
@@ -18,7 +20,7 @@ const Footer = (): React.JSX.Element => {
                     </div>
                     <span>
                         Copyright © 2022 BRIX Templates |
-                        <br/> All Rights Reserved
+                        <br /> All Rights Reserved
                     </span>
                 </div>
                 <div className="child2">
