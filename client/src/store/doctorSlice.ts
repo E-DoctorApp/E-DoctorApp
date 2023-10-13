@@ -95,5 +95,5 @@ const userSlicer = createSlice({
     });
   },
 });
-
+export const { logoutDoctor }=userSlicer.actions
 export default userSlicer.reducer;
