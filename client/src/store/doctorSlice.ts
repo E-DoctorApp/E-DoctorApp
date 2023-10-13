@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  doctorInfo: null,
+  doctorInfo: {},
   userRegistred: "",
   loading: false,
   errors: "",
@@ -64,7 +64,7 @@ const userSlicer = createSlice({
     logoutDoctor: (state) => {
       state.loading = false
       state.errors = ""
-      state.doctorInfo = null
+      state.doctorInfo = {}
       state.isAuthenticated = false
       localStorage.removeItem("token")
       localStorage.removeItem("type")
