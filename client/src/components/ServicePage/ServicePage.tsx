@@ -87,7 +87,25 @@ const ServicePage = () => {
                         </div>
                     </div>
                 </div>
-              
+
+            </div>
+            <div  className="service-find-doctor"style={{padding:"0rem 5rem"}}>
+                <div className="sub2-child-1 find-doctor w-100">
+                    <div className="find-A-Doctor">Find A doctor</div>
+                    <div className="find-A-Doctor-inputs">
+                        <div className="d-flex gap-4">
+                            <input placeholder="Name" />
+                            <input placeholder="Department" />
+                        </div>
+                        <div className="d-flex align-items-center gap-4">
+                            <span>Available</span>
+                            <i className="fa-solid fa-toggle-on fa-2xl" style={{ color: " #36bab1" }}></i>
+                        </div>
+                        <div className="serach-input">
+                            Search
+                        </div>
+                    </div>
+                </div>
             </div>
             <div className="service-landing-page-container-child-4 mt-4">
                 <div className="mb-5">
@@ -106,7 +124,7 @@ const ServicePage = () => {
                     <CardService />
                     <CardService />
                 </div>
-                
+
             </div>
             <div className="service-landing-page-container-child-4 mt-4">
                 <div className="mb-5">
@@ -114,16 +132,16 @@ const ServicePage = () => {
                     <p style={{ color: "#555", fontWeight: "400" }}>Problems trying to reslove the conflict betwenn the two major realms of Classical physics Newtonian mechanics </p>
                 </div>
                 <div style={{ padding: "0rem 4rem 1rem 7rem" }} className="all-leading-cards-container d-flex flex-wrap gap-4 ">
-                 <LeadingMedicine/>
-                 <LeadingMedicine/>
-                 <LeadingMedicine/>
-                 <LeadingMedicine/>
-                 <LeadingMedicine/>
-                 <LeadingMedicine/>
-                 <LeadingMedicine/>
-                 <LeadingMedicine/>
-                 <LeadingMedicine/>
-                </div> 
+                    <LeadingMedicine />
+                    <LeadingMedicine />
+                    <LeadingMedicine />
+                    <LeadingMedicine />
+                    <LeadingMedicine />
+                    <LeadingMedicine />
+                    <LeadingMedicine />
+                    <LeadingMedicine />
+                    <LeadingMedicine />
+                </div>
             </div>
         </div >
     )
