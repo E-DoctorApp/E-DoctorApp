@@ -43,13 +43,6 @@ const Charts = () => {
                 <span className="DoctorProfile-statistics-charts-labels-title">
                   Female
                 </span>
-                <FontAwesomeIcon
-                  id="DoctorProfile-statistics-charts-labels-child"
-                  icon={faSquare}
-                />
-                <span className="DoctorProfile-statistics-charts-labels-title">
-                  Children
-                </span>
               </div>
             </div>
           </div>

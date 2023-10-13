@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 const initialState = {
-    patientInfo:null,
+    patientInfo:{},
     // userRegistred: false,
     loading: false,
     errors: "",
@@ -55,7 +55,7 @@ export const patientSlice = createSlice({
                 state.loading = false
                 state.errors = ""
                 state.message = ""
-                state.patientInfo = null
+                state.patientInfo = {}
                 state.isAuthenticated = false
                 localStorage.removeItem("token")
                 localStorage.removeItem("type")
