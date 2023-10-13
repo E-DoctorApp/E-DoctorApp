@@ -1,6 +1,5 @@
 require('dotenv').config()
 const express = require('express')
-const faker = require('faker');
 const app = express()
 const db = require("./database/index")
 const PORT = process.env.PORT || 3000
