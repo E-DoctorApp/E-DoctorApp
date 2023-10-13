@@ -27,7 +27,6 @@ function App() {
   
   useEffect(() => {
     const userType = localStorage.getItem("type");
-    // console.log(userType);
     if (userType==="patient") {
       dispatch(getOnePatient())
     }else if(userType==="doctor"){
@@ -52,7 +51,7 @@ function App() {
         <Route path="/services" element={<ServicePage />} />
         <Route path="/Review" element={<Review />} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
