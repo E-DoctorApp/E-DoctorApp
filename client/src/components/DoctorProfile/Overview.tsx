@@ -1,10 +1,11 @@
 import React from "react";
-import CalendarComponent from "./CalendarComponent";
+// import CalendarComponent from "./CalendarComponent";
 import Stocks from "./Stocks";
 import Charts from "./Charts";
 import DonePatients from "./DonePatients";
 import DoctorCards from "./DoctorCards";
 import AppointmentsList from "./AppointmentsList";
+import Calendar from "react-calendar";
 
 const Overview = () => {
   return (
@@ -21,7 +22,7 @@ const Overview = () => {
           <Charts/>
         </div>
         <div className="DoctorProfile-Calendar-section">
-          <CalendarComponent />
+          <Calendar className="DoctorProfile-calendar"/>
         </div>
       </div>
       <DonePatients/>
