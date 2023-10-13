@@ -5,12 +5,11 @@ import axios from "axios";
 
 
 const initialState = {
-    PatientId: null,
-    userRegistred: false,
+    patientInfo:null,
+    // userRegistred: false,
     loading: false,
     errors: "",
     message: "",
-    token: "",
     isAuthenticated: false,
     type: "patient"
 }
@@ -24,9 +23,22 @@ export const createPatient = createAsyncThunk("createPatient", async (body: Obje
         return error
     }
 })
-export const loginPatient = createAsyncThunk("login", async (body: { email: string, password: string }) => {
+export const loginPatient = createAsyncThunk("loginPatient", async (body: { email: string, password: string }) => {
     try {
         const data = await axios.post("http://localhost:5000/api/patient/login", body)
+        return data.data
+    } catch (error) {
+        return error
+    }
+})
+export const getOnePatient = createAsyncThunk("getOnePatient", async () => {
+    try {
+        const token =localStorage.getItem("token")
+        const data = await axios.get("http://localhost:5000/api/patient/getOne", {
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+        })
         return data.data
     } catch (error) {
         return error
@@ -52,30 +64,31 @@ export const patientSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(createPatient.fulfilled, (state, action) => {
-            state.userRegistred = true
+            // state.userRegistred = true
             state.loading = false
             state.errors = ""
-            state.token = action.payload.token
             state.message = action.payload.message
-            state.isAuthenticated = true
-            localStorage.setItem("token", action.payload.token)
         })
         builder.addCase(createPatient.rejected, (state, action) => {
             state.loading = false
-            state.token = ""
             // localStorage.setItem("token", "")
             // state.message = action.payload
             // state.errors=action.payload.errors.message
             // state.errors=action.payload
         })
         builder.addCase(loginPatient.fulfilled, (state, action) => {
-            state.PatientId = action.payload.PatientId
             state.loading = false
             state.errors = ""
-            state.token = action.payload.token
             state.message = action.payload.message
             state.isAuthenticated = true
             localStorage.setItem("token", action.payload.token)
+            localStorage.setItem("type", "patient");
+        })
+        builder.addCase(getOnePatient.fulfilled, (state, action) => {
+            state.loading = false
+            state.errors = ""
+            state.patientInfo=action.payload
+            state.isAuthenticated = true
         })
     }
 })

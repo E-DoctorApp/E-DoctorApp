@@ -89,16 +89,16 @@ module.exports.getAll = async (req, res) => {
 };
 
 module.exports.getOne = async (req, res) => {
-  try {
-    const result = await Patient.findOne({ where: { id: req.params.id },
-      include: { all: true, nested: true },
+    res.status(200).send(req.user);
+  // try {
+  //   const result = await Patient.findOne({ where: { id: req.params.id },
+  //     include: { all: true, nested: true },
     
-    });
-    res.status(201).send(result);
-  } catch (error) {
-    console.log(error);
-    res.status(404).send(error);
-  }
+  //   });
+  // } catch (error) {
+  //   console.log(error);
+  //   res.status(404).send(error);
+  // }
 };
 
 module.exports.remove = async (req, res) => {

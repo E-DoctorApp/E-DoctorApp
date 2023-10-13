@@ -88,12 +88,8 @@ module.exports.getAll = async(req,res)=>{
     }
 };
 module.exports.getOne = async(req,res)=>{
-    try {
-        const result = await Doctor.findOne({where:{id:req.params.id},include:{all:true}})
-        res.status(201).send(result)
-    } catch (error) {
-        throw new Error(error)
-    }
+    res.status(200).send(req.user)
+   
 };
 module.exports.deleteOne = async(req,res)=>{
     try {
