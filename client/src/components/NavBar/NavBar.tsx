@@ -3,9 +3,13 @@ import "./style.css"
 import React from 'react'
 import logo from "../../assets/images/logo.png"
 import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { RootState } from "../../store/store"
 
 const NavBar = (): React.JSX.Element => {
     const navigate=useNavigate()
+    const user=useSelector((state:RootState)=>state.doctor)
+    // const user=useSelector((state:RootState)=>state.doctor)
     return (
         <div className="nav-bar-container">
             <div className="nav-logo">
