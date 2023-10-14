@@ -5,6 +5,7 @@ import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import avatrHolder from '../../assets/images/palceUser.jpg'
 interface patientInfo {
   avatarUrl: string;
 }
@@ -26,7 +27,7 @@ const TopNav = () => {
         <FontAwesomeIcon className="DoctorProfile-main-icon" icon={bell} style={{ color: "white", }} />
         <div className="DoctorProfile-user">
           <div className="DoctorProfile-image-frame">
-            <img src={patient.avatarUrl || doctor.avatarUrl} alt="" />
+            <img src={patient.avatarUrl || doctor.avatarUrl || avatrHolder} alt="" />
           </div>
           <div className="DoctorProfile-details">
             <span className="DoctorProfile-name">{patient.name || doctor.name}</span>

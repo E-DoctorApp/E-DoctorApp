@@ -1,6 +1,7 @@
 const { Doctor } = require("../database/index");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { Op, where } = require("sequelize");
 
 
 module.exports.register = async (req, res) => {
@@ -39,7 +40,7 @@ module.exports.login = async (req, res) => {
         where: {
             email: req.body.email,
         },
-        })
+    })
         .then((Doctor) => {
             bcrypt
                 .compare(req.body.password, Doctor.password)
@@ -79,19 +80,19 @@ module.exports.login = async (req, res) => {
         });
 };
 
-module.exports.getAll = async(req,res)=>{
+module.exports.getAll = async (req, res) => {
     try {
-        const result = await Doctor.findAll({include:{all:true}})
+        const result = await Doctor.findAll({})
         res.status(201).send(result)
     } catch (error) {
         throw new Error(error)
     }
 };
-module.exports.getOne = async(req,res)=>{
+module.exports.getOne = async (req, res) => {
     res.status(200).send(req.user)
-   
+
 };
-module.exports.deleteOne = async(req,res)=>{
+module.exports.deleteOne = async (req, res) => {
     try {
         const result = await Doctor.destroy({ where: { id: req.params.id } })
         res.json(result)
@@ -99,7 +100,7 @@ module.exports.deleteOne = async(req,res)=>{
         throw new Error(error)
     }
 };
-module.exports.updateOne = async(req,res)=>{
+module.exports.updateOne = async (req, res) => {
     try {
         const result = await Doctor.update(req.body, { where: { id: req.params.id } })
         res.status(201).send(result)
@@ -112,3 +113,35 @@ module.exports.updateOne = async(req,res)=>{
 
 
 
+
+module.exports.getAvailableDoctors = async (req, res) => {
+    try {
+        const { Department, Time } = req.body
+        const response = await Doctor.findAll({ where: { department: { [Op.like]: Department } } })
+        const resp = response.filter((doctor) => doctor.schedule.includes(Time))
+        res.json(resp)
+    } catch (error) {
+        res.json(error)
+    }
+
+}
+
+module.exports.updateTimes = async (req, res) => {
+    try {
+        const doctor = await Doctor.findOne({ where: { id: req.body.id } })
+        const newsch = (doctor.schedule.filter((sch) => sch !== req.body.time));
+        const response = await Doctor.update({ schedule: newsch },{ where: { id: req.body.id }})
+        res.json(response)
+    } catch (error) {
+        res.json(error)
+    }
+}
+
+module.exports.getByDepartment = async (req, res) => {
+    try {
+        const doctor = await Doctor.findAll({ where: { department: { [Op.like]: `%${req.body.department}%` } , name: {[Op.like]: `%${req.body.name}%`} } })
+        res.json(doctor)
+    } catch (error) {
+        res.json(error)
+    }
+}
