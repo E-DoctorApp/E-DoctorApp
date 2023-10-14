@@ -1,5 +1,9 @@
 const { Sequelize, DataTypes } = require("sequelize")
 
+const AppointmentsData =require("../../client/src/dummyData/AppointmentsData.json")
+const messages =require("../../client/src/dummyData/messages.json")
+const ReportData =require("../../client/src/dummyData/reports.json") 
+
 
 
 const connection = new Sequelize(process.env.DB_URL)
@@ -74,6 +78,30 @@ Doctor.hasMany(Report)
 Report.belongsTo(Doctor)
 
 
+// Appointment.bulkCreate(AppointmentsData).then(() =>
+//   console.log("appointments data have been saved")
+// );
+// Message.bulkCreate(messages).then(() =>
+//   console.log("messages data have been saved")
+// );
+// Report.bulkCreate(ReportData, { ignoreDuplicates: true }).then(() =>
+//   console.log("reports data have been saved")
+// );
+
+// connection.sync({alter: true})
+module.exports = {
+    Patient,
+    Doctor,
+    Appointment,
+  Review,
+   Room,
+    Message,
+    Report,
+    Admin,
+    connection
+
+}
+
 
 
 
@@ -123,17 +151,6 @@ Report.belongsTo(Doctor)
 
 
 
-module.exports = {
-    Patient: Patient,
-    Doctor: Doctor,
-    Appointment: Appointment,
-    Review: Review,
-    Room: Room,
-    Message: Message,
-    Report:Report,
-    Admin:Admin
-
-}
 
 
 

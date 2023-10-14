@@ -20,6 +20,8 @@ import DoctorChat from "./components/DoctorChat/DoctorChat";
 import AllAppointments from "./components/AllAppointments/AllAppointments";
 import AllPatients from "./components/AllPatients/AllPatients";
 import Schedule from "./components/Schedule/Schedule";
+import { faker } from '@faker-js/faker';
+import { log } from "console";
 
 
 function App() {

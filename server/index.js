@@ -16,7 +16,6 @@ app.use("/api/doctor", doctorRouter);
 app.use('/api/patient/',patientRouter)
 app.use("/api/review",reviewRouter)
 app.use("/api/room",roomRouter)
-app.use('/api/patient/', patientRouter)
 app.use('/api/appointment/', appointmentRouter);
 
 
