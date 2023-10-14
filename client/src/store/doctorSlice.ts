@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  doctorInfo: "",
+  doctorInfo: {},
   userRegistred: "",
   loading: false,
   errors: "",
@@ -60,7 +60,16 @@ export const doctorLogin = createAsyncThunk("doctorLogin", async (body: Object) 
 const userSlicer = createSlice({
   name: "DoctorSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    logoutDoctor: (state) => {
+      state.loading = false
+      state.errors = ""
+      state.doctorInfo = {}
+      state.isAuthenticated = false
+      localStorage.removeItem("token")
+      localStorage.removeItem("type")
+}
+  },
   extraReducers(builder) {
     builder.addCase(createDoctor.fulfilled, (state, action) => {
       state.loading = false;
@@ -86,5 +95,5 @@ const userSlicer = createSlice({
     });
   },
 });
-
+export const { logoutDoctor }=userSlicer.actions
 export default userSlicer.reducer;

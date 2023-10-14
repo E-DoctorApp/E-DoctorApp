@@ -17,6 +17,9 @@ import { AppDispatch, RootState } from "./store/store";
 import { getOnePatient } from "./store/patinetSlice";
 import { getOneDoctor } from "./store/doctorSlice";
 import DoctorChat from "./components/DoctorChat/DoctorChat";
+import AllAppointments from "./components/AllAppointments/AllAppointments";
+import AllPatients from "./components/AllPatients/AllPatients";
+import Schedule from "./components/Schedule/Schedule";
 
 
 function App() {
@@ -27,7 +30,6 @@ function App() {
   
   useEffect(() => {
     const userType = localStorage.getItem("type");
-    // console.log(userType);
     if (userType==="patient") {
       dispatch(getOnePatient())
     }else if(userType==="doctor"){
@@ -47,7 +49,9 @@ function App() {
           <Route path="" element={<Overview />} />
           <Route path="review" element={<Review />} />
           <Route path="docChat" element={<DoctorChat/>} />
-
+          <Route path="appointments" element={<AllAppointments/>} />
+          <Route path="patients" element={<AllPatients/>} />
+          <Route path="schedule" element={<Schedule/>} />
         </Route>
         <Route path="/services" element={<ServicePage />} />
         <Route path="/Review" element={<Review />} />

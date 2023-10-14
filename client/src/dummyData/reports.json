@@ -1,0 +1,17 @@
+[
+    {
+        "content": "he insulted me",
+        "PatientId" : 1,
+        "DoctorId" : 1
+    },
+    {
+        "content": "he is disrespectful",
+        "PatientId" : 1,
+        "DoctorId" : 1
+    },
+    {
+        "content": "he should be banned for his bad mouthing",
+        "PatientId" : 1,
+        "DoctorId" : 1
+    }
+]
