@@ -23,7 +23,7 @@
         "name": "Dr. Robert Johnson",
         "age": 42,
         "cin": "IJKL6789",
-        "avatarUrl": "https://example.com/doctor2-avatar.jpg",
+        "avatarUrl": "https://img.freepik.com/free-photo/portrait-caucasian-mature-male-doctor-with-stethoscope-his-neck_186202-1190.jpg?size=626&ext=jpg",
         "papers": {
             "degree": "Doctor of Pediatrics",
             "certifications": [
@@ -43,7 +43,7 @@
         "name": "Dr. Emily Davis",
         "age": 38,
         "cin": "MNOP3456",
-        "avatarUrl": "https://example.com/doctor3-avatar.jpg",
+        "avatarUrl": "https://img.freepik.com/free-photo/friendly-doctor-looking-camera_23-2147771699.jpg?size=626&ext=jpg&ga=GA1.1.360651136.1697314996&semt=ais",
         "papers": {
             "degree": "Doctor of Dermatology",
             "certifications": [
@@ -63,7 +63,7 @@
         "name": "Dr. Michael Wilson",
         "age": 45,
         "cin": "QRSTUV123",
-        "avatarUrl": "https://example.com/doctor4-avatar.jpg",
+        "avatarUrl": "https://img.freepik.com/free-photo/nurse-preparing-consult_23-2149309949.jpg?size=626&ext=jpg&ga=GA1.1.360651136.1697314996&semt=ais",
         "papers": {
             "degree": "Generalist",
             "certifications": [
@@ -83,7 +83,7 @@
         "name": "Dr. Olivia Brown",
         "age": 40,
         "cin": "WXYZ5678",
-        "avatarUrl": "https://example.com/doctor5-avatar.jpg",
+        "avatarUrl": "https://image.shutterstock.com/image-photo/profile-photo-attractive-family-doc-260nw-1724693776.jpg",
         "papers": {
             "degree": "Doctor of Gynecology",
             "certifications": [
@@ -103,7 +103,7 @@
         "name": "Dr. William Lee",
         "age": 48,
         "cin": "PQRS2345",
-        "avatarUrl": "https://example.com/doctor6-avatar.jpg",
+        "avatarUrl": "https://img.freepik.com/free-photo/doctor-with-serious-face-looking-camera_23-2148075677.jpg?size=626&ext=jpg&ga=GA1.1.360651136.1697314996&semt=ais",
         "papers": {
             "degree": "Doctor of Radiology",
             "certifications": [
@@ -123,7 +123,7 @@
         "name": "Dr. Sophia Taylor",
         "age": 41,
         "cin": "1234ABCD",
-        "avatarUrl": "https://example.com/doctor7-avatar.jpg",
+        "avatarUrl": "https://img.freepik.com/free-photo/female-doctor-hospital-with-stethoscope_23-2148827774.jpg?size=626&ext=jpg&ga=GA1.2.360651136.1697314996&semt=ais",
         "papers": {
             "degree": "Doctor of Dentistry",
             "certifications": [
