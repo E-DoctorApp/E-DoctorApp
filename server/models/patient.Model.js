@@ -11,7 +11,8 @@ module.exports = (connection, DataTypes) => {
             values:["male","female"]
         },
         avatarUrl: {
-            type: DataTypes.TEXT
+            type: DataTypes.TEXT,
+            defaultValue: "../../client/src/assets/images/placeUser.jpg"
         },
         phone:{
             type:DataTypes.INTEGER,
