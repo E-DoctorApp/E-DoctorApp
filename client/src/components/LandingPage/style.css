@@ -1,7 +1,7 @@
 .landing-page-container {
-    height: 800vh;
+    height: fit-content;
     /* background: red; */
-    padding: 5rem 5rem;
+    padding: 5rem 0rem;
     background: #ECECEC;
 
 }
