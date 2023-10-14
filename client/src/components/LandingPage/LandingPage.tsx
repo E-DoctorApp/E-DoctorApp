@@ -159,7 +159,7 @@ const LandingPage = () => {
                 </div>
                 <div style={{ padding: "0rem 4rem 1rem 7rem" }} className="all-services-cards-container d-flex justify-content-between flex-wrap gap-4 w-100">
                    
-                <CardService title="Neurologist" para={obj.Neurologist.para} img={obj.Neurologist.img} />
+                    <CardService title="Neurologist" para={obj.Neurologist.para} img={obj.Neurologist.img} />
                     <CardService title="Dentistry" para={obj.Dentistry.para} img={obj.Dentistry.img} />
                     <CardService title='Generalist' para={obj.Generalist.para} img={obj.Generalist.img} />
                     <CardService title='Gynecologist' para={obj.Gynecologist.para} img={obj.Gynecologist.img} />
@@ -168,8 +168,6 @@ const LandingPage = () => {
                     <CardService title='Surgery' para={obj.Surgery.para} img={obj.Surgery.img} />
                     <CardService title='Dermatology' para={obj.Dermatology.para} img={obj.Dermatology.img} />
                     <CardService title='Neurologist' para={obj.Neurologist.para} img={obj.Neurologist.img} />
-                   
-                  
                 </div>
             </div>
             <div className="landing-page-container-child-5 mt-4">
