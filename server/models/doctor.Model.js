@@ -48,3 +48,4 @@ module.exports = (connection, DataTypes) => {
     return Doctor
 
 }
+
