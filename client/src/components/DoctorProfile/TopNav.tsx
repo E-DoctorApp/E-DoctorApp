@@ -27,7 +27,7 @@ const TopNav = () => {
         <FontAwesomeIcon className="DoctorProfile-main-icon" icon={bell} style={{ color: "white", }} />
         <div className="DoctorProfile-user">
           <div className="DoctorProfile-image-frame">
-            <img src={patient.avatarUrl || doctor.avatarUrl || avatrHolder} alt="" />
+            <img src={patient.avatarUrl || doctor.avatarUrl} alt="" />
           </div>
           <div className="DoctorProfile-details">
             <span className="DoctorProfile-name">{patient.name || doctor.name}</span>
