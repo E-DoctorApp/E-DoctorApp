@@ -51,7 +51,7 @@ function LeadingMedicine({ doctor, date }: props) {
             </div> */}
             <div className='d-flex flex-row align-items-center justify-content-center gap-3 '>
                 <div className='d-flex' style={{ height: "3rem", width: "3rem" }}>
-                    <img src={doctor.avatarUrl || doctorAvatar} style={{ width: "100%", height: "100%" }} alt='doctor-avatar' />
+                    <img src={doctor.avatarUrl || doctorAvatar} style={{ width: "100%", borderRadius: "50%", height: "100%" }} alt='doctor-avatar' />
                 </div>
                 <div className='d-flex align-items-start' style={{ fontSize: 20, fontWeight: "500" }}>{doctor.department}</div>
             </div>

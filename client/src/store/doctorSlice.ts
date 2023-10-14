@@ -10,6 +10,8 @@ const initialState = {
   token: "",
   isAuthenticated: false,
   type: "doctor",
+  allDoctors: [],
+  allReviwes: []
 };
 
 export const createDoctor = createAsyncThunk(
@@ -29,14 +31,14 @@ export const createDoctor = createAsyncThunk(
 export const getOneDoctor = createAsyncThunk("getOneDoctor", async () => {
   try {
     const token = localStorage.getItem("token");
-   
-        const data = await axios.get("http://localhost:5000/api/doctor/getOne", {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        });
-    
-        return data.data;
+
+    const data = await axios.get("http://localhost:5000/api/doctor/getOne", {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+
+    return data.data;
 
   } catch (error) {
     return error;
@@ -50,7 +52,27 @@ export const doctorLogin = createAsyncThunk("doctorLogin", async (body: Object) 
     );
     // dispatch(getOneDoctor())
     // getOneDoctor();
-    console.log(data.data,"this is data from store")
+    console.log(data.data, "this is data from store")
+    return data.data;
+  } catch (error) {
+    return error;
+  }
+});
+export const getAllDoctors = createAsyncThunk("getAllDoctors", async () => {
+  try {
+    const data = await axios.get(
+      "http://localhost:5000/api/doctor/getAll"
+    );
+    return data.data;
+  } catch (error) {
+    return error;
+  }
+});
+export const getReviewsByDocId = createAsyncThunk("getReviewsByDocId", async (id:number) => {
+  try {
+    const data = await axios.get(
+      `http://localhost:5000/api/review/getAll/${id}`
+    );
     return data.data;
   } catch (error) {
     return error;
@@ -68,7 +90,7 @@ const userSlicer = createSlice({
       state.isAuthenticated = false
       localStorage.removeItem("token")
       localStorage.removeItem("type")
-}
+    }
   },
   extraReducers(builder) {
     builder.addCase(createDoctor.fulfilled, (state, action) => {
@@ -93,7 +115,13 @@ const userSlicer = createSlice({
       state.doctorInfo = action.payload;
       state.isAuthenticated = true;
     });
+    builder.addCase(getAllDoctors.fulfilled, (state, action) => {
+      state.allDoctors = action.payload;
+    });
+    builder.addCase(getReviewsByDocId.fulfilled, (state, action) => {
+      state.allReviwes = action.payload;
+    });
   },
 });
-export const { logoutDoctor }=userSlicer.actions
+export const { logoutDoctor } = userSlicer.actions
 export default userSlicer.reducer;

@@ -15,13 +15,11 @@ import Overview from "./components/DoctorProfile/Overview";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "./store/store";
 import { getOnePatient } from "./store/patinetSlice";
-import { getOneDoctor } from "./store/doctorSlice";
+import { getAllDoctors, getOneDoctor } from "./store/doctorSlice";
 import DoctorChat from "./components/DoctorChat/DoctorChat";
 import AllAppointments from "./components/AllAppointments/AllAppointments";
 import AllPatients from "./components/AllPatients/AllPatients";
 import Schedule from "./components/Schedule/Schedule";
-import { faker } from '@faker-js/faker';
-import { log } from "console";
 
 
 function App() {
@@ -37,7 +35,7 @@ function App() {
     }else if(userType==="doctor"){
       dispatch(getOneDoctor())
     }
-    
+    dispatch(getAllDoctors())
   },[]);
   return (
     <div className="App">

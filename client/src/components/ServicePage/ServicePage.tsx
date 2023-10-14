@@ -5,6 +5,7 @@ import Calendar from 'react-calendar'
 import CardService from '../CardSevice/CardService'
 import LeadingMedicine from './LeadingMedicine'
 import axios from 'axios'
+import { useLocation } from 'react-router-dom'
 var obj = {
     Neurologist: {
         para: "A neurologist is a medical doctor who specializes in the diagnosis and treatment of disorders that affect the nervous system. The nervous system is a complex network that includes the brain, spinal cord, and peripheral nerves. Neurologists are experts in the management of various neurological conditions",
@@ -42,6 +43,7 @@ var obj = {
 
 
 const ServicePage = () => {
+    const location:any =useLocation()
     const [department, setDepartment] = useState("")
     const [name, setName] = useState("")
     const [time, setTime] = useState("")
@@ -70,6 +72,11 @@ const ServicePage = () => {
 
         }
     }
+    useEffect(()=>{
+        console.log(location);
+        
+        handleByDepartment(location.state.department,location.state.name)
+    },[])
     return (
         <div className='services-page-conatiner'>
             <div className='services-hospital-image-wrapper'>
@@ -160,10 +167,6 @@ const ServicePage = () => {
                             <input placeholder="Name" onChange={((e:any)=>{setName(e.target.value)})} />
                             <input placeholder="Department" onChange={(e:any)=>{setDepartment(e.target.value)}} />
                         </div>
-                        <div className="d-flex align-items-center gap-4">
-                            <span>Available</span>
-                            <i className="fa-solid fa-toggle-on fa-2xl" style={{ color: " #36bab1" }}></i>
-                        </div>
                         <div className="serach-input" onClick={()=>{handleByDepartment(department,name)}} >
                             Search
                         </div>
@@ -176,7 +179,7 @@ const ServicePage = () => {
                     <p style={{ color: "#555", fontWeight: "400" }}>Lorem ipsum dolor sit amet consectetur adipiscing elit semp
                         er<br /> dalar elementum tempus hac tellus libero accumsan. </p>
                 </div>
-                <div style={{ padding: "0rem 4rem 1rem 7rem" }} className="all-services-cards-container d-flex justify-content-between  flex-wrap gap-4 w-100">
+                <div style={{ padding: "0rem 4rem 1rem 7rem" }} className="all-services-cards-container d-flex justify-content-between  flex-wrap  w-100">
 
                     <CardService title="Neurologist" para={obj.Neurologist.para} img={obj.Neurologist.img} />
                     <CardService title="Dentistry" para={obj.Dentistry.para} img={obj.Dentistry.img} />
@@ -190,7 +193,7 @@ const ServicePage = () => {
                 </div>
 
             </div>
-            <div className="service-landing-page-container-child-4 mt-4">
+            <div className="service-landing-page-container-child-4 mt-4 mb-5">
                 <div className="mb-5">
                     <span style={{ color: "#007E85", fontSize: "2.25rem", fontWeight: "700" }}>Leading Medicine</span>
                     <p style={{ color: "#555", fontWeight: "400" }}>Problems trying to reslove the conflict betwenn the two major realms of Classical physics Newtonian mechanics </p>

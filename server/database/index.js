@@ -88,12 +88,7 @@ Report.belongsTo(Doctor)
 
 
 
-// Patient.bulkCreate(patientData).then(() =>
-//   console.log("patient data have been saved")
-// );
-// Doctor.bulkCreate(doctorData).then(()=>
-// console.log("doctor data have been saved")
-// );
+
 // Admin.bulkCreate(adminData).then(()=>{
 //   console.log("admin data have been saved");
 // });
