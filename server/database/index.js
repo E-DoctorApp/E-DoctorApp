@@ -1,8 +1,16 @@
 const { Sequelize, DataTypes } = require("sequelize")
 
+
+const patientData = require("../../client/src/dummyData/patientData.json")
+const doctorData = require("../../client/src/dummyData/doctorData.json")
+const adminData = require("../../client/src/dummyData/adminData.json")
+const reviewData = require("../../client/src/dummyData/reviewData.json")
+const roomData = require("../../client/src/dummyData/roomData.json")
 const AppointmentsData =require("../../client/src/dummyData/AppointmentsData.json")
 const messages =require("../../client/src/dummyData/messages.json")
-const ReportData =require("../../client/src/dummyData/reports.json") 
+const ReportData =require("../../client/src/dummyData/reports.json")
+
+
 
 
 
@@ -78,6 +86,23 @@ Doctor.hasMany(Report)
 Report.belongsTo(Doctor)
 
 
+
+
+// Patient.bulkCreate(patientData).then(() =>
+//   console.log("patient data have been saved")
+// );
+// Doctor.bulkCreate(doctorData).then(()=>
+// console.log("doctor data have been saved")
+// );
+// Admin.bulkCreate(adminData).then(()=>{
+//   console.log("admin data have been saved");
+// });
+// Review.bulkCreate(reviewData).then(()=>{
+//   console.log("review data have been saved");
+// })
+// Room.bulkCreate(roomData).then(()=>{
+//   console.log('room data have been saved');
+// })
 // Appointment.bulkCreate(AppointmentsData).then(() =>
 //   console.log("appointments data have been saved")
 // );
@@ -88,7 +113,7 @@ Report.belongsTo(Doctor)
 //   console.log("reports data have been saved")
 // );
 
-// connection.sync({alter: true})
+// connection.sync({force: true})
 module.exports = {
     Patient,
     Doctor,

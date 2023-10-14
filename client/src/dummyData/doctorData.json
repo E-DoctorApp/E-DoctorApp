@@ -6,7 +6,10 @@
         "avatarUrl": "https://example.com/doctor1-avatar.jpg",
         "papers": {
             "degree": "Doctor of Cardiology",
-            "certifications": ["Board Certified", "Fellowship in Cardiology"]
+            "certifications": [
+                "Board Certified",
+                "Fellowship in Cardiology"
+            ]
         },
         "gender": "female",
         "phone": 98765432,
@@ -23,7 +26,10 @@
         "avatarUrl": "https://example.com/doctor2-avatar.jpg",
         "papers": {
             "degree": "Doctor of Pediatrics",
-            "certifications": ["Board Certified", "Fellowship in Pediatrics"]
+            "certifications": [
+                "Board Certified",
+                "Fellowship in Pediatrics"
+            ]
         },
         "gender": "male",
         "phone": 87654321,
@@ -40,7 +46,10 @@
         "avatarUrl": "https://example.com/doctor3-avatar.jpg",
         "papers": {
             "degree": "Doctor of Dermatology",
-            "certifications": ["Board Certified", "Fellowship in Dermatology"]
+            "certifications": [
+                "Board Certified",
+                "Fellowship in Dermatology"
+            ]
         },
         "gender": "female",
         "phone": 76543210,
@@ -57,7 +66,10 @@
         "avatarUrl": "https://example.com/doctor4-avatar.jpg",
         "papers": {
             "degree": "Generalist",
-            "certifications": ["Board Certified", "Fellowship in Neurology"]
+            "certifications": [
+                "Board Certified",
+                "Fellowship in Neurology"
+            ]
         },
         "gender": "male",
         "phone": 65432109,
@@ -74,7 +86,10 @@
         "avatarUrl": "https://example.com/doctor5-avatar.jpg",
         "papers": {
             "degree": "Doctor of Gynecology",
-            "certifications": ["Board Certified", "Fellowship in Gynecology"]
+            "certifications": [
+                "Board Certified",
+                "Fellowship in Gynecology"
+            ]
         },
         "gender": "female",
         "phone": 54321098,
@@ -91,7 +106,10 @@
         "avatarUrl": "https://example.com/doctor6-avatar.jpg",
         "papers": {
             "degree": "Doctor of Radiology",
-            "certifications": ["Board Certified", "Fellowship in Radiology"]
+            "certifications": [
+                "Board Certified",
+                "Fellowship in Radiology"
+            ]
         },
         "gender": "male",
         "phone": 43210987,
@@ -108,7 +126,10 @@
         "avatarUrl": "https://example.com/doctor7-avatar.jpg",
         "papers": {
             "degree": "Doctor of Dentistry",
-            "certifications": ["Board Certified", "Fellowship in Dentistry"]
+            "certifications": [
+                "Board Certified",
+                "Fellowship in Dentistry"
+            ]
         },
         "gender": "female",
         "phone": 32109876,
@@ -118,7 +139,4 @@
         "department": "Surgery",
         "password": "secureDoctor7"
     }
-    
-    
-
 ]

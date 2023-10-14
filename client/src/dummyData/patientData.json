@@ -60,28 +60,27 @@
         "cin": "UVW456XYZ"
     },
     {
-    "name": "David Lee",
-    "age": 29,
-    "gender": "male",
-    "avatarUrl": "https://example.com/avatar6.jpg",
-    "phone": 1234567896,
-    "email": "david@example.com",
-    "address": "444 Cedar St, City, Country",
-    "isBlocked": false,
-    "password": "password12345",
-    "cin": "MNO123PQR"
-},
-{
-    "name": "Olivia Taylor",
-    "age": 22,
-    "gender": "female",
-    "avatarUrl": "https://example.com/avatar7.jpg",
-    "phone": 1234567897,
-    "email": "olivia@example.com",
-    "address": "555 Redwood St, City, Country",
-    "isBlocked": true,
-    "password": "mysecretpassword",
-    "cin": "GHI789JKL"
-}
-    
+        "name": "David Lee",
+        "age": 29,
+        "gender": "male",
+        "avatarUrl": "https://example.com/avatar6.jpg",
+        "phone": 1234567896,
+        "email": "david@example.com",
+        "address": "444 Cedar St, City, Country",
+        "isBlocked": false,
+        "password": "password12345",
+        "cin": "MNO123PQR"
+    },
+    {
+        "name": "Olivia Taylor",
+        "age": 22,
+        "gender": "female",
+        "avatarUrl": "https://example.com/avatar7.jpg",
+        "phone": 1234567897,
+        "email": "olivia@example.com",
+        "address": "555 Redwood St, City, Country",
+        "isBlocked": true,
+        "password": "mysecretpassword",
+        "cin": "GHI789JKL"
+    }
 ]
