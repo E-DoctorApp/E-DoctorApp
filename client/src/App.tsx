@@ -54,7 +54,7 @@ function App() {
           <Route path="schedule" element={<Schedule/>} />
         </Route>
         <Route path="/services" element={<ServicePage />} />
-        <Route path="/Review" element={<Review />} />
+        {/* <Route path="/Review" element={<Review />} /> */}
       </Routes>
       <Footer />
     </div>
