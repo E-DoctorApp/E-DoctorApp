@@ -10,7 +10,8 @@ module.exports = (connection, DataTypes) => {
             type: DataTypes.STRING,
         },
         avatarUrl: {
-            type: DataTypes.TEXT
+            type: DataTypes.TEXT,
+            defaultValue: "../../client/src/assets/images/placeUser.jpg"
         },
         schedule: {
             type: DataTypes.JSON,
