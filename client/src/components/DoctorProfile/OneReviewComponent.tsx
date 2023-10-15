@@ -28,7 +28,7 @@ const OneReviewComponent = ({ review }: props) => {
                         <li><i className={review.rate >=4?"fas fa-star fa-sm":"far fa-star fa-sm"}></i></li>
                         <li><i className={review.rate >=5?"fas fa-star fa-sm":"far fa-star fa-sm"}></i></li>
                     </ul>
-                    <p style={{ fontSize: "10px", marginTop: "-15px" }}>15 janv 2023</p>
+                    <p style={{ fontSize: "10px", marginTop: "-15px" }}>{review.createdAt.slice(0,10)}</p>
                 </div>
             </div>
             <div className="message-costumer">

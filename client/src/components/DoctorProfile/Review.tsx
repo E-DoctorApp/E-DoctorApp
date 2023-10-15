@@ -11,6 +11,8 @@ const Review = () => {
     const [rate, setRate] = useState(0)
     const [star, setStar] = useState(0)
     const [trust, setTrust] = useState<number>(25)
+    console.log(trust);
+    
     const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
     const allReviwes: any = useSelector((state: RootState) => state.doctor.allReviwes);
     useEffect(() => {
@@ -42,7 +44,7 @@ const Review = () => {
                                     <div className="col-lg-8 profile-section">
                                         <h5 className="mb-3">{doctor.name}</h5>
                                         <p>{doctor.department}</p>
-                                        <div className="boutouna" ><i className="fa-solid fa-pencil"></i> boutouna</div><br />
+                                        <div className="boutouna d-flex align-items-center gap-3"><i className="fa-solid fa-pencil"></i> Edit</div><br />
                                         <p style={{ fontWeight: "bold", fontSize: "1rem" }}>146 Rates</p>
                                     </div>
                                 </div>
