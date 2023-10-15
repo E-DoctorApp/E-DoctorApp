@@ -24,7 +24,7 @@ import Schedule from "./components/Schedule/Schedule";
 import { ToastContainer } from "react-toastify";
 
 
-function App() {
+  function App() {
   const dispatch:AppDispatch = useDispatch();
   const doctor = useSelector((state: RootState) => state.doctor);
   const patient = useSelector((state: RootState) => state.patient);

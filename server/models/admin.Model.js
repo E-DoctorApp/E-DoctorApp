@@ -1,3 +1,4 @@
+
 module.exports = (connection, DataTypes) => {
     const Admin = connection.define("Admin", {
         adminName: {

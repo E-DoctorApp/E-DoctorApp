@@ -31,7 +31,7 @@ const Review = require("../models/review.Model")(connection, DataTypes)
 const Room = require("../models/room.Model")(connection, DataTypes)
 const Message = require("../models/message.Model")(connection, DataTypes)
 const Report = require("../models/report.Model")(connection, DataTypes)
-const Admin = require("../models/admin.Model")(connection, DataTypes)
+const Admin = require("../models/admin.Model.js")(connection, DataTypes)
 
 Patient.hasMany(Review)
 Review.belongsTo(Patient)
