@@ -21,7 +21,7 @@ const Overview = () => {
     } else if (type === "doctor") {
       dispatch(getOneDoctor())
     }
-  })
+  },[])
 
   return (
     <div style={{ backgroundColor: "#F7F6F6" }}>

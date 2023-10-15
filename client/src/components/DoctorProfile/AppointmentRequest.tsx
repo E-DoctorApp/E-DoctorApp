@@ -22,7 +22,7 @@ const AppointmentRequest = ({ appo }: Appprops) => {
     } else if (type === "doctor") {
       dispatch(getOneDoctor())
     }
-  })
+  },[])
 
   const handelUpdateAppointment = async (appoId: string, status: string) => {
     try {

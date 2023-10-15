@@ -28,7 +28,7 @@ const DoctorCards = () => {
           />
         </div>
         <div className="DoctorProfile-card-details">
-          <span className="DoctorProfile-card-stat">{appointments.length} Appointement</span>
+          <span className="DoctorProfile-card-stat">{appointments?.length} Appointement</span>
           <span className="DoctorProfile-card-title">Appointments</span>
         </div>
       </div>

@@ -6,6 +6,7 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import axios from "axios";
+import { toast } from "react-toastify"
 import { getOnePatient } from "../../store/patinetSlice";
 import { getOneDoctor } from "../../store/doctorSlice";
 
@@ -22,7 +23,7 @@ const OneAppointment = ({ appo }: Appprops) => {
     } else if (type === "doctor") {
       dispatch(getOneDoctor())
     }
-  })
+  }, [])
   const [star, setStar] = useState<number>(1)
   const [review, setReview] = useState<string>("")
   const decline = faRectangleXmark as IconProp;
@@ -41,9 +42,9 @@ const OneAppointment = ({ appo }: Appprops) => {
 
     }
   }
-  const handelUpdateAppointment = async (appoId: string, status: string) => {
+  const handelUpdateAppointment = async (appoId: string, obj: object) => {
     try {
-      const response = await axios.put(`http://localhost:5000/api/appointment/${appoId}`, { status })
+      const response = await axios.put(`http://localhost:5000/api/appointment/${appoId}`, obj)
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -124,24 +125,42 @@ const OneAppointment = ({ appo }: Appprops) => {
             appo.status === "accepted" ? "confirmed" : "declined"
           }
         >
-          <span className={
-            appo.status === "accepted" ? "confirmed-content" : "declined-content"
-          }>
-            {appo.status === "accepted" ? "Confirmed" : "Declined"}
-          </span>
+          <div className="d-flex gap-4 align-items-center">
+            <span className={
+              appo.status === "accepted" ? "confirmed-content" : "declined-content"
+            }>
+              {appo.status === "accepted" ? "Confirmed" : "Declined"}
+            </span>
+            {!appo.isFinished && <i
+              onClick={() => {
+                handelUpdateAppointment(appo.id, { isFinished: true })
+                toast.success('Thank You For Payment', {
+                  position: "top-center",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                });
+              }}
+              className="fa-brands fa-amazon-pay"></i>}
+          </div>
         </div>
+
       ) : (
         <div className="pending">
           {doctor.isAuthenticated ? (
             <>
               <FontAwesomeIcon
-                onClick={() => handelUpdateAppointment(appo.id, "rejected")}
+                onClick={() => handelUpdateAppointment(appo.id, { status: "rejected" })}
                 className="pending-buttons"
                 icon={decline}
                 style={{ color: "rgb(242, 0, 255)" }}
               />
               <FontAwesomeIcon
-                onClick={() => handelUpdateAppointment(appo.id, "accepted")}
+                onClick={() => handelUpdateAppointment(appo.id, { status: "accepted" })}
                 className="pending-buttons"
                 icon={accept}
                 style={{ color: "rgb(26, 88, 244)" }}

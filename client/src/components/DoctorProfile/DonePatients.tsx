@@ -32,7 +32,7 @@ const DonePatients = () => {
         </thead>
         <tbody>
           {
-            appointments.map((appo: any, i: number) => appo.isFinished ?
+            appointments?.map((appo: any, i: number) => appo.isFinished ?
               <tr key={i} >
                 <th scope="row" className="DoctorProfile-th">
                   <div className="DoctorProfile-patient-done">

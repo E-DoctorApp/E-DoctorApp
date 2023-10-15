@@ -20,7 +20,7 @@ const AppointmentsList = () => {
       </div>
       <div className="DoctorProfile-appointment-requests-list-container">
         {
-          doctor.Appointments.map((appo: any, index: number) => index < 4 ? <AppointmentRequest appo={appo} key={index}  /> : null)
+          doctor.Appointments?.map((appo: any, index: number) => index < 4 ? <AppointmentRequest appo={appo} key={index}  /> : null)
         }
 
         {/* <AppointmentRequest isConfirmed={false} isPending={true} />
