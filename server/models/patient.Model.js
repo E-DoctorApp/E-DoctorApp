@@ -11,7 +11,7 @@ module.exports = (connection, DataTypes) => {
             values:["male","female"]
         },
         avatarUrl: {
-            type: DataTypes.TEXT
+            type: DataTypes.TEXT,
         },
         phone:{
             type:DataTypes.INTEGER,

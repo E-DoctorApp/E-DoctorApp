@@ -1,18 +1,31 @@
 import "./style.css"
-import React from "react"
+import React, { useEffect } from "react"
 import SideBar from "./SideBar"
 import TopNav from "./TopNav";
 import { Outlet } from "react-router";
+import { AppDispatch } from "../../store/store";
+import { useDispatch } from "react-redux";
+import { getOnePatient } from "../../store/patinetSlice";
+import { getOneDoctor } from "../../store/doctorSlice";
 
-const DoctorProfile = () :  React.JSX.Element => {
+const DoctorProfile = (): React.JSX.Element => {
+  const dispatch: AppDispatch = useDispatch()
+  useEffect(() => {
+    const type = localStorage.getItem("type")
+    if (type === "patient") {
+      dispatch(getOnePatient())
+    } else if (type === "doctor") {
+      dispatch(getOneDoctor())
+    }
+  },[])
 
 
-  return   (
+  return (
     <div className="DoctorProfile-body">
-      <SideBar/>
+      <SideBar />
       <div className="DoctorProfile-main">
-        <TopNav/>
-        <Outlet/>
+        <TopNav />
+        <Outlet />
       </div>
     </div>
   )

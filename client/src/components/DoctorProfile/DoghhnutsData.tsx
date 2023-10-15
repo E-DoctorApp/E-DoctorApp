@@ -1,38 +1,47 @@
 import './style.css'
 import React from 'react';
-import {Chart, ArcElement, Tooltip, Legend, Title} from 'chart.js';
-import {Doughnut} from 'react-chartjs-2';
+import { Chart, ArcElement, Tooltip, Legend, Title } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 Chart.register(ArcElement, Tooltip, Legend, Title);
 
 
-const data = {
-   
-    datasets: [
-        {
-            data: [45, 30,25],
-            backgroundColor: [
-                'orange',
-                'rgb(26, 88, 244)',
-                'blueviolet'
-            ],
-            hoverBackgroundColor: [
-                'orange',
-                'rgb(26, 88, 244)',
-                'blueviolet'
-            ]
-        }],
+
+function CreateDoughnutData() {
+    const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
+    const appointments = doctor.Appointments
+
+    const data = {
+
+        datasets: [
+            {
+                data: [
+                    appointments?.filter((appo: any) => appo.Patient.gender === "male").length
+                    ,
+                    appointments?.filter((appo: any) => appo.Patient.gender === "female").length
+                ],
+                backgroundColor: [
+                    'orange',
+                    'rgb(26, 88, 244)',
+
+                ],
+                hoverBackgroundColor: [
+                    'orange',
+                    'rgb(26, 88, 244)',
+
+                ]
+            }],
         labels: [],
-  
 
-};
 
-  function CreateDoughnutData() {
-  return (
-    <div className='DoctorProfile-donut' >
-        <Doughnut data={data} />
-    </div>
-  );
+    };
+    return (
+        <div className='DoctorProfile-donut' >
+            <Doughnut data={data} />
+        </div>
+    );
 }
 
 export default CreateDoughnutData;
