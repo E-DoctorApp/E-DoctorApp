@@ -5,7 +5,6 @@ interface props {
 }
 
 const OneReviewComponent = ({ review }: props) => {
-    console.log(review);
     return (
         <div className="user-review-yas mt-2 p-4" style={{width:"50rem"}}>
             <div className="d-flex w-100 justify-content-between align-items-center">

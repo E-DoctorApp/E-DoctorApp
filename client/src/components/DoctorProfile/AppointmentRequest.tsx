@@ -1,16 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
 import { faSquareCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import axios from "axios";
+import { AppDispatch } from "../../store/store";
+import { useDispatch } from "react-redux";
+import { getOnePatient } from "../../store/patinetSlice";
+import { getOneDoctor } from "../../store/doctorSlice";
 
 type Appprops = {
-  isConfirmed: boolean;
-  isPending: boolean;
   appo: any
 };
 
-const AppointmentRequest = ({ isConfirmed, isPending, appo }: Appprops) => {
+const AppointmentRequest = ({ appo }: Appprops) => {
+  const dispatch: AppDispatch = useDispatch()
+  useEffect(() => {
+    const type = localStorage.getItem("type")
+    if (type === "patient") {
+      dispatch(getOnePatient())
+    } else if (type === "doctor") {
+      dispatch(getOneDoctor())
+    }
+  })
+
+  const handelUpdateAppointment = async (appoId: string, status: string) => {
+    try {
+      const response = await axios.put(`http://localhost:5000/api/appointment/${appoId}`, { status })
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const decline = faRectangleXmark as IconProp;
   const accept = faSquareCheck as IconProp;
   return (
@@ -44,11 +65,13 @@ const AppointmentRequest = ({ isConfirmed, isPending, appo }: Appprops) => {
       ) : (
         <div className="DoctorProfile-pending">
           <FontAwesomeIcon
+            onClick={() => handelUpdateAppointment(appo.id, "rejected")}
             className="DoctorProfile-pending-buttons"
             icon={decline}
             style={{ color: "rgb(242, 0, 255)" }}
           />
           <FontAwesomeIcon
+            onClick={() => handelUpdateAppointment(appo.id, "accepted")}
             className="DoctorProfile-pending-buttons"
             icon={accept}
             style={{ color: "rgb(26, 88, 244)" }}

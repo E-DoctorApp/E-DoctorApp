@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './style.css'
 import OneAppointment from './OneAppointment'
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store/store";
+import { getOnePatient } from '../../store/patinetSlice';
+import { getOneDoctor } from '../../store/doctorSlice';
 
 const AllAppointments = () => {
+  useEffect(() => {
+    const type = localStorage.getItem("type")
+    if (type === "patient") {
+      dispatch(getOnePatient())
+    } else if (type === "doctor") {
+      dispatch(getOneDoctor())
+    }
+  })
   const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
   const patient: any = useSelector((state: RootState) => state.patient.patientInfo)
+  const dispatch: AppDispatch = useDispatch()
   const type = localStorage.getItem('type');
   return (
     <div className="appointments-container">

@@ -1,24 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
 import { faSquareCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store/store";
 import axios from "axios";
+import { getOnePatient } from "../../store/patinetSlice";
+import { getOneDoctor } from "../../store/doctorSlice";
 
 type Appprops = {
   appo: any;
 };
 
 const OneAppointment = ({ appo }: Appprops) => {
+  const dispatch: AppDispatch = useDispatch()
+  useEffect(() => {
+    const type = localStorage.getItem("type")
+    if (type === "patient") {
+      dispatch(getOnePatient())
+    } else if (type === "doctor") {
+      dispatch(getOneDoctor())
+    }
+  })
   const [star, setStar] = useState<number>(1)
   const [review, setReview] = useState<string>("")
   const decline = faRectangleXmark as IconProp;
   const accept = faSquareCheck as IconProp;
   const doctor: any = useSelector((state: RootState) => state.doctor)
   const type = localStorage.getItem('type');
-  
+
 
   const handleAddReview = async () => {
     try {
@@ -28,6 +39,14 @@ const OneAppointment = ({ appo }: Appprops) => {
     } catch (error) {
       console.log(error);
 
+    }
+  }
+  const handelUpdateAppointment = async (appoId: string, status: string) => {
+    try {
+      const response = await axios.put(`http://localhost:5000/api/appointment/${appoId}`, { status })
+      console.log(response);
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -79,7 +98,7 @@ const OneAppointment = ({ appo }: Appprops) => {
                   type="button" style={{ backgroundColor: "white", border: "none", color: "#007e85" }} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button
                   onClick={() => handleAddReview()}
-                type="button" style={{ backgroundColor: "#007e85", border: "none" }} data-bs-dismiss="modal" className="btn btn-primary">Save</button>
+                  type="button" style={{ backgroundColor: "#007e85", border: "none" }} data-bs-dismiss="modal" className="btn btn-primary">Save</button>
               </div>
             </div>
           </div>
@@ -116,11 +135,13 @@ const OneAppointment = ({ appo }: Appprops) => {
           {doctor.isAuthenticated ? (
             <>
               <FontAwesomeIcon
+                onClick={() => handelUpdateAppointment(appo.id, "rejected")}
                 className="pending-buttons"
                 icon={decline}
                 style={{ color: "rgb(242, 0, 255)" }}
               />
               <FontAwesomeIcon
+                onClick={() => handelUpdateAppointment(appo.id, "accepted")}
                 className="pending-buttons"
                 icon={accept}
                 style={{ color: "rgb(26, 88, 244)" }}
