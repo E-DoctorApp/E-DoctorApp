@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 const initialState = {
-    patientInfo:null,
+    patientInfo:{},
     // userRegistred: false,
     loading: false,
     errors: "",
@@ -34,7 +34,7 @@ export const loginPatient = createAsyncThunk("loginPatient", async (body: { emai
 export const getOnePatient = createAsyncThunk("getOnePatient", async () => {
     try {
         const token =localStorage.getItem("token")
-        const data = await axios.get("http://localhost:5000/api/doctor/getOne", {
+        const data = await axios.get("http://localhost:5000/api/patient/getOne", {
         headers:{
             authorization:`Bearer ${token}`
         }
@@ -51,16 +51,15 @@ export const patientSlice = createSlice({
     name: "patientSlice",
     initialState,
     reducers: {
-        // logoutPatient: (state) => {
-        //         state.PatientId = null,
-        //         state.userRegistred = false,
-        //         state.loading = false,
-        //         state.errors = "",
-        //         state.message = "",
-        //         state.token = "",
-        //         state.isAuthenticated = false,
-        //         localStorage.removeItem("token")
-        // }
+        logoutPatient: (state) => {
+                state.loading = false
+                state.errors = ""
+                state.message = ""
+                state.patientInfo = {}
+                state.isAuthenticated = false
+                localStorage.removeItem("token")
+                localStorage.removeItem("type")
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(createPatient.fulfilled, (state, action) => {
@@ -82,6 +81,7 @@ export const patientSlice = createSlice({
             state.message = action.payload.message
             state.isAuthenticated = true
             localStorage.setItem("token", action.payload.token)
+            localStorage.setItem("type", "patient");
         })
         builder.addCase(getOnePatient.fulfilled, (state, action) => {
             state.loading = false
@@ -91,6 +91,6 @@ export const patientSlice = createSlice({
         })
     }
 })
-// export const { logoutPatient } = patientSlice.actions
+export const { logoutPatient } = patientSlice.actions
 
 export default patientSlice.reducer;
