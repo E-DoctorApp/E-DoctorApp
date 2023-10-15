@@ -15,7 +15,6 @@ const TopNav = () => {
   const bell = faBell as IconProp;
   const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
   const patient: any = useSelector((state: RootState) => state.patient.patientInfo)
-  console.log(patient);
 
   return (
     <div className="DoctorProfile-top">

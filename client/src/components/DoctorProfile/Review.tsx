@@ -1,10 +1,21 @@
 import React, { useEffect, useState } from "react";
 import './review.css'
 import YasBar from "./YasBar";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store/store";
+import { getOnePatient } from "../../store/patinetSlice";
+import { getOneDoctor } from "../../store/doctorSlice";
 
 const Review = () => {
+    const dispatch: AppDispatch = useDispatch()
+    useEffect(() => {
+        const type = localStorage.getItem("type")
+        if (type === "patient") {
+            dispatch(getOnePatient())
+        } else if (type === "doctor") {
+            dispatch(getOneDoctor())
+        }
+    })
     const [job, setJob] = useState("")
     const [profilePhoto] = useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKaiKiPcLJj7ufrj6M2KaPwyCT4lDSFA5oog&usqp=CAU")
     const [name, setName] = useState("")
@@ -12,7 +23,7 @@ const Review = () => {
     const [star, setStar] = useState(0)
     const [trust, setTrust] = useState<number>(25)
     console.log(trust);
-    
+
     const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
     const allReviwes: any = useSelector((state: RootState) => state.doctor.allReviwes);
     useEffect(() => {
