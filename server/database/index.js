@@ -1,6 +1,18 @@
 const { Sequelize, DataTypes } = require("sequelize")
 
 
+const patientData = require("../../client/src/dummyData/patientData.json")
+const doctorData = require("../../client/src/dummyData/doctorData.json")
+const adminData = require("../../client/src/dummyData/adminData.json")
+const reviewData = require("../../client/src/dummyData/reviewData.json")
+const roomData = require("../../client/src/dummyData/roomData.json")
+const AppointmentsData =require("../../client/src/dummyData/AppointmentsData.json")
+const messages =require("../../client/src/dummyData/messages.json")
+const ReportData =require("../../client/src/dummyData/reports.json")
+
+
+
+
 
 const connection = new Sequelize(process.env.DB_URL)
 
@@ -19,7 +31,7 @@ const Review = require("../models/review.Model")(connection, DataTypes)
 const Room = require("../models/room.Model")(connection, DataTypes)
 const Message = require("../models/message.Model")(connection, DataTypes)
 const Report = require("../models/report.Model")(connection, DataTypes)
-const Admin = require("../models/admin.Model")(connection, DataTypes)
+const Admin = require("../models/admin.Model.js")(connection, DataTypes)
 
 Patient.hasMany(Review)
 Review.belongsTo(Patient)
@@ -77,6 +89,42 @@ Report.belongsTo(Doctor)
 
 
 
+// Admin.bulkCreate(adminData).then(()=>{
+//   console.log("admin data have been saved");
+// });
+// Review.bulkCreate(reviewData).then(()=>{
+//   console.log("review data have been saved");
+// })
+// Room.bulkCreate(roomData).then(()=>{
+//   console.log('room data have been saved');
+// })
+// Appointment.bulkCreate(AppointmentsData).then(() =>
+//   console.log("appointments data have been saved")
+// );
+// Message.bulkCreate(messages).then(() =>
+//   console.log("messages data have been saved")
+// );
+// Report.bulkCreate(ReportData, { ignoreDuplicates: true }).then(() =>
+//   console.log("reports data have been saved")
+// );
+
+// connection.sync({force: true})
+module.exports = {
+    Patient,
+    Doctor,
+    Appointment,
+  Review,
+   Room,
+    Message,
+    Report,
+    Admin,
+    connection
+
+}
+
+
+
+
 
 
 
@@ -123,17 +171,6 @@ Report.belongsTo(Doctor)
 
 
 
-module.exports = {
-    Patient: Patient,
-    Doctor: Doctor,
-    Appointment: Appointment,
-    Review: Review,
-    Room: Room,
-    Message: Message,
-    Report:Report,
-    Admin:Admin
-
-}
 
 
 

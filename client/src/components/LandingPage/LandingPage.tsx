@@ -1,11 +1,13 @@
 import "./style.css"
 
-import React from 'react'
+import React, { useState } from 'react'
 import doctor from "../../assets/images/image 17.png"
 import container from "../../assets/images/Container.png"
 import CardService from "../CardSevice/CardService"
 import TeamMember from "../TeamMemberCard/TeamMember"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useSelector } from "react-redux"
+import { RootState } from "../../store/store"
 var obj = {
     Neurologist: {
         para: "A neurologist is a medical doctor who specializes in the diagnosis and treatment of disorders that affect the nervous system. The nervous system is a complex network that includes the brain, spinal cord, and peripheral nerves. Neurologists are experts in the management of various neurological conditions",
@@ -43,7 +45,12 @@ var obj = {
 
 
 const LandingPage = () => {
+    const [department, setDepartment] = useState("")
+    const [name, setName] = useState("")
     const navigate = useNavigate();
+    const isLoggedIn = localStorage.getItem('token');
+    const { allDoctors } = useSelector((state: RootState) => state.doctor);
+
     return (
         <div className="landing-page-container">
             <div className="landing-page-container-child-1">
@@ -62,13 +69,14 @@ const LandingPage = () => {
                                 ch make us a leader in the healthcare industry</p>
                         </div>
                         <div className="texts-buttons">
-                            <div className="texts-buttons-btn1">Appointements</div>
+                            <div className="texts-buttons-btn1"
+                                onClick={() => isLoggedIn && navigate("/doctorProfile/appointments")}
+                            >Appointements</div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="51" height="51" viewBox="0 0 51 51" fill="none">
                                 <circle cx="25.5" cy="25.5" r="25.5" fill="#007E85" />
                                 <path d="M34.5 24.634C35.1667 25.0189 35.1667 25.9811 34.5 26.366L21.75 33.7272C21.0833 34.1121 20.25 33.631 20.25 32.8612L20.25 18.1388C20.25 17.369 21.0833 16.8879 21.75 17.2728L34.5 24.634Z" fill="white" />
                             </svg>
                             <div>Watch Video</div>
-
                         </div>
                     </div>
                     <div className="image-docotor-wrapper">
@@ -77,27 +85,26 @@ const LandingPage = () => {
                             <path d="M371.861 69.4458C407.056 98.7392 437.929 129.716 463.554 167.091C489.178 204.802 510.172 248.91 517.273 297.732C524.374 346.555 517.582 399.754 497.205 447.903C477.138 495.716 437.796 488.481 395.5 507C363.5 529 316 548 263.5 548C214 548 182 545 139 522C102 490.5 41.5208 478.544 18.9835 441.506C-3.86244 404.468 0.151041 348.912 0.459771 293.355C0.7685 238.135 -2.62753 182.579 14.97 136.114C32.5676 89.6481 71.1588 52.2738 114.998 28.3677C158.838 4.46155 208.235 -5.63964 252.692 3.11472C297.149 12.2058 336.666 40.1524 371.861 69.4458Z" fill="url(#paint0_linear_47_34)" />
                             <defs>
                                 <linearGradient id="paint0_linear_47_34" x1="260" y1="0" x2="260" y2="548" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#007E85" />
-                                    <stop offset="1" stop-color="#2B8500" stop-opacity="0.49" />
+                                    <stop stopColor="#007E85" />
+                                    <stop offset="1" stopColor="#2B8500" stopOpacity="0.49" />
                                 </linearGradient>
                             </defs>
                         </svg>
                     </div>
                 </div>
-                <div className="sub2-child-1 find-doctor">
+                <div className="sub2-child-1 find-doctor m-5">
                     <div className="find-A-Doctor">Find A doctor</div>
                     <div className="find-A-Doctor-inputs">
                         <div className="d-flex gap-4">
-                            <input placeholder="Name" />
-                            <input placeholder="Department" />
+                            <input placeholder="Name" onChange={((e: any) => { setName(e.target.value) })} />
+                            <input placeholder="Department" onChange={(e: any) => { setDepartment(e.target.value) }} />
                         </div>
-                        <div className="d-flex align-items-center gap-4">
-                            <span>Available</span>
-                            <i className="fa-solid fa-toggle-on fa-2xl" style={{ color: " #36bab1" }}></i>
-                        </div>
-                        <div className="serach-input">
-                            Search
-                        </div>
+                        <Link to="/services" state={{ department, name }}>
+                            <div
+                                className="serach-input">
+                                Search
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -157,9 +164,9 @@ const LandingPage = () => {
                     <p style={{ color: "#555", fontWeight: "400" }}>Lorem ipsum dolor sit amet consectetur adipiscing elit semp
                         er<br /> dalar elementum tempus hac tellus libero accumsan. </p>
                 </div>
-                <div style={{ padding: "0rem 4rem 1rem 7rem" }} className="all-services-cards-container d-flex justify-content-between flex-wrap gap-4 w-100">
-                   
-                <CardService title="Neurologist" para={obj.Neurologist.para} img={obj.Neurologist.img} />
+                <div style={{ padding: "0rem 4rem 1rem 7rem" }} className="all-services-cards-container d-flex justify-content-between  flex-wrap  w-100">
+
+                    <CardService title="Neurologist" para={obj.Neurologist.para} img={obj.Neurologist.img} />
                     <CardService title="Dentistry" para={obj.Dentistry.para} img={obj.Dentistry.img} />
                     <CardService title='Generalist' para={obj.Generalist.para} img={obj.Generalist.img} />
                     <CardService title='Gynecologist' para={obj.Gynecologist.para} img={obj.Gynecologist.img} />
@@ -168,8 +175,6 @@ const LandingPage = () => {
                     <CardService title='Surgery' para={obj.Surgery.para} img={obj.Surgery.img} />
                     <CardService title='Dermatology' para={obj.Dermatology.para} img={obj.Dermatology.img} />
                     <CardService title='Neurologist' para={obj.Neurologist.para} img={obj.Neurologist.img} />
-                   
-                  
                 </div>
             </div>
             <div className="landing-page-container-child-5 mt-4">
@@ -179,13 +184,8 @@ const LandingPage = () => {
                         er<br /> dalar elementum tempus hac tellus libero accumsan. </p>
                 </div>
                 <div style={{ padding: "0rem 4rem 1rem 7rem" }} className="all-services-cards-container d-flex  flex-wrap gap-4 w-100">
-                   <TeamMember/>
-                   <TeamMember/>
-                   <TeamMember/>
-                   <TeamMember/>
-                   <TeamMember/>
-                   <TeamMember/>
-                   <TeamMember/>
+                    {allDoctors.map((doctor:object,i:number) => <TeamMember key={i} doctor={doctor} />)}
+                  
                 </div>
             </div>
         </div >

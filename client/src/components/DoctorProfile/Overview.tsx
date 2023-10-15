@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import CalendarComponent from "./CalendarComponent";
 import Stocks from "./Stocks";
 import Charts from "./Charts";
@@ -6,11 +6,22 @@ import DonePatients from "./DonePatients";
 import DoctorCards from "./DoctorCards";
 import AppointmentsList from "./AppointmentsList";
 import Calendar from "react-calendar";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store/store";
+import { getOnePatient } from "../../store/patinetSlice";
+import { getOneDoctor } from "../../store/doctorSlice";
 
 const Overview = () => {
   const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo);
+  const dispatch: AppDispatch = useDispatch()
+  useEffect(() => {
+    const type = localStorage.getItem("type")
+    if (type === "patient") {
+      dispatch(getOnePatient())
+    } else if (type === "doctor") {
+      dispatch(getOneDoctor())
+    }
+  },[])
 
   return (
     <div style={{ backgroundColor: "#F7F6F6" }}>

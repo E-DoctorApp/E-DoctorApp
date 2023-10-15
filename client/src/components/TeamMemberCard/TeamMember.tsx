@@ -2,12 +2,15 @@
 import React from 'react'
 import bgUser from "../../assets/images/BG.png"
 
+interface prpos {
+    doctor: any
+}
 
-const TeamMember = () => {
+const TeamMember = ({ doctor }: prpos) => {
     return (
-        <div style={{ width: "30%" }} className="card-service-container d-flex flex-column align-items-center  gap-3">
-            <div style={{ width: "50%", height: "100%" }}>
-                <img style={{ width: "100%", height: "100%", objectFit: "contain" }} src={bgUser} />
+        <div style={{ width: "25rem" }} className="card-service-container d-flex flex-column align-items-center  gap-3">
+            <div style={{ width: "22rem", height: "20rem" }}>
+                <img style={{ width: "90%", height: "90%",objectFit:"cover",borderRadius:"50%" }} src={doctor.avatarUrl} />
             </div>
             <span style={{ color: "#007E85", fontSize: "1.5rem", fontWeight: "700" }}>Dental treatments</span>
             <p

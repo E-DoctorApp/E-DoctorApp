@@ -101,3 +101,11 @@
     font-weight: 700;
     font-size: 22px;
 }
+
+
+
+
+.fa-amazon-pay:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}

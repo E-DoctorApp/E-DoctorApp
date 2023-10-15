@@ -15,8 +15,6 @@ const NavBar = (): React.JSX.Element => {
     const dipstach: AppDispatch = useDispatch()
     const location = useLocation()
     const pathName = location.pathname
-    console.log(pathName);
-
     return (
         <div className="nav-bar-container" style={{ display: pathName.includes("/doctorProfile") ? "none" : "flex" }}>
             <div className="nav-logo">

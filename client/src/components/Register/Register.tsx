@@ -8,17 +8,17 @@ import { createDoctor } from "../../store/doctorSlice";
 import { useNavigate } from "react-router-dom";
 import React, { useState, ChangeEvent } from "react";
 import "./style.css";
+import {toast} from "react-toastify"
 
 const Register = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
-  const [type, setType] = useState("");
   const [userType, setUserType] = useState("");
   const [showDoctorFields, setShowDoctorFields] = useState(false);
-  const [department,setDepartment]=useState("")
-  const [papers,setPapers]=useState("")
-  
-  
+  const [department, setDepartment] = useState("")
+  const [papers, setPapers] = useState("")
+
+
 
   const handleUserTypeChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setUserType(e.target.value);
@@ -33,27 +33,47 @@ const Register = () => {
     gender: "",
     phone: "",
   });
-  console.log(form);
-  
+
   const handleFormChange = (e: any) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (userType === "2") {
-      console.log("here doctor");
-
-      // we nee to add the papers to the docotor
-      dispatch(createDoctor({ ...form, age: +form.age,papers,department }));
-      // i nedd to check the error later then navigate
-      // navigate("/login")
+      //doctor
+      const x = await dispatch(createDoctor({ ...form, age: +form.age, papers, department }));
+      if (x.payload.message === "Request failed with status code 500") {
+        toast.error(`${x.payload.response.data.message}`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }else {
+        navigate("/login")
+      }
     } else if (userType === "1") {
-      console.log("patient");
-      
-      dispatch(createPatient({ ...form, age: +form.age }));
-      // i nedd to check the error later then navigate
-      // navigate("/login")
+      //patient
+      const x = await dispatch(createPatient({ ...form, age: +form.age }));
+      if (x.payload.message === "Request failed with status code 500") {
+        toast.error(`${x.payload.response.data.message}`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }else {
+        navigate("/login")
+      }
     }
   };
   return (
@@ -80,7 +100,7 @@ const Register = () => {
             Name
           </label>
         </div>
-       
+
 
         <div className="formOutline mb-3">
           <input
@@ -115,7 +135,7 @@ const Register = () => {
             Phone
           </label>
         </div>
-      
+
         <div className="formOutline mb-3">
           <input
             onChange={(e) => handleFormChange(e)}
@@ -168,8 +188,8 @@ const Register = () => {
         {showDoctorFields && (
           <div>
             <div className="formOutline mb-3">
-              <input 
-              onChange={(e)=>setPapers(e.target.value)}
+              <input
+                onChange={(e) => setPapers(e.target.value)}
                 className="formInput formInputLarge"
                 placeholder="Enter papers"
                 type="password"
@@ -181,7 +201,7 @@ const Register = () => {
             </div>
 
             <select
-            onChange={(e)=>setDepartment(e.target.value)}
+              onChange={(e) => setDepartment(e.target.value)}
               className="form-select form-select-sm"
               aria-label=".form-select-sm example"
             >

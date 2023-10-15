@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./style.css"
 import hospital from "../../assets/images/hospital.png"
 import Calendar from 'react-calendar'
 import CardService from '../CardSevice/CardService'
 import LeadingMedicine from './LeadingMedicine'
+import axios from 'axios'
+import { toast } from "react-toastify"
+import { useLocation } from 'react-router-dom'
 var obj = {
     Neurologist: {
         para: "A neurologist is a medical doctor who specializes in the diagnosis and treatment of disorders that affect the nervous system. The nervous system is a complex network that includes the brain, spinal cord, and peripheral nerves. Neurologists are experts in the management of various neurological conditions",
@@ -41,6 +44,51 @@ var obj = {
 
 
 const ServicePage = () => {
+    const location: any = useLocation()
+    const [department, setDepartment] = useState("")
+    const [name, setName] = useState("")
+    const [time, setTime] = useState("")
+    const [filtredDoctors, setFiltredDoctors] = useState([])
+    const handleByDepartment = async (department: string, name: string) => {
+        try {
+            const response = await axios.post(`http://localhost:5000/api/doctor/departmentFilter`, { department, name })
+            setFiltredDoctors(response.data)
+            if (response.data.length > 0) {
+                window.scrollTo(0, 3000)
+            } else {
+                toast.info("No Doctors Available ", {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const handleFilterDoctors = async (Department: string, Time: string) => {
+        try {
+            const res = await axios.post("http://localhost:5000/api/doctor/getAvailable", { Department, Time })
+            console.log("------ Data Doctors---", res.data);
+            setFiltredDoctors(res.data)
+            if (res.data.length > 0) {
+                window.scrollTo(0, 3000)
+            }
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+    useEffect(() => {
+        if (location.state) {
+            handleByDepartment(location.state.department, location.state.name)
+        }
+    }, [])
     return (
         <div className='services-page-conatiner'>
             <div className='services-hospital-image-wrapper'>
@@ -53,8 +101,6 @@ const ServicePage = () => {
                             <div className='d-flex align-items-center justify-content-center' style={{ color: "#fff", background: "#007e85", padding: "1rem 3rem", borderRadius: "2.5rem" }}>Get Quote Now</div>
                             <div className='d-flex align-items-center justify-content-center' style={{ color: "#fff", background: "transparent", padding: "1rem 3rem", borderRadius: "2.5rem", border: "0.1rem solid #007e85" }}>Get Quote Now</div>
                         </div>
-
-
                     </div>
                     <div className='book-appointment'>
                         <div className='book-appointment-warrper-child'>
@@ -70,7 +116,7 @@ const ServicePage = () => {
                                 </div>
                                 <div className='w-100 d-flex flex-column align-items-start gap-2'>
                                     <span>Departement * </span >
-                                    <select
+                                    <select onChange={(e: any) => setDepartment(e.target.value)}
                                         className="form-select form-select-xl"
                                         aria-label=".form-select-sm"
                                     >
@@ -90,31 +136,33 @@ const ServicePage = () => {
                                     <span>Time *</span>
 
 
-                                    <select
+                                    <select onChange={(e: any) => setTime(e.target.value)}
                                         className="form-select form-select-xl"
                                         aria-label=".form-select-sm"
                                     >
-                                        <option selected>Choose your department</option>
-                                        <option value="Neurologist">1:00 Available</option>
-                                        <option value="Dermatology">2:00 Available</option>
-                                        <option value="Gynecologist">3:00 Available</option>
-                                        <option value="Generalist">4:00 Available</option>
-                                        <option value="Radiology">5:00 Available</option>
-                                        <option value="Orthopedics">6:00 Available</option>
-                                        <option value="Dentistry">7:00 Available</option>
-                                        <option value="Surgery">8:00 Available</option>
+                                        <option selected>Take Time</option>
+                                        <option value="08:00">08:00 </option>
+                                        <option value="09:00">09:00 </option>
+                                        <option value="10:00">10:00 </option>
+                                        <option value="11:00">11:00 </option>
+                                        <option value="13:00">13:00 </option>
+                                        <option value="14:00">14:00 </option>
+                                        <option value="15:00">15:00 </option>
+                                        <option value="16:00">16:00 </option>
                                     </select>
 
 
 
                                 </div>
-                                <div className='d-flex btn-service-book-appointement w-80' style={{
-                                    padding: "0.9rem 2.5rem",
-                                    borderRadius: "0.3125rem",
-                                    background: "#007E85",
-                                    color: "#fff"
+                                <div
+                                    onClick={() => handleFilterDoctors(department, time)}
+                                    className='d-flex btn-service-book-appointement w-80' style={{
+                                        padding: "0.9rem 2.5rem",
+                                        borderRadius: "0.3125rem",
+                                        background: "#007E85",
+                                        color: "#fff"
 
-                                }}>
+                                    }}>
                                     Book Appointment
                                 </div>
                             </div>
@@ -128,14 +176,10 @@ const ServicePage = () => {
                     <div className="find-A-Doctor">Find A doctor</div>
                     <div className="find-A-Doctor-inputs">
                         <div className="d-flex gap-4">
-                            <input placeholder="Name" />
-                            <input placeholder="Department" />
+                            <input placeholder="Name" onChange={((e: any) => { setName(e.target.value) })} />
+                            <input placeholder="Department" onChange={(e: any) => { setDepartment(e.target.value) }} />
                         </div>
-                        <div className="d-flex align-items-center gap-4">
-                            <span>Available</span>
-                            <i className="fa-solid fa-toggle-on fa-2xl" style={{ color: " #36bab1" }}></i>
-                        </div>
-                        <div className="serach-input">
+                        <div className="serach-input" onClick={() => { handleByDepartment(department, name) }} >
                             Search
                         </div>
                     </div>
@@ -147,7 +191,7 @@ const ServicePage = () => {
                     <p style={{ color: "#555", fontWeight: "400" }}>Lorem ipsum dolor sit amet consectetur adipiscing elit semp
                         er<br /> dalar elementum tempus hac tellus libero accumsan. </p>
                 </div>
-                <div style={{ padding: "0rem 4rem 1rem 7rem" }} className="all-services-cards-container d-flex justify-content-between  flex-wrap gap-4 w-100">
+                <div style={{ padding: "0rem 4rem 1rem 7rem" }} className="all-services-cards-container d-flex justify-content-between  flex-wrap  w-100">
 
                     <CardService title="Neurologist" para={obj.Neurologist.para} img={obj.Neurologist.img} />
                     <CardService title="Dentistry" para={obj.Dentistry.para} img={obj.Dentistry.img} />
@@ -158,27 +202,17 @@ const ServicePage = () => {
                     <CardService title='Surgery' para={obj.Surgery.para} img={obj.Surgery.img} />
                     <CardService title='Dermatology' para={obj.Dermatology.para} img={obj.Dermatology.img} />
                     <CardService title='Neurologist' para={obj.Neurologist.para} img={obj.Neurologist.img} />
-
-
-
                 </div>
 
             </div>
-            <div className="service-landing-page-container-child-4 mt-4">
+            <div className="service-landing-page-container-child-4 mt-4 mb-5">
                 <div className="mb-5">
                     <span style={{ color: "#007E85", fontSize: "2.25rem", fontWeight: "700" }}>Leading Medicine</span>
                     <p style={{ color: "#555", fontWeight: "400" }}>Problems trying to reslove the conflict betwenn the two major realms of Classical physics Newtonian mechanics </p>
                 </div>
                 <div style={{ padding: "0rem 4rem 1rem 7rem" }} className="all-leading-cards-container d-flex flex-wrap gap-4 ">
-                    <LeadingMedicine />
-                    <LeadingMedicine />
-                    <LeadingMedicine />
-                    <LeadingMedicine />
-                    <LeadingMedicine />
-                    <LeadingMedicine />
-                    <LeadingMedicine />
-                    <LeadingMedicine />
-                    <LeadingMedicine />
+                    {filtredDoctors.map((doctor: any, i: any) => <LeadingMedicine key={i} doctor={doctor} date={time} />)}
+
                 </div>
             </div>
         </div >

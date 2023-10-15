@@ -10,7 +10,12 @@ module.exports = (connection, DataTypes) => {
             type: DataTypes.STRING,
         },
         avatarUrl: {
-            type: DataTypes.TEXT
+            type: DataTypes.TEXT,
+            defaultValue: "../../client/src/assets/images/placeUser.jpg"
+        },
+        schedule: {
+            type: DataTypes.JSON,
+            defaultValue: ["08:00", "09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00"]
         },
         papers: {
             type: DataTypes.JSON,
@@ -48,3 +53,4 @@ module.exports = (connection, DataTypes) => {
     return Doctor
 
 }
+

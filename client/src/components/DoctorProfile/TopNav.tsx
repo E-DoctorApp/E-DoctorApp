@@ -5,6 +5,7 @@ import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import avatrHolder from '../../assets/images/palceUser.jpg'
 interface patientInfo {
   avatarUrl: string;
 }
@@ -14,7 +15,6 @@ const TopNav = () => {
   const bell = faBell as IconProp;
   const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
   const patient: any = useSelector((state: RootState) => state.patient.patientInfo)
-  console.log(patient);
 
   return (
     <div className="DoctorProfile-top">

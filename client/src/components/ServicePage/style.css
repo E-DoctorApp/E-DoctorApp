@@ -1,6 +1,6 @@
 .services-page-conatiner {
     width: 100%;
-    height: 450vh;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 5rem;
