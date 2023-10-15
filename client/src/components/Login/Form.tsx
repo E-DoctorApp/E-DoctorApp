@@ -7,6 +7,7 @@ import { loginPatient } from "../../store/patinetSlice";
 import { useNavigate } from "react-router-dom";
 import { getOneDoctor } from "../../store/doctorSlice";
 import { getOnePatient } from "../../store/patinetSlice";
+import { toast } from "react-toastify";
 
 function Form() {
   const user = useSelector((state: RootState) => state.doctor);
@@ -20,19 +21,38 @@ function Form() {
       e.preventDefault();
       if (userType === "doctor") {
         console.log("doctor submitted");
-        
+
         const res = await dispatch(
           doctorLogin({
             email,
             password,
           }),
         );
+
         if (res.payload.token) {
           navigate("/");
           dispatch(getOneDoctor())
+          toast.success("Welcome", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
         } else {
-          // toasts
-          console.log("no login");
+          toast.error("Wrong Password Or Email", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
         }
       }
       else if (userType === "patient") {
@@ -46,9 +66,27 @@ function Form() {
         if (res.payload.token) {
           dispatch(getOnePatient())
           navigate("/");
+          toast.success("Welcome", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
         } else {
-          // toasts
-          console.log("no login");
+          toast.error("Wrong Password Or Email", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
         }
       }
     } catch (error) {

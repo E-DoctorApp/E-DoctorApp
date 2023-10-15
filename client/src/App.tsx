@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import logo from "./logo.svg";
+import 'react-toastify/dist/ReactToastify.css';
 import "./App.css";
 import ContactUs from "./components/contactUs/ContactUS";
 import NavBar from "./components/NavBar/NavBar";
@@ -20,14 +21,13 @@ import DoctorChat from "./components/DoctorChat/DoctorChat";
 import AllAppointments from "./components/AllAppointments/AllAppointments";
 import AllPatients from "./components/AllPatients/AllPatients";
 import Schedule from "./components/Schedule/Schedule";
+import { ToastContainer } from "react-toastify";
 
 
 function App() {
   const dispatch:AppDispatch = useDispatch();
   const doctor = useSelector((state: RootState) => state.doctor);
   const patient = useSelector((state: RootState) => state.patient);
-  console.log(doctor,patient);
-  
   useEffect(() => {
     const userType = localStorage.getItem("type");
     if (userType==="patient") {
@@ -56,6 +56,7 @@ function App() {
         <Route path="/services" element={<ServicePage />} />
         <Route path="/Review" element={<Review />} />
       </Routes>
+      <ToastContainer/>
       <Footer />
     </div>
   );
