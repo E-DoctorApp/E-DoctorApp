@@ -15,7 +15,7 @@ const Review = () => {
         } else if (type === "doctor") {
             dispatch(getOneDoctor())
         }
-    })
+    },[])
     const [job, setJob] = useState("")
     const [profilePhoto] = useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKaiKiPcLJj7ufrj6M2KaPwyCT4lDSFA5oog&usqp=CAU")
     const [name, setName] = useState("")

@@ -7,6 +7,9 @@ import { getOnePatient } from '../../store/patinetSlice';
 import { getOneDoctor } from '../../store/doctorSlice';
 
 const AllAppointments = () => {
+  const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
+  const patient: any = useSelector((state: RootState) => state.patient.patientInfo)
+  const dispatch: AppDispatch = useDispatch()
   useEffect(() => {
     const type = localStorage.getItem("type")
     if (type === "patient") {
@@ -14,16 +17,13 @@ const AllAppointments = () => {
     } else if (type === "doctor") {
       dispatch(getOneDoctor())
     }
-  })
-  const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
-  const patient: any = useSelector((state: RootState) => state.patient.patientInfo)
-  const dispatch: AppDispatch = useDispatch()
+  }, [])
   const type = localStorage.getItem('type');
   return (
     <div className="appointments-container">
       {type === "patient" ?
-        patient.Appointments.map((appo: any, i: number) => !appo.isFinished ? <OneAppointment key={i} appo={appo} /> : null) :
-        doctor.Appointments.map((appo: any, i: number) => !appo.isFinished ? < OneAppointment key={i} appo={appo} /> : null)
+        patient.Appointments?.map((appo: any, i: number) => !appo.isFinished ? <OneAppointment key={i} appo={appo} /> : null) :
+        doctor.Appointments?.map((appo: any, i: number) => !appo.isFinished ? < OneAppointment key={i} appo={appo} /> : null)
       }
     </div>
   )

@@ -18,9 +18,9 @@ function CreateDoughnutData() {
         datasets: [
             {
                 data: [
-                    appointments.filter((appo: any) => appo.Patient.gender === "male").length
+                    appointments?.filter((appo: any) => appo.Patient.gender === "male").length
                     ,
-                    appointments.filter((appo: any) => appo.Patient.gender === "female").length
+                    appointments?.filter((appo: any) => appo.Patient.gender === "female").length
                 ],
                 backgroundColor: [
                     'orange',

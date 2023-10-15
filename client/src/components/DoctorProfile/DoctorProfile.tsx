@@ -17,7 +17,7 @@ const DoctorProfile = (): React.JSX.Element => {
     } else if (type === "doctor") {
       dispatch(getOneDoctor())
     }
-  })
+  },[])
 
 
   return (
