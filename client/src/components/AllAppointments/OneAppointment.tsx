@@ -15,22 +15,33 @@ const OneAppointment = ({ appo }: Appprops) => {
   const accept = faSquareCheck as IconProp;
   const doctor: any = useSelector((state: RootState) => state.doctor)
   const type = localStorage.getItem('type');
-  
+
 
   return (
     <div className="appointment-requests-list-container-request">
-      <div className="image-frame2">
-        <img
-          src={type === "patient" ? appo.Doctor.avatarUrl : type === "doctor" ? appo.Patient.avatarUrl : ""}
-          alt=""
-        />
+      <div className="d-flex align-items-center gap-4">
+        <div className="image-frame2">
+          <img
+            src={type === "patient" ? appo.Doctor.avatarUrl : type === "doctor" ? appo.Patient.avatarUrl : ""}
+            alt=""
+          />
+        </div>
+
+        <div>
+          {
+            type === "patient" &&
+              <i className="fa-solid fa-circle-info fa-xl" style={{ color: "#007e85" }}></i> 
+          }
+        </div>
+
+
       </div>
       <div className="appointment-requests-list-container-request-details">
         <span className="appointment-requests-list-container-request-details-name">
           {type === "patient" ? appo.Doctor.name : type === "doctor" ? appo.Patient.name : ""}
         </span>
         <span className="appointment-requests-list-container-request-details-data">
-          {type === "patient" ? appo.date : type === "doctor" ? appo.Patient.gender.toUpperCase() +' , '+ appo.date : ""}
+          {type === "patient" ? appo.date : type === "doctor" ? appo.Patient.gender.toUpperCase() + ' , ' + appo.date : ""}
         </span>
       </div>
       {appo.status !== "pending" ? (

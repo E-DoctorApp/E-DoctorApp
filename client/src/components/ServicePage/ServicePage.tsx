@@ -5,6 +5,7 @@ import Calendar from 'react-calendar'
 import CardService from '../CardSevice/CardService'
 import LeadingMedicine from './LeadingMedicine'
 import axios from 'axios'
+import { toast } from "react-toastify"
 import { useLocation } from 'react-router-dom'
 var obj = {
     Neurologist: {
@@ -43,17 +44,28 @@ var obj = {
 
 
 const ServicePage = () => {
-    const location:any =useLocation()
+    const location: any = useLocation()
     const [department, setDepartment] = useState("")
     const [name, setName] = useState("")
     const [time, setTime] = useState("")
     const [filtredDoctors, setFiltredDoctors] = useState([])
-    const handleByDepartment = async(department:string,name:string) =>{
+    const handleByDepartment = async (department: string, name: string) => {
         try {
-            const response = await axios.post(`http://localhost:5000/api/doctor/departmentFilter`,{department,name})
+            const response = await axios.post(`http://localhost:5000/api/doctor/departmentFilter`, { department, name })
             setFiltredDoctors(response.data)
             if (response.data.length > 0) {
                 window.scrollTo(0, 3000)
+            } else {
+                toast.info("No Doctors Available ", {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             }
         } catch (error) {
             console.log(error);
@@ -72,11 +84,11 @@ const ServicePage = () => {
 
         }
     }
-    useEffect(()=>{
-        console.log(location);
-        
-        handleByDepartment(location.state.department,location.state.name)
-    },[])
+    useEffect(() => {
+        if (location.state) {
+            handleByDepartment(location.state.department, location.state.name)
+        }
+    }, [])
     return (
         <div className='services-page-conatiner'>
             <div className='services-hospital-image-wrapper'>
@@ -164,10 +176,10 @@ const ServicePage = () => {
                     <div className="find-A-Doctor">Find A doctor</div>
                     <div className="find-A-Doctor-inputs">
                         <div className="d-flex gap-4">
-                            <input placeholder="Name" onChange={((e:any)=>{setName(e.target.value)})} />
-                            <input placeholder="Department" onChange={(e:any)=>{setDepartment(e.target.value)}} />
+                            <input placeholder="Name" onChange={((e: any) => { setName(e.target.value) })} />
+                            <input placeholder="Department" onChange={(e: any) => { setDepartment(e.target.value) }} />
                         </div>
-                        <div className="serach-input" onClick={()=>{handleByDepartment(department,name)}} >
+                        <div className="serach-input" onClick={() => { handleByDepartment(department, name) }} >
                             Search
                         </div>
                     </div>

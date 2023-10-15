@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
 import { getOneDoctor } from '../../store/doctorSlice';
 import { getOnePatient } from '../../store/patinetSlice';
+import {toast} from "react-toastify"
 interface props {
     doctor: any,
     date: any
@@ -12,28 +13,50 @@ interface props {
 
 function LeadingMedicine({ doctor, date }: props) {
     const dispatch: AppDispatch = useDispatch()
-
     const doc: any = useSelector((state: RootState) => state.doctor.doctorInfo)
     const patient: any = useSelector((state: RootState) => state.patient.patientInfo)
-
-    console.log(doctor);
     const [disease, setDisease] = useState("")
     const handleAppointment = async (appo: any) => {
         try {
-            const response = await axios.post("http://localhost:5000/api/appointment/add", appo);
-            console.log(response.data);
-            if (response.data.status === "pending") {
-                const userType = localStorage.getItem("type");
-                const res = await axios.put(`http://localhost:5000/api/doctor/schedule/up`, {
-                    id: doctor.id,
-                    time: date
-                })
-                console.log("schdule updated", res);
-
-                if (userType === "patient") {
-                    dispatch(getOnePatient())
-                } else if (userType === "doctor") {
-                    dispatch(getOneDoctor())
+            const token = localStorage.getItem("token")
+            if (!disease) {
+                toast.info("Fill disease First", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                  });
+                  return;
+            }
+            if (!token) {
+                toast.warning("You Need To Login", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                  });
+            } else {
+                const response = await axios.post("http://localhost:5000/api/appointment/add", appo);
+                console.log(response.data);
+                if (response.data.status === "pending") {
+                    const userType = localStorage.getItem("type");
+                    const res = await axios.put(`http://localhost:5000/api/doctor/schedule/up`, {
+                        id: doctor.id,
+                        time: date
+                    })
+                    if (userType === "patient") {
+                        dispatch(getOnePatient())
+                    } else if (userType === "doctor") {
+                        dispatch(getOneDoctor())
+                    }
                 }
             }
         } catch (error) {
