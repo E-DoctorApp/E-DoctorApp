@@ -85,7 +85,7 @@ module.exports.getAll = async (req, res) => {
         const result = await Doctor.findAll({})
         res.status(201).send(result)
     } catch (error) {
-        throw new Error(error)
+        res.json (error)
     }
 };
 module.exports.getOne = async (req, res) => {
