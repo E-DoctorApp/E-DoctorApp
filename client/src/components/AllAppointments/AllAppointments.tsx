@@ -10,14 +10,14 @@ const AllAppointments = () => {
   const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
   const patient: any = useSelector((state: RootState) => state.patient.patientInfo)
   const dispatch: AppDispatch = useDispatch()
-  useEffect(() => {
-    const type = localStorage.getItem("type")
-    if (type === "patient") {
-      dispatch(getOnePatient())
-    } else if (type === "doctor") {
-      dispatch(getOneDoctor())
-    }
-  }, [])  
+  // useEffect(() => {
+  //   const type = localStorage.getItem("type")
+  //   if (type === "patient") {
+  //     dispatch(getOnePatient())
+  //   } else if (type === "doctor") {
+  //     dispatch(getOneDoctor())
+  //   }
+  // }, [])  
   const type = localStorage.getItem('type');
   return (
     <div className="appointments-container">

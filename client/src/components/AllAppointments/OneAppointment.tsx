@@ -16,14 +16,14 @@ type Appprops = {
 
 const OneAppointment = ({ appo }: Appprops) => {
   const dispatch: AppDispatch = useDispatch()
-  useEffect(() => {
-    const type = localStorage.getItem("type")
-    if (type === "patient") {
-      dispatch(getOnePatient())
-    } else if (type === "doctor") {
-      dispatch(getOneDoctor())
-    }
-  }, [])
+  // useEffect(() => {
+  //   const type = localStorage.getItem("type")
+  //   if (type === "patient") {
+  //     dispatch(getOnePatient())
+  //   } else if (type === "doctor") {
+  //     dispatch(getOneDoctor())
+  //   }
+  // }, [])
   const [star, setStar] = useState<number>(1)
   const [review, setReview] = useState<string>("")
   const decline = faRectangleXmark as IconProp;
