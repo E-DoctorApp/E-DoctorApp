@@ -45,7 +45,6 @@ function LeadingMedicine({ doctor, date }: props) {
                   });
             } else {
                 const response = await axios.post("http://localhost:5000/api/appointment/add", appo);
-                console.log(response.data);
                 if (response.data.status === "pending") {
                     const userType = localStorage.getItem("type");
                     const res = await axios.put(`http://localhost:5000/api/doctor/schedule/up`, {

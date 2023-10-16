@@ -6,7 +6,6 @@ const { Op, where } = require("sequelize");
 
 module.exports.register = async (req, res) => {
     try {
-        console.log(req.body);
         bcrypt.hash(req.body.password, 10)
             .then((hassedPass) => {
                 Doctor.create({

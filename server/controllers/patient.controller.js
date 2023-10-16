@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 module.exports.register = async (req, res) => {
   try {
     bcrypt.hash(req.body.password, 10).then((hassedPass) => {
-      console.log(hassedPass);
       Patient.create({
         ...req.body,
         password: hassedPass,
@@ -90,15 +89,6 @@ module.exports.getAll = async (req, res) => {
 
 module.exports.getOne = async (req, res) => {
     res.status(200).send(req.user);
-  // try {
-  //   const result = await Patient.findOne({ where: { id: req.params.id },
-  //     include: { all: true, nested: true },
-    
-  //   });
-  // } catch (error) {
-  //   console.log(error);
-  //   res.status(404).send(error);
-  // }
 };
 
 module.exports.remove = async (req, res) => {
@@ -114,7 +104,6 @@ module.exports.remove = async (req, res) => {
       res.status(404).json({ error: "Patient not found." });
     }
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: " server error" });
   }
 };
@@ -125,7 +114,6 @@ module.exports.Update = async (req, res) => {
     const result = await Patient.update(req.body, { where: { id: id } });
     res.json(result);
   } catch (error) {
-    console.log(error);
     res.status(404).send(error);
   }
 };

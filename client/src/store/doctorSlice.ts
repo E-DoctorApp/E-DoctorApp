@@ -36,7 +36,6 @@ export const getOneDoctor = createAsyncThunk("getOneDoctor", async () => {
         authorization: `Bearer ${token}`,
       },
     });
-    console.log(data.data);
     
 
     return data.data;
@@ -53,7 +52,6 @@ export const doctorLogin = createAsyncThunk("doctorLogin", async (body: Object) 
     );
     // dispatch(getOneDoctor())
     // getOneDoctor();
-    console.log(data.data, "this is data from store")
     return data.data;
   } catch (error) {
     return error;

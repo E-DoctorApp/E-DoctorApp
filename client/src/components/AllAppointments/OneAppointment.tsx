@@ -35,7 +35,6 @@ const OneAppointment = ({ appo }: Appprops) => {
   const handleAddReview = async () => {
     try {
       const res = await axios.post("http://localhost:5000/api/review/addReview", { rate: star, content: review, PatientId: appo.PatientId, DoctorId: appo.Doctor.id });
-      console.log(res);
 
     } catch (error) {
       console.log(error);
@@ -45,7 +44,7 @@ const OneAppointment = ({ appo }: Appprops) => {
   const handelUpdateAppointment = async (appoId: string, obj: object) => {
     try {
       const response = await axios.put(`http://localhost:5000/api/appointment/${appoId}`, obj)
-      console.log(response);
+      
     } catch (error) {
       console.log(error);
     }
