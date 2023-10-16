@@ -22,16 +22,15 @@ const Review = () => {
     const [rate, setRate] = useState(0)
     const [star, setStar] = useState(0)
     const [trust, setTrust] = useState<number>(25)
-    console.log(trust);
 
     const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
     const allReviwes: any = useSelector((state: RootState) => state.doctor.allReviwes);
-    useEffect(() => {
-        const resTrust = +(allReviwes.reduce((acc: number, elm: any) => acc + +elm.rate, 0) / allReviwes.length * 5).toFixed(0)
-        setTrust(resTrust)
-        const resStar = +(allReviwes.reduce((acc: number, elm: any) => acc + +elm.rate, 0) / allReviwes.length).toFixed(0)
-        setStar(resStar)
-    }, [])
+    // useEffect(() => {
+    //     const resTrust = +(allReviwes.reduce((acc: number, elm: any) => acc + +elm.rate, 0) / allReviwes.length * 5).toFixed(0)
+    //     setTrust(resTrust)
+    //     const resStar = +(allReviwes.reduce((acc: number, elm: any) => acc + +elm.rate, 0) / allReviwes.length).toFixed(0)
+    //     setStar(resStar)
+    // }, [])
 
 
     return (

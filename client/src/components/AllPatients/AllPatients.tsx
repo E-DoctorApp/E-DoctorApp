@@ -18,7 +18,7 @@ const AllPatients = () => {
           <span>Diseases</span>
           <span>Status</span>
         </div>
-        { doctor.Appointments.map((appo: any, i: number) => appo.isFinished ? < OnePatient key={i} appo={appo} /> : null)}
+        { doctor.Appointments?.map((appo: any, i: number) => appo.isFinished ? < OnePatient key={i} appo={appo} /> : null)}
       </div>
     </div>
   )

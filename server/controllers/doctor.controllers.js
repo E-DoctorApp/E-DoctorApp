@@ -85,7 +85,7 @@ module.exports.getAll = async (req, res) => {
         const result = await Doctor.findAll({})
         res.status(201).send(result)
     } catch (error) {
-        res.json (error)
+        res.json(error)
     }
 };
 module.exports.getOne = async (req, res) => {
@@ -130,7 +130,7 @@ module.exports.updateTimes = async (req, res) => {
     try {
         const doctor = await Doctor.findOne({ where: { id: req.body.id } })
         const newsch = (doctor.schedule.filter((sch) => sch !== req.body.time));
-        const response = await Doctor.update({ schedule: newsch },{ where: { id: req.body.id }})
+        const response = await Doctor.update({ schedule: newsch }, { where: { id: req.body.id } })
         res.json(response)
     } catch (error) {
         res.json(error)
@@ -139,7 +139,7 @@ module.exports.updateTimes = async (req, res) => {
 
 module.exports.getByDepartment = async (req, res) => {
     try {
-        const doctor = await Doctor.findAll({ where: { department: { [Op.like]: `%${req.body.department}%` } , name: {[Op.like]: `%${req.body.name}%`} } })
+        const doctor = await Doctor.findAll({ where: { department: { [Op.like]: `%${req.body.department}%` }, name: { [Op.like]: `%${req.body.name}%` } } })
         res.json(doctor)
     } catch (error) {
         res.json(error)

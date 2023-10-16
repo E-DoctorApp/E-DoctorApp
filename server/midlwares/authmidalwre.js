@@ -6,28 +6,28 @@ const authProtection = async (req, res, next) => {
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
+    
   ) {
     try {
+      console.log("in side try");
       // Get token fron header
       token = req.headers.authorization.split(" ")[1];
-      console.log(token);
 
       //Verify token
       const decoded = jwt.verify(token, process.env.SECRET_KEY);
-      console.log("hi decoded", decoded);
       //Get User from the token
       if (decoded.PatientId) {
         req.user = await Patient.findByPk(decoded.PatientId, {
           include: { all: true, nested: true },
         });
       } else {
+        console.log(decoded);
         req.user = await Doctor.findByPk(decoded.DoctorId, {
           include: { all: true, nested: true },
         });
       }
       next();
     } catch (error) {
-      console.log(error);
       res.status(401);
       res.send("Not authorized");
     }

@@ -184,7 +184,7 @@ const LandingPage = () => {
                         er<br /> dalar elementum tempus hac tellus libero accumsan. </p>
                 </div>
                 <div style={{ padding: "0rem 4rem 1rem 7rem" }} className="all-services-cards-container d-flex  flex-wrap gap-4 w-100">
-                    {allDoctors.map((doctor:object,i:number) => <TeamMember key={i} doctor={doctor} />)}
+                    {allDoctors?.map((doctor:object,i:number) => <TeamMember key={i} doctor={doctor} />)}
                   
                 </div>
             </div>
