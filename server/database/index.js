@@ -93,7 +93,7 @@ Report.belongsTo(Doctor)
 //   console.log("admin data have been saved");
 // });
 // Review.bulkCreate(reviewData).then(()=>{
-//   console.log("review data have been saved");
+//    console.log("review data have been saved");
 // })
 // Room.bulkCreate(roomData).then(()=>{
 //   console.log('room data have been saved');

@@ -9,12 +9,14 @@ import axios from 'axios';
 const socket = io("http://localhost:5000")
 const Conversation = ({ udpate }: any) => {
   const type = localStorage.getItem('type')
-  const roomId = localStorage.getItem('roomId')
+  const roomId: any = localStorage.getItem('roomId')
   const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo);
   const patient: any = useSelector((state: RootState) => state.patient.patientInfo);
   const [reciver, setReciver] = useState<any>({})
   const [sender, setSender] = useState<any>({})
-  console.log(doctor);
+  console.log(reciver);
+  console.log(sender);
+
 
 
   // const left = doctor.phone == 
@@ -22,7 +24,6 @@ const Conversation = ({ udpate }: any) => {
 
 
   const [msg, setMsg] = useState<any[]>([]);
-  console.log(msg);
 
   const [message, setMessage] = useState("");
   const handleGetMessages = async () => {
@@ -30,44 +31,60 @@ const Conversation = ({ udpate }: any) => {
       const response = await axios.get(`http://localhost:5000/api/room/OneRoom/${roomId}`)
       console.log(response);
       setMsg(response.data.Messages);
-      if (type === "doctor") {
-
-        setReciver(response.data.Patient)
-        setSender(response.data.Doctor)
-      } else {
-        setReciver(response.data.Doctor)
-        setSender(response.data.Patient)
-
-
-      }
+      // if (type === "doctor") {
+      //   setReciver(response.data.Patient)
+      //   setSender(response.data.Doctor)
+      // } else {
+      //   setReciver(response.data.Doctor)
+      //   setSender(response.data.Patient)
+      // }
     } catch (error) {
       console.log(error);
     }
   }
-  useEffect(() => {
-    handleGetMessages()
-  }
-    , [udpate])
+  // useEffect(() => {
+  //   handleGetMessages()
+  // }
+  //   , [])
 
 
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (message.trim()) {
+      let DoctorId = ""
+      let PatientId = ""
+      if (sender.papers) {
+        DoctorId = sender.id
+        PatientId = reciver.id
+      } else {
+        DoctorId = reciver.id
+        PatientId = sender.id
+      }
+
       socket.emit('message', {
-        message: message
+        content: message, senderPhone: sender.phone, DoctorId, PatientId, RoomId: roomId * 1
       })
+
       setMessage("")
-      
+      try {
+
+        const res = await axios.post("http://localhost:5000/api/message/add/", { content: message, senderPhone: sender.phone, DoctorId, PatientId, RoomId: roomId * 1 })
+        console.log(res);
+
+      } catch (error) {
+        console.log(error);
+
+      }
+
     }
   }
 
   useEffect(() => {
     socket.on('messageResponse', (data: any) => {
-      console.log(data, "this is data")
       setMsg([...msg, data])
 
     })
-  }, [socket, msg])
+  }, [])
 
 
 
@@ -78,9 +95,15 @@ const Conversation = ({ udpate }: any) => {
   return (
     <div className="col-md-6 col-lg-7 col-xl-8">
       <div className="pt-3 pe-3" data-mdb-perfect-scrollbar="true" style={{ position: 'relative', height: '400px' }}>
-        Conversation messages from User 1
+        {/* Conversation messages from User 1 */}
         {msg.map((message: any, i: number) => {
-          const left = message.senderPhone == reciver.phone
+          // const left = message.senderPhone == reciver.phone
+
+          // const sender = message.senderPhone == doctor.phone ? doctor : patient
+          // const reciver = message.senderPhone != doctor.phone ? doctor : patient
+          setSender(message.senderPhone == doctor.phone ? doctor : patient)
+          setReciver(message.senderPhone != doctor.phone ? doctor : patient)
+          const left = message.sendPhone == reciver.phone
           return (
             <div className={left ? "d-flex flex-row justify-content-start" : "d-flex flex-row justify-content-end"} key={i}>
               <img
@@ -89,11 +112,11 @@ const Conversation = ({ udpate }: any) => {
                 style={{ width: '45px', height: '100%', borderRadius: "50%" }}
               />
               <div >
-                <p 
-                  className="small p-2 ms-3 mb-1 rounded-3" style={{ backgroundColor: left?'#f5f6f7':"blue" }}>
+                <p
+                  className="small p-2 ms-3 mb-1 rounded-3" style={{ backgroundColor: left ? '#f5f6f7' : "blue" }}>
                   {message.content}
                 </p>
-                <p className="small ms-3 mb-3 rounded-3 text-muted float-end">{message.createdAt.slice(0, 10)}</p>
+                <p className="small ms-3 mb-3 rounded-3 text-muted float-end">{message.createdAt?.slice(0, 10)}</p>
               </div>
             </div>)
         })}
@@ -121,7 +144,6 @@ const Conversation = ({ udpate }: any) => {
         />
         <a className="ms-1 text-muted" href="#!"><i className="fas fa-paperclip"></i></a>
         <a className="ms-3 text-muted" href="#!"><i className="fas fa-smile"></i></a>
-        {/* <a className="ms-3" href="#!" onClick={handleSendMessage}><i className="fas fa-paper-plane"></i></a> */}
       </div>
     </div>
   );
