@@ -42,7 +42,7 @@ const DoctorCards = () => {
         </div>
         <div className="DoctorProfile-card-details">
           <span className="DoctorProfile-card-stat">
-            {appointments.length} Patient</span>
+            {appointments?.length} Patient</span>
           <span className="DoctorProfile-card-title">Total Patient</span>
         </div>
       </div>

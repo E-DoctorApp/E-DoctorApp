@@ -41,7 +41,7 @@ const Stocks = () => {
           </div>
           <div className="DoctorProfile-statistics-stock-details">
             <span className="DoctorProfile-statistics-stock-details-data">
-              {appointments.filter((appo: any) => !appo.isFinished).length}
+              {appointments?.filter((appo: any) => !appo.isFinished).length}
             </span>
             <span className="DoctorProfile-statistics-stock-details-title">
               New Patient

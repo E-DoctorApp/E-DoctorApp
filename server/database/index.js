@@ -113,13 +113,12 @@ module.exports = {
     Patient,
     Doctor,
     Appointment,
-  Review,
-   Room,
+    Review,
+    Room,
     Message,
     Report,
     Admin,
     connection
-
 }
 
 

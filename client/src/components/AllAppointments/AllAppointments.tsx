@@ -17,7 +17,7 @@ const AllAppointments = () => {
     } else if (type === "doctor") {
       dispatch(getOneDoctor())
     }
-  }, [])
+  }, [])  
   const type = localStorage.getItem('type');
   return (
     <div className="appointments-container">
