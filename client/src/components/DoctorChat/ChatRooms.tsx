@@ -8,7 +8,7 @@ interface props {
   setUpdate: any;
   udpate: boolean;
 }
-const ChatRooms = ({ setUpdate,udpate }: props) => {
+const ChatRooms = ({ setUpdate, udpate }: props) => {
   const [chatRooms, setChatRooms] = useState<any[]>([])
   const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo);
   const patient: any = useSelector((state: RootState) => state.patient.patientInfo);

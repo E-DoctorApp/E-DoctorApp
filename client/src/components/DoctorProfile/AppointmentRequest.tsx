@@ -27,7 +27,6 @@ const AppointmentRequest = ({ appo }: Appprops) => {
   const handelUpdateAppointment = async (appoId: string, status: string) => {
     try {
       const response = await axios.put(`http://localhost:5000/api/appointment/${appoId}`, { status })
-      console.log(response);
     } catch (error) {
       console.log(error);
     }

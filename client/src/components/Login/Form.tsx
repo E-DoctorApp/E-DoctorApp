@@ -20,8 +20,6 @@ function Form() {
     try {
       e.preventDefault();
       if (userType === "doctor") {
-        console.log("doctor submitted");
-
         const res = await dispatch(
           doctorLogin({
             email,
@@ -56,7 +54,6 @@ function Form() {
         }
       }
       else if (userType === "patient") {
-        console.log("patient submitted");
         const res = await dispatch(
           loginPatient({
             email,

@@ -9,7 +9,6 @@ const authProtection = async (req, res, next) => {
     
   ) {
     try {
-      console.log("in side try");
       // Get token fron header
       token = req.headers.authorization.split(" ")[1];
 
@@ -21,7 +20,6 @@ const authProtection = async (req, res, next) => {
           include: { all: true, nested: true },
         });
       } else {
-        console.log(decoded);
         req.user = await Doctor.findByPk(decoded.DoctorId, {
           include: { all: true, nested: true },
         });

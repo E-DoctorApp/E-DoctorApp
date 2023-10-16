@@ -14,8 +14,7 @@ const Conversation = ({ udpate }: any) => {
   const patient: any = useSelector((state: RootState) => state.patient.patientInfo);
   const [reciver, setReciver] = useState<any>({})
   const [sender, setSender] = useState<any>({})
-  console.log(reciver);
-  console.log(sender);
+
 
 
 
@@ -29,7 +28,6 @@ const Conversation = ({ udpate }: any) => {
   const handleGetMessages = async () => {
     try {
       const response = await axios.get(`http://localhost:5000/api/room/OneRoom/${roomId}`)
-      console.log(response);
       setMsg(response.data.Messages);
       // if (type === "doctor") {
       //   setReciver(response.data.Patient)
@@ -69,7 +67,6 @@ const Conversation = ({ udpate }: any) => {
       try {
 
         const res = await axios.post("http://localhost:5000/api/message/add/", { content: message, senderPhone: sender.phone, DoctorId, PatientId, RoomId: roomId * 1 })
-        console.log(res);
 
       } catch (error) {
         console.log(error);

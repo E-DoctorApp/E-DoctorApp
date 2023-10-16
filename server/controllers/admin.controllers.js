@@ -7,7 +7,6 @@ module.exports.getAll = async (req, res) => {
       });
       res.json(result)
     } catch (error) {
-      console.log(error);
       res.status(404).send(error);
     }
   };
@@ -17,7 +16,6 @@ module.exports.getAll = async (req, res) => {
         const result = await Doctor.create(req.body)
         res.json(result)
     } catch (error) {
-        console.log(error);
         res.status(404).send(error)
     }
   }
@@ -27,7 +25,6 @@ module.exports.getAll = async (req, res) => {
       const result = await Doctor.findById({ where: { id: req.params.id } });
       res.json(result);
     } catch (error) {
-      console.log(error);
       res.status(404).send(error);
     } 
   };
@@ -37,7 +34,6 @@ module.exports.getAll = async (req, res) => {
       const result = await Doctor.destroy({ where: { id: req.params.id } });
       res.json(result);
     } catch (error) {
-      console.log(error);
       res.status(404).send(error);
     }
   };
@@ -50,7 +46,6 @@ module.exports.getAll = async (req, res) => {
         where: { id: req.params.id } });
       res.json(result);
     } catch (error) {
-      console.log(error);
       res.status(404).send(error);
     }
   };

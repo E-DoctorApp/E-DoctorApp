@@ -74,7 +74,6 @@ const ServicePage = () => {
     const handleFilterDoctors = async (Department: string, Time: string) => {
         try {
             const res = await axios.post("http://localhost:5000/api/doctor/getAvailable", { Department, Time })
-            console.log("------ Data Doctors---", res.data);
             setFiltredDoctors(res.data)
             if (res.data.length > 0) {
                 window.scrollTo(0, 3000)
